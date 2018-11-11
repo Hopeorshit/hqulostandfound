@@ -1,0 +1,8 @@
+/* pages/rule/rule.wxss */
+.rule{
+  padding: 0 20rpx;
+  padding-top: 100rpx;
+  font-size: 32rpx;
+  line-height: 30px;
+  color: #434446;
+}

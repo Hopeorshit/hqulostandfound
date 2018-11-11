@@ -1,0 +1,6 @@
+<template name='nothing'>
+  <view class='nothing'>
+    <image src='{{nothing}}'></image>
+    <!-- <text>立即发布</text> -->
+  </view>
+</template>

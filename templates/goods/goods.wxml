@@ -1,0 +1,42 @@
+<!-- 使用户首页商品展示，中间图片展示scroll-view-->
+<template name='goods'>
+  <view class='goods-container'>
+    <block wx:for="{{list}}" wx:key="index">
+      <view class="goods">
+        <view class="goods-v1">
+          <image src="{{item.user.avatarUrl}}" />
+          <view class='goods-v1-right'>
+            <text class="user-name">{{item.user.nickName}}</text>
+            <text class='time'>{{item.created}}</text>
+          </view>
+        </view>
+        <scroll-view class='scroll' scroll-x>
+          <view class='goods-v2' bindtap='goodsDetail' data-goods_id="{{item.id}}">
+            <block wx:for="{{item.images}}" wx:for-item="item1" wx:key="index">
+              <view>
+                <image src="{{item1.url}}" mode='aspectFill' lazy-load='true' />
+              </view>
+            </block>
+          </view>
+        </scroll-view>
+        <view class="goods-v3">
+          {{item.description}}
+        </view>
+        <view class="goods-v4">
+          <view wx:if='{{item.price!=0}}'>
+            <text class="rmb">¥</text>
+            <text class="price">{{item.price}}</text>
+          </view>
+          <view wx:else>
+            <text class="rmb">免费领</text>
+          </view>
+          <view class='goods-v4-right'>
+            <text class='people'>浏览</text>
+            <text class='people'>|</text>
+            <text class='people'>{{item.views}}</text>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+</template>

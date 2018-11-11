@@ -1,0 +1,20 @@
+@import "/style/loading.wxss";
+page{
+  height: 100%;
+}
+.first-load{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nomore{
+  color: #a9aaac;
+  font-size: 26rpx;
+}
+

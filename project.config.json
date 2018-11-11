@@ -1,0 +1,71 @@
+{
+	"description": "项目配置文件。",
+	"packOptions": {
+		"ignore": []
+	},
+	"setting": {
+		"urlCheck": true,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.3.0",
+	"appid": "wxf03f6bbcdd893206",
+	"projectname": "v1.0.0",
+	"isGameTourist": false,
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"currentL": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": 2,
+			"list": [
+				{
+					"id": -1,
+					"name": "发布信息",
+					"pathName": "pages/publishershou/publishershou",
+					"query": ""
+				},
+				{
+					"id": 1,
+					"name": "search",
+					"pathName": "pages/search/search",
+					"query": "text=\"书“"
+				},
+				{
+					"id": 2,
+					"name": "detail",
+					"pathName": "pages/goodsdetail/goodsdetail",
+					"query": "goods_id=179"
+				},
+				{
+					"id": -1,
+					"name": "detail",
+					"pathName": "pages/goodsdetail/goodsdetail",
+					"query": "goods_id=117"
+				},
+				{
+					"id": -1,
+					"name": "我的",
+					"pathName": "pages/mine/mine",
+					"query": "goods_id=118"
+				}
+			]
+		}
+	}
+}

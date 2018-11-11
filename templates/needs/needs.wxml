@@ -1,0 +1,28 @@
+<!-- 使用户首页商品展示，中间图片展示scroll-view-->
+<template name='needs'>
+  <view class='goods-container'>
+    <block wx:for="{{list}}" wx:key="index">
+      <view class="goods">
+        <view class="goods-v1">
+          <view class='goods-v1-left'>
+            <image src="{{item.user.avatarUrl}}" />
+          </view>
+          <view class='goods-v1-right'  bindtap='needsDetail' data-needs_id='{{item.id}}'>
+            <view>
+              <text class="user-name">{{item.user.nickName}}</text>
+            </view>
+            <view>
+              <text class='description'>{{item.description}}</text>
+            </view>
+            <scroll-view class='goods-scroll' scroll-x hidden='{{item.status==0}}'>
+              <block wx:for="{{item.images}}" wx:for-item="item1">
+                <image src="{{item1.url}}" class='goods-image' mode='aspectFill' />
+              </block>
+            </scroll-view>
+            <text class='time'>{{item.created}}</text>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+</template>

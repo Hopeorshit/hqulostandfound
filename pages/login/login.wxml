@@ -1,0 +1,7 @@
+<!--pages/login/login.wxml-->
+<view class='sign-in'>
+  <view>
+    <text class='sign-in-text'>尚未登录</text>
+  </view>
+  <button class='sign-in-button' open-type='getUserInfo' bindgetuserinfo='login'>微信登录</button>
+</view>

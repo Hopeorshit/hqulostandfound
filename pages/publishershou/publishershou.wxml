@@ -1,0 +1,54 @@
+<!--pages/publishershou/publishershou.wxml-->
+
+<form bindsubmit='submit'>
+  <view hidden='{{!loginStatus}}'>
+    <view class='box box-type'>
+      <text class="box-type-text {{is_found?'box-type-select':''}}" bindtap='typeSelect'>失物招领</text>
+      <text class="box-type-text {{!is_found?'box-type-select':''}}" bindtap='typeSelect'>寻物启事</text>
+    </view>
+
+    <scroll-view scroll-x>
+      <view class='box box5'>
+        <view class='box5-v' bindtap='addPic'>
+          <view class='camera'>
+            <image src='/images/camera.png'></image>
+            <text class='addpic-text'>图片(可选)</text>
+          </view>
+        </view>
+        <view class='box5-v' wx:for="{{localImage}}" wx:key="{{index}}">
+          <image class='box5-image' src='{{item}}' bindtap='imagePreview' data-index='{{index}}' mode='aspectFill'></image>
+          <image class='box5-delete' src='/images/delete.png' bindtap='deletePic' data-index="{{index}}"></image>
+        </view>
+      </view>
+    </scroll-view>
+
+    <view class='box box4'>
+      <textarea placeholder='请填写物品名称和特征等，如:褐色雨伞' value='{{description}}' name='description' class='box4-right' maxlength='100'></textarea>
+    </view>
+
+
+
+    <view class='box box-ways'>
+      <view class='way-text'>
+        <text wx:if="{{is_found}}">领取方式:</text>
+        <text wx:else>联系方式：</text>
+        <text class='select-one'>(选择一种)</text>
+      </view>
+      <view class='way-sel'>
+        <radio-group class="radio-group" bindchange="radioChange" >
+          <block wx:for="{{radio_group}}" wx:key="index">
+            <radio value='{{index}}' color='#ff6263' class='radio' checked='{{item.checked}}'>
+              <text>{{item.text}}</text>
+            </radio>
+          </block>
+        </radio-group>
+        <input placeholder='请填写{{radio_group[currentRadioIndex].text}}' name="phone" value='{{phone}}' class='input-way'> </input>
+      </view>
+    </view>
+
+    <!-- <button class='get-phone' open-type="getPhoneNumber" bindgetphonenumber='phone'>获取手机号</button> -->
+    <button class='btn-bottom-fixed' disabled='{{publishing}}' form-type='submit'>
+      发布
+    </button>
+  </view>
+</form>

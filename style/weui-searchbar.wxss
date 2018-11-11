@@ -1,0 +1,80 @@
+/*!
+ * WeUI v1.1.1 (https://github.com/weui/weui-wxss)
+ * Copyright 2017 Tencent, Inc.
+ * Licensed under the MIT license
+ */
+
+.weui-search-bar {
+  position: relative;
+  padding: 16rpx 10px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  box-sizing: border-box;
+  /* background:rgba(0, 0, 0, 0.3); */
+  border: none;
+}
+
+.weui-search-bar__form {
+  border-radius: 12rpx;
+  position: relative;
+  -webkit-box-flex: 1;
+  -webkit-flex: auto;
+  flex: auto;
+  background:rgba(0, 0, 0, 0.3);
+  /* border: 1rpx solid #e6e6ea; */
+}
+
+.weui-search-bar__box {
+  position: relative;
+  padding-left: 30px;
+  padding-right: 30px;
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 1;
+  /* background-color: white */
+}
+
+.weui-icon-search_in-box {
+  position: absolute;
+  left: 10px;
+  top: 7px;
+}
+
+icon {
+  vertical-align: middle;
+}
+
+
+
+.weui-icon-search {
+  margin-right: 8px;
+  font-size: inherit;
+}
+
+.weui-search-bar__input {
+  height: 28px;
+  line-height: 56rpx;
+  font-size: 14px;
+  color: white
+}
+
+.weui-search-bar__text {
+  display: inline-block;
+  font-size: 14px;
+  vertical-align: middle;
+}
+
+.weui-search-bar__label {
+  border-radius: 12rpx;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  text-align: center;
+  color: #9b9b9b;
+  background:rgba(0, 0, 0, 0.3);
+  line-height: 28px;
+}

@@ -1,0 +1,93 @@
+.goods-container{
+  background-color: #f8f8f8;
+}
+
+.goods {
+  margin-bottom: 8px;
+  background-color: white;
+  padding: 0 10px;
+  color: #434346;
+}
+
+.goods-v1 {
+  padding: 10px 5px;
+  display: flex;
+  align-items: center;
+}
+
+.goods-v1 image {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  padding: 1px 0;
+  padding-right: 5px;
+}
+
+.goods-v1-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.user-name {
+  font-size: 13px;
+}
+
+.time {
+  padding: 2rpx 0;
+  font-size: 12px;
+  color: #a9aaac;
+}
+
+.goods-v2 {
+  display: flex;
+  height: 100px;
+}
+
+.goods-v2 image {
+  width: 100px;
+  height: 100px;
+  padding: 0 3px;
+}
+
+.goods-v3 {
+  padding-top: 20rpx; 
+  font-size: 13px;
+  display: block;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1; /* 控制多少行后省略 */
+  -webkit-box-orient: vertical;
+  word-break: break-all; /* 追加这一行代码 */
+  line-height: 12px;
+}
+.goods-v4 {
+  padding: 2px 0;
+  display: flex;
+  justify-content: space-between;
+  color: #ff6263;
+}
+.goods-v4-right {
+  display: flex;
+  align-items: center;
+}
+.rmb {
+  font-size: 13px;
+}
+.price {
+  font-size: 16px;
+  /* font-weight: 600; */
+  letter-spacing: 1rpx;
+}
+.like {
+  width: 20px;
+  height: 20px;
+  padding: 0 5px;
+}
+
+.people {
+  color: #a9aaac;
+  font-size: 12px;
+  padding: 0 8rpx;
+}

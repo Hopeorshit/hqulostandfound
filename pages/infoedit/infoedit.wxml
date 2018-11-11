@@ -1,0 +1,22 @@
+<!--首页页面 -->
+<view>
+
+  <view class='zppic'>
+    <text class='home_text'>头像</text>
+    <image bindtap='chooseImage' src='{{imageSource}}'></image>
+  </view>
+
+  <form bindsubmit='formBindSubmit'>
+    <view class='zpname'>
+      <text class='home_text'>昵称</text>
+      <input  class='input_name' name='nickName' placeholder='请输入昵称（15字以内）' value='{{userInfo.nickName}}' maxlength='20' auto-focus='true' > </input>
+    </view>
+
+    <view>
+      <button class='btn_save' formType='submit'>保存</button>
+    </view>
+
+  </form>
+
+
+</view>

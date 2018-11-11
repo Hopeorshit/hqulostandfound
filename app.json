@@ -1,0 +1,44 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/mine/mine",
+    "pages/publishershou/publishershou",
+    "pages/login/login",
+    "pages/minepublish/minepublish",
+    "pages/goodsdetail/goodsdetail",
+    "pages/search/search",
+    "pages/rule/rule",
+    "pages/position/position",
+    "pages/infoedit/infoedit"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#ff6263",
+    "navigationBarTitleText": "华园失物招领",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "#888888",
+    "selectedColor": "#ff6263",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "广场",
+        "iconPath": "/images/home.png",
+        "selectedIconPath": "/images/home_sel.png"
+      },
+      {
+        "pagePath": "pages/publishershou/publishershou",
+        "text": "发布",
+        "iconPath": "/images/publish.png",
+        "selectedIconPath": "/images/publish_sel.png"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "text": "我的",
+        "iconPath": "/images/mine.png",
+        "selectedIconPath": "/images/mine_sel.png"
+      }
+    ]
+  }
+}

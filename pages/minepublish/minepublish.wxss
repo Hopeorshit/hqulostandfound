@@ -1,0 +1,83 @@
+/* pages/mineneed/mineneed.wxss */
+@import "/templates/loading/loading.wxss";
+@import "/templates/nothing/nothing.wxss";
+
+page {
+  background-color: #f8f8f8;
+}
+
+.products {
+  font-size: 28rpx;
+}
+
+.product-box {
+  background-color: white;
+  padding: 25rpx;
+  margin: 20rpx 0;
+}
+
+.product-v {
+  display: flex;
+}
+
+.product-right {
+  width: 160rpx;
+  height: 160rpx;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.product-right image {
+  width: 100%;
+  height: 100%;
+  border-radius: 5rpx;
+}
+
+.description {
+  color: #a9aaac;
+}
+
+.product-left {
+  flex: 1;
+  margin-left: 20rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: #a9aaac;
+}
+
+.product-left-v1{
+  display: flex;
+  flex-direction: column;
+}
+
+.like{
+  font-size: 24rpx;
+  padding: 10rpx 0;
+}
+
+.rmb{
+  font-size: 22rpx;
+}
+
+.btn-v {
+  padding-top: 30rpx;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn-v text {
+  border: 1rpx solid #b1b1b1;
+  padding: 0 30rpx;
+  margin: 0 10rpx;
+  border-radius: 4rpx;
+}
+
+.finish {
+  color: #434446;
+}
+
+.delete {
+  color: #a9aaac;
+}

@@ -1,0 +1,72 @@
+/* pages/mine/mine.wxss */
+
+.mine {
+  background-color: #e5e5e5;
+  font-size: 28rpx;
+}
+
+.box-user {
+  background-color: #ff6263;
+  padding: 70rpx 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.user-info-avatar {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+}
+
+.user-info-name {
+  color: white;
+}
+
+.setting-v{
+  padding: 15rpx 0;
+  display: flex;
+  align-items: flex-end;
+}
+
+.setting {
+  margin-left: 6rpx;
+  width: 30rpx;
+  height: 30rpx;
+}
+
+.mine-list {
+}
+
+.mine-list-item {
+  display: flex;
+  align-items: center;
+  padding: 20rpx 30rpx;
+  background-color: white;
+  border-bottom: 1rpx solid #e5e5e5;
+  color: #434446;
+  font-size: 28rpx;
+  line-height: 56rpx;
+}
+
+.mine-list-item image {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+
+.contact-button {
+  border-bottom: 1rpx solid #e5e5e5;
+  border-radius: 0;
+}
+
+.contact-button::after {
+  border: none;
+}

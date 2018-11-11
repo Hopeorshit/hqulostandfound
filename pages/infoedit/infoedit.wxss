@@ -1,0 +1,51 @@
+.zppic {
+  margin-top: 40rpx;
+  /* height: 150rpx; */
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  border-bottom: 1px solid #f0f0f0;
+  padding: 20rpx 0;
+  background-color: white;
+}
+
+.home_text {
+  font-size: 30rpx;
+  padding: 40rpx;
+}
+
+.zppic image {
+  width: 100rpx;
+  height: 100rpx;
+  margin-right: 20rpx;
+}
+
+.zpname {
+  /* height: 150rpx; */
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  border-bottom: 1px solid #f0f0f0;
+  padding: 20rpx 0;
+  background-color: white;
+}
+
+.input_name {
+  font-size: 30rpx;
+  text-align: right;
+  margin-right: 20rpx;
+  color: #a9aaac
+}
+
+.btn_save {
+  width: 80%;
+  border: 1px solid #f0f0f0;
+  border-radius: 5px;
+  background-color: #ff6263;
+  color: #f0f0f0;
+  margin-top: 80rpx;
+}

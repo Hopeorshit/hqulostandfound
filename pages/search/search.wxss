@@ -1,0 +1,48 @@
+/* pages/search/search.wxss */
+@import "/templates/product-small-other/product-small-other.wxss";
+@import "/templates/loading/loading.wxss";
+
+Page {
+  background-color: #f8f8f8;
+}
+
+/* 搜索框*/
+@import '/style/weui-searchbar.wxss';
+
+.weui-search-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  top: 0rpx;
+  height: 92rpx;
+  background-color: white
+}
+
+.weui-search-bar__form {
+  border-radius: 40rpx;
+  margin: 0 30rpx;
+  background: #fff;
+  border: 1rpx solid #e6e6ea;
+}
+
+.weui-search-bar__input{
+  color: #434446
+}
+
+.weui-search-bar__label {
+  border-radius: 40rpx;
+  /* background-color: white; */
+}
+
+.weui-icon-clear {
+  position: absolute;
+  right: 10px;
+  top: 3px;
+}
+
+/*  */
+
+.template {
+  margin-top: 90rpx;
+}
