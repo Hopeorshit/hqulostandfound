@@ -196,7 +196,10 @@ Page({
       })
     }
   },
-
+  
+  /**
+   *日期导航 
+   */
   position: function(e) {
     var dataset = e.currentTarget.dataset;
     wx.navigateTo({
@@ -204,9 +207,8 @@ Page({
     })
   },
 
+
   onShareAppMessage: function() {
 
   },
-
-
 })

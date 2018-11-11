@@ -3,7 +3,7 @@
   <view class='product'>
     <view class='product-box' wx:for="{{goodslist}}" wx:key="key">
       <view class='product-container' bindtap='goodsDetail' data-goods_id='{{item.id}}'>
-        <view class='product-title'>
+        <view class='box-v1'>
           <image src='{{item.user.avatarUrl}}'></image>
           <view>
             <text>{{item.user.nickName}}</text>
@@ -12,16 +12,15 @@
             </view>
           </view>
         </view>
-        <view class='product-bottom'>
-          <!-- <text class='product-bottom-t1'>捡到</text> -->
+        <view class='box-v2'>
           <text class='decription'>{{item.description}}</text>
         </view>
-        <view class='product-image'>
+        <view class='box-v3'>
           <!-- <text class='type-text' wx:if="{{item.is_found==1}}">失物招领</text>
           <text class='type-text type-looking' wx:else>寻物启事</text> -->
-          <image  src='{{item.head_url}}'></image>
+          <image  src='{{item.head_url}}' bindload='imageLoad' mode='aspectFit' ></image>
         </view>
-
+    
       </view>
     </view>
   </view>
