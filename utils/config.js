@@ -6,5 +6,5 @@ class Config{
   constructor(){
   }
 }
-Config.restUrl ='https://hqulostfound.wechatzp.com/v1/'
+Config.restUrl ='https://baidu/v1/'
 export { Config };
