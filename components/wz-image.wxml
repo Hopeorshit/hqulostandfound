@@ -1,4 +1,3 @@
 <!--components/wz-image.wxml-->
-<view >
-  <image src="{{img}}" style="height:{{height}}px;width:{{width}}px" bindload="onImageLoad" ></image>
-</view>
+
+<image src="{{img}}" style="height:{{height}}px;width:{{width}}px" bindload="onImageLoad"></image>
