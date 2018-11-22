@@ -1,8 +1,8 @@
 var app = getApp();
 import {
-  Position
-} from "../../utils/http.js"
-var http = new Position;
+  Date
+} from "../../model/date.js"
+var http = new Date();
 Page({
 
   /**

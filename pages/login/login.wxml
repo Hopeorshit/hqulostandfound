@@ -3,5 +3,5 @@
   <view>
     <text class='sign-in-text'>尚未登录</text>
   </view>
-  <button class='sign-in-button' open-type='getUserInfo' bindgetuserinfo='login'>微信登录</button>
+  <button class='sign-in-button' open-type='getUserInfo' bindgetuserinfo='onLogin'>微信登录</button>
 </view>

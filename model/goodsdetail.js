@@ -1,6 +1,6 @@
 import {
   Base
-} from '../../utils/base.js'
+} from '../utils/base.js'
 class GoodsDetail extends Base {
   constructor() {
     super();
@@ -8,7 +8,7 @@ class GoodsDetail extends Base {
   goodsDetail(goods_id, callBack) {
     var params = {
       url: 'goods/detail?goods_id=' + goods_id,
-      sCallBack: function(res) {
+      sCallBack: function (res) {
         callBack && callBack(res);
       },
     };
@@ -17,17 +17,17 @@ class GoodsDetail extends Base {
   wantHandle(goods_id, callBack) {
     var params = {
       url: 'want/handle',
-      sCallBack: function(res) {
+      sCallBack: function (res) {
         callBack && callBack(res);
       },
-      method:'POST',
-      data:{
-        goods_id:goods_id
+      method: 'POST',
+      data: {
+        goods_id: goods_id
       }
     };
     this.request(params);
   }
-  messageNew(goods_id,msg_id,content,callBack){
+  messageNew(goods_id, msg_id, content, callBack) {
     var params = {
       url: 'message/new',
       sCallBack: function (res) {
@@ -35,9 +35,9 @@ class GoodsDetail extends Base {
       },
       method: 'POST',
       data: {
-       goods_id:goods_id,
-       msg_id:msg_id,
-       content:content
+        goods_id: goods_id,
+        msg_id: msg_id,
+        content: content
       }
     };
     this.request(params);

@@ -1,8 +1,8 @@
 // pages/goodsdetail/goodsdetail.js
 import {
   GoodsDetail
-} from "./goodsdetail_model.js"
-var goodsDetail = new GoodsDetail();
+} from "../../model/goodsdetail.js"
+var http = new GoodsDetail();
 const myCanvas = wx.createCanvasContext('myCanvas', this);
 Page({
   /**
@@ -37,7 +37,7 @@ Page({
 
   onShow() {
     this.checkLogin(() => {
-      this.goodsDetailHttp((res) => {
+      this.httpHttp((res) => {
         this.setData({
           notFirstLoad: true,
           userInfo: wx.getStorageSync('userInfo')
@@ -49,8 +49,8 @@ Page({
   /**
    * 获取商品详情的HTTP请求和回调
    */
-  goodsDetailHttp: function(callBack) {
-    goodsDetail.goodsDetail(this.data.goods_id, (res) => {
+  httpHttp: function(callBack) {
+    http.goodsDetail(this.data.goods_id, (res) => {
       var timeArr = (res.data.created).split(' ')
       this.setData({
         detail: res.data,
@@ -321,21 +321,21 @@ Page({
     var canvaWidth = this.data.canvasWidth;
     var height = this.data.height
     height = height + 15;
-    myCanvas.drawImage(this.data.code, 30, height, 70, 70); //
+    myCanvas.drawImage(this.data.code, 40, height, 70, 70); //
     myCanvas.draw(true)
     var fontSize = 14;
     myCanvas.setFontSize(fontSize);
     myCanvas.setFillStyle('#8f8e8f')
     myCanvas.setTextAlign('left');
     height = height + 20
-    myCanvas.fillText("寻找校园合伙人:837269003@qq.com", 110, height);
-    height = height + fontSize+5
-    // myCanvas.fillText("微信:华侨大学厦门阳光服务中心", 110, height);
-    // height = height + fontSize
-    myCanvas.fillText("技术支持:微作开发团队", 110, height);
+    myCanvas.fillText("华大厦门失物招领台：496471489", 120, height);
+    height = height + fontSize
+    myCanvas.fillText("微信:华侨大学厦门阳光服务中心", 120, height);
+    height = height + fontSize
+    myCanvas.fillText("快乐e家服务队", 120, height);
     myCanvas.setFontSize(12);
-    height = height + fontSize+5
-    myCanvas.fillText("(长按小程序码了解更多失物招领信息)", 110, height);
+    height = height + fontSize
+    myCanvas.fillText("(长按小程序码了解更多失物招领信息)", 120, height);
     height = height + 12
     myCanvas.draw(true)
     this.setData({

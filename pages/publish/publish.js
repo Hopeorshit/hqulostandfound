@@ -1,10 +1,10 @@
 import {
-  PublishErShou
-} from "./publishershou_model.js"
+  Publish
+} from "../../model/publish.js"
 import {
   Config
 } from '../../utils/config.js'
-var publishErShou = new PublishErShou();
+var http = new Publish();
 var app = getApp();
 Page({
   data:{
@@ -102,8 +102,6 @@ Page({
     var that = this;
     wx.chooseImage({
       count: 6,
-      sourceType: ['album'], 
-      sizeType: ['compressed'],
       success: function(res) {
         var tempFilePaths = res.tempFilePaths;
         var localImage = that.data.localImage;
@@ -150,7 +148,7 @@ Page({
       var currentRadioIndex = this.data.currentRadioIndex;
       var way = radio_group[currentRadioIndex].way;
       console.log(way);
-      publishErShou.goodsCreate(this.data.is_found, way, e.detail.value, (res) => {
+      http.goodsCreate(this.data.is_found, way, e.detail.value, (res) => {
         this.setData({
           goods_id:res.data.goods_id
         })

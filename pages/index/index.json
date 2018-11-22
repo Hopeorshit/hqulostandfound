@@ -1,8 +1,5 @@
 {
   "navigationBarTitleText": "华园失物招领",
   "enablePullDownRefresh": true,
-  "backgroundTextStyle": "dark",
-  "usingComponents":{
-    "wz-image":"/components/wz-image"
-  }
+  "backgroundTextStyle": "dark"
 }

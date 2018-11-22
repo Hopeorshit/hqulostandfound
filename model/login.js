@@ -1,11 +1,9 @@
-import { Base } from '../../utils/base.js'
+import { Base } from '../utils/base.js'
 
 class Login extends Base {
   constructor() {
     super();
   }
-
-
 
   encrypt(encryptedData, iv, callBack, fcallBack) {
     var params = {

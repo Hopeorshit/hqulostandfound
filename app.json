@@ -2,13 +2,13 @@
   "pages": [
     "pages/index/index",
     "pages/mine/mine",
-    "pages/publishershou/publishershou",
+    "pages/publish/publish",
     "pages/login/login",
     "pages/minepublish/minepublish",
     "pages/goodsdetail/goodsdetail",
     "pages/search/search",
     "pages/rule/rule",
-    "pages/position/position",
+    "pages/date/date",
     "pages/infoedit/infoedit"
   ],
   "window": {
@@ -28,7 +28,7 @@
         "selectedIconPath": "/images/home_sel.png"
       },
       {
-        "pagePath": "pages/publishershou/publishershou",
+        "pagePath": "pages/publish/publish",
         "text": "发布",
         "iconPath": "/images/publish.png",
         "selectedIconPath": "/images/publish_sel.png"

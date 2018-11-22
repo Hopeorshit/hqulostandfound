@@ -1,9 +1,9 @@
-// pages/login/login.js
+
 var app=getApp();
 import {
   Login
-} from './login_model.js';
-var login = new Login();
+} from '../../model/login.js';
+var http = new Login();
 Page({
 
   /**
@@ -19,7 +19,7 @@ Page({
   onLoad: function(options) {
 
   },
-  login: function(e) {
+  onLogin: function(e) {
     var that = this;
     that.wxGetUserInfo(e, (res) => {
        wx.showToast({
@@ -44,7 +44,7 @@ Page({
         }
       })
     } else {
-      login.encrypt(event.detail.encryptedData, event.detail.iv,
+      http.encrypt(event.detail.encryptedData, event.detail.iv,
         (res) => {
           app.globalData.loginStatus = true;
           wx.setStorageSync('userInfo', res.data);

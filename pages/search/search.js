@@ -2,7 +2,7 @@
 var app = getApp();
 import {
   Search
-} from "../../utils/http.js"
+} from "../../model/search.js"
 var http = new Search;
 Page({
 

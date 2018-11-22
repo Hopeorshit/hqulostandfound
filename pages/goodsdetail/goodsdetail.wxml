@@ -1,6 +1,5 @@
 <!--pages/goodsdetail/goodsdetail.wxml-->
 <import src="/templates/loading/loading.wxml" />
-
 <view hidden='{{!loginStatus}}'>
   <view wx:if="{{!notFirstLoad}}" class='first-load'>
     <template is="first-load"></template>

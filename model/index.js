@@ -1,4 +1,5 @@
-import { Base } from '../../utils/base.js'
+// 首页Http请求
+import { Base } from '../utils/base.js'
 class Index extends Base {
   constructor() {
     super();
@@ -12,10 +13,9 @@ class Index extends Base {
     };
     this.request(params);
   }
-
-  categoryID(categoryID,page,callBack) {
+  categoryID(categoryID, page, callBack) {
     var params = {
-      url: 'category/id?categoryID='+categoryID+'&page='+page,
+      url: 'category/id?categoryID=' + categoryID + '&page=' + page,
       sCallBack: function (res) {
         callBack && callBack(res);
       },
@@ -24,4 +24,6 @@ class Index extends Base {
   }
 
 }
-export { Index }
+export {
+  Index
+}

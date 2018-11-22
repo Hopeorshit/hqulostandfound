@@ -1,7 +1,7 @@
 var app = getApp();
 import {
   Index
-} from "../../utils/http.js"
+} from "../../model/index.js"
 var index = new Index;
 Page({
   /**
@@ -196,19 +196,17 @@ Page({
       })
     }
   },
-  
-  /**
-   *日期导航 
-   */
-  position: function(e) {
+
+  onDate: function(e) {
     var dataset = e.currentTarget.dataset;
     wx.navigateTo({
-      url: '/pages/position/position?categoryID=' + dataset.category_id + '&name=' + dataset.name
+      url: '/pages/date/date?categoryID=' + dataset.category_id + '&name=' + dataset.name
     })
   },
-
 
   onShareAppMessage: function() {
 
   },
+
+
 })

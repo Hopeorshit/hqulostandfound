@@ -1,64 +1,34 @@
 .product {
+  display: flex;
+  flex-wrap: wrap;
   font-size: 20rpx;
+  /*弹性布局，超出自动伸缩  */
 }
 
 .product-box {
-  padding: 10rpx 0rpx;
+  width: 50%;
+  box-sizing: border-box;
+  padding: 10rpx;
 }
 
 .product-container {
-  padding: 30rpx;
   border: 1rpx solid #f5f6f7;
   background-color: white;
+  border-radius: 20rpx;
 }
 
-.box-v1 {
-  display: flex;
-  align-items: center;
-  padding-top: 20rpx;
+.product-image {
+  padding: 10rpx 5rpx;
+  height: 340rpx;
+  overflow: hidden;
 }
 
-.box-v1-right{
-  flex: 1;
-  display:  flex;
-  align-items: center;
-  justify-content: space-between;
+.product-image image {
+  width: 100%;
+  height: 100%;
 }
 
-.avatar {
-  width: 60rpx;
-  height: 60rpx;
-  border-radius: 50%;
-  margin-right: 10rpx;
-}
-
-.name{
-  font-size: 15px;
-}
-
-.time{
- font-size: 11px;
- color: #cecece
-}
-
-.share{
-  width: 40rpx;
-  height: 40rpx;  
-}
-
-.box-v2{
-  padding: 16rpx 0;
-  font-size: 28rpx;
-}
-
-.box-v3 image{
-  height: 440px;
-}
-
-
-
-
-.type-text {
+.type-text{
   position: absolute;
   margin-left: 10rpx;
   margin-top: 10rpx;
@@ -69,13 +39,37 @@
   border-radius: 10rpx;
 }
 
-.type-looking {
-  background-color: orange;
+.type-looking{
+  background-color: orange
 }
 
+.product-title {
+  display: flex;
+  align-items: center;
+  padding-left: 20rpx;
+  padding-top: 20rpx; 
+}
 
+.product-title text {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  font-size: 12px;
+}
+
+.product-title image {
+  width: 50rpx;
+  height: 50rpx;
+  border-radius: 50%;
+}
 
 .product-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   padding: 10rpx 20rpx;
 }
 
@@ -85,3 +79,16 @@
   line-height: 40rpx;
 }
 
+.like-v{
+ display: flex;
+ align-items: center;
+}
+
+.like-v text{
+  color: #a9aaac;
+  padding: 0 4rpx;
+}
+
+.decription{
+  font-size:24rpx; 
+}

@@ -30,41 +30,14 @@
   <view class="content">
     <view class='category-v'>
       <block wx:for="{{tabs}}" wx:key="index">
-        <view class='category' bindtap='position' data-category_id='{{item.id}}' data-name='{{item.name}}'>
+        <view class='category' bindtap='onDate' data-category_id='{{item.id}}' data-name='{{item.name}}' >
           <image src="{{item.image}}"></image>
           <text>{{item.name}}</text>
         </view>
       </block>
     </view>
-    <!-- <template is="product-small-other" data="{{goodslist:content.list}}" /> -->
-    <view class='product'>
-      <view class='product-box' wx:for="{{content.list}}" wx:key="key">
-        <view class='product-container' bindtap='goodsDetail' data-goods_id='{{item.id}}'>
-          <view class='box-v1'>
-            <image class='avatar' src='{{item.user.avatarUrl}}'></image>
-            <view class='box-v1-right'>
-              <view>
-                <text class='name'>{{item.user.nickName}}</text>
-                <view>
-                  <text class='time'>{{item.created}}</text>
-                </view>
-              </view>
-              <image class='share' src='/images/com_share.png'></image>
-            </view>
-          </view>
-          <view class='box-v2'>
-            <text class='decription'>{{item.description}}</text>
-          </view>
-          <view class='box-v3'>
-            <!-- <text class='type-text' wx:if="{{item.is_found==1}}">失物招领</text>
-          <text class='type-text type-looking' wx:else>寻物启事</text> -->
-            <!-- <image src='{{item.head_url}}' bindload='imageLoad' mode='aspectFit'></image> -->
-            <wz-image img='{{item.head_url}}' height="160" />
-          </view>
 
-        </view>
-      </view>
-    </view>
-    <template is="bottom-loading" data="{{hasMore:content.hasMore}}" />
+  <template is="product-small-other" data="{{goodslist:content.list}}" />
+  <template is="bottom-loading" data="{{hasMore:content.hasMore}}"/>  
   </view>
 </view>

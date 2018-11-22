@@ -4,8 +4,8 @@ import {
 } from '../../utils/config.js'
 import {
   Infoedit
-} from '../infoedit/infoedit_model.js';
-var infoedit = new Infoedit();
+} from '../../model/infoedit.js';
+var http = new Infoedit();
 Page({
   /**
    * 页面的初始数据
