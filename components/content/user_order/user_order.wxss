@@ -1,0 +1,41 @@
+
+.singleorder {
+  width: 85%;
+  margin: 40rpx auto;
+  border-radius: 20rpx;
+  padding: 30rpx;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+}
+.singleorder-text {
+  display: flex;
+  flex-direction: column;
+}
+.singleorder-text text {
+  margin-top: 20rpx;
+}
+.orderstatus {
+  color: #73b3d5;
+  margin-top: 20rpx;
+  text-align: right;
+  font-size: 16px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.orderstatus text{
+  margin-right: 20rpx;
+}
+
+
+.small-btn {
+  background-color: #73b3d5;
+  padding: 0rpx 40rpx;
+  border-radius: 50rpx;
+  font-size: 16px;
+  line-height: 32px;
+  color: white;
+}
+
+/* components/content/user_order/user_order.wxss */

@@ -10,5 +10,5 @@
   <view class="loading_box">
     <view class="loading1" wx:if="{{hasMore}}"></view>
     <view class='nomore' wx:else>~到底了~</view>
-  </view>
+  </view> ss 
 </template>

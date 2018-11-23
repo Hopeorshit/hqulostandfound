@@ -1,0 +1,23 @@
+<!--components/content/un_token/un_token.wxml-->
+
+<view class='content'>
+  <block wx:for="{{content.list}}" wx:key="{{index}}">
+    <view class='box'>
+      <view class='box-v'>
+        <view class='take-v'>
+          <view>住处：{{item.room}}</view>
+          <view class='small-btn' bindtap='onTakeOrder' data-order_id='{{item.id}}'>接单</view>
+        </view>
+        <view>时间：{{item.created}}</view>
+        <view>类别：{{item.category_name}}</view>
+        <view>备注：{{item.description?item.description:'无'}}</view>
+      </view>
+    </view>
+  </block>
+</view>
+<view wx:if="{{content.empty}}">
+  <wz-nothing tip="暂无订单" />
+</view>
+<view wx:else>
+  <wz-loading wx:if="{{loading}}" more="{{content.more}}" />
+</view>

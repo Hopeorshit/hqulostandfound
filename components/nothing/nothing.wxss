@@ -1,0 +1,19 @@
+/* components/nothing/nothing.wxss */
+.box{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 150rpx 0;
+}
+
+.box image{
+  width: 180rpx;
+  height: 180rpx;
+}
+
+.box text{
+  line-height: 20px;
+  color: #c9ccca;
+  font-size:12px; 
+}

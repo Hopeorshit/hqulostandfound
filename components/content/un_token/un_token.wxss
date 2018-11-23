@@ -1,0 +1,35 @@
+/* components/content/un_token/un_token.wxss */
+/*以下是订单列表页面 
+ */
+.content {
+  padding: 20rpx 0;
+}
+.box{
+  margin: 10rpx 20rpx ;
+  border-radius: 20rpx;
+  padding: 30rpx;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+}
+.box-v {
+  display: flex;
+  flex-direction: column;
+}
+.box-v>view {
+  margin: 10rpx 0;
+}
+.take-v {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.small-btn {
+  background-color: #73b3d5;
+  padding: 0rpx 40rpx;
+  border-radius: 50rpx;
+  font-size: 16px;
+  line-height: 32px;
+  color: white;
+}
+

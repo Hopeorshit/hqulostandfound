@@ -1,0 +1,43 @@
+/*
+*订单模块
+*/
+
+.singleorder {
+  margin: 20rpx;
+  border-radius: 20rpx;
+  padding: 30rpx;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+}
+
+.orderstatus {
+  margin-top: 20rpx;
+}
+
+.callNumber {
+  display: flex;
+  flex-direction: row;
+  border-bottom: 1px solid #cecece;
+  justify-content: space-between;
+  padding-bottom: 20rpx;
+}
+
+.myOrderText {
+  display: flex;
+  flex-direction: column;
+}
+
+.myOrderText text {
+  margin-top: 20rpx;
+}
+
+.mark {
+  color: #73b3d5;
+}
+
+.tip {
+  font-size: 12px;
+  color: #cacaca;
+  margin-left: 20rpx;
+}

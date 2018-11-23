@@ -11,7 +11,7 @@
 
 page{
   background: #f8f8f8;
-  font-size: 28rpx;
+  font-size: 30rpx;
 }
 
 .color-theme{

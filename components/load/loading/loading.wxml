@@ -1,0 +1,5 @@
+<!--components/load/loading/loading.wxml-->
+  <view class="loading_box">
+    <view class="loading1" wx:if="{{more}}"></view>
+    <view class='nomore' wx:else>——— 我是有底线的 ———</view>
+  </view>

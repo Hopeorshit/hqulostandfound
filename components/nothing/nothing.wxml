@@ -1,0 +1,4 @@
+<view class='box'>
+  <image src='./images/nothing.png'></image>
+  <text>{{tip}}</text>
+</view>

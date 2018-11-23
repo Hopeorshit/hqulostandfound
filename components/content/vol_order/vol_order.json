@@ -1,0 +1,9 @@
+{
+  "component": true,
+  "usingComponents": {
+    "wz-call": "/components/call/call",
+    "wz-star": "/components/star/star",
+    "wz-loading": "/components/load/loading/loading",
+    "wz-nothing": "/components/nothing/nothing"
+  }
+}
