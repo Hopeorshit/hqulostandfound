@@ -1,0 +1,26 @@
+<view>
+  <form report-submit='true' bindsubmit='onSubmit'> 
+    <!-- <view class='box-tips'>
+    <view class='tips1'>{{tips1}}</view>
+    <view class='tips2'>{{tips2}}</view>
+  </view> -->
+
+    <view class='box-step'>
+      <!-- <text>绑定流程</text> -->
+      <view class='step'>
+        <image src='/images/step1.png'></image>
+        <image src='/images/step2.png'></image>
+        <image src='/images/step3.png'></image>
+      </view>
+    </view>
+
+    <view class='box-bind'>
+      <view>
+        <input  name='student_id' placeholder='请输入学号' placeholder-style='color:white'></input>
+        <button form-type='submit'>绑定</button>
+      </view>
+    </view>
+
+  </form>
+
+</view>

@@ -25,6 +25,10 @@ Page({
     this.setData({
       goods_id: options.goods_id
     })
+    wx.setNavigationBarTitle({
+      title: options.is_found==1?"失物招领":"寻物启事",
+    })
+
     var that = this;
     wx.getSystemInfo({
       success: function(res) {
@@ -42,7 +46,6 @@ Page({
           notFirstLoad: true,
           userInfo: wx.getStorageSync('userInfo')
         })
-
       });
     });
   },
@@ -328,11 +331,9 @@ Page({
     myCanvas.setFillStyle('#8f8e8f')
     myCanvas.setTextAlign('left');
     height = height + 20
-    myCanvas.fillText("华大厦门失物招领台：496471489", 120, height);
+    myCanvas.fillText("寻找校园合伙人：837269003@qq.com", 120, height);
     height = height + fontSize
-    myCanvas.fillText("微信:华侨大学厦门阳光服务中心", 120, height);
-    height = height + fontSize
-    myCanvas.fillText("快乐e家服务队", 120, height);
+    myCanvas.fillText("技术支持:微作校园开发团队", 120, height);
     myCanvas.setFontSize(12);
     height = height + fontSize
     myCanvas.fillText("(长按小程序码了解更多失物招领信息)", 120, height);

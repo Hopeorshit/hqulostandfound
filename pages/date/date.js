@@ -2,6 +2,9 @@ var app = getApp();
 import {
   Date
 } from "../../model/date.js"
+import {
+  randomStr
+} from '../../utils/util.js';
 var http = new Date();
 Page({
 
@@ -9,82 +12,44 @@ Page({
    * 页面的初始数据
    */
   data: {
-    content: {
-      list: [],
-      page: 1,
-      hasMore: true,
-    }
-  },
 
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options.categoryID)
     this.setData({
       categoryID: options.categoryID
     })
     wx.setNavigationBarTitle({
       title: options.name,
     })
-    this.initData();
-    this.categoryID((res) => {
-      this.setData({
-        notFirstLoad: true
-      })
-    });
   },
-
-  initData: function () {
-    this.setData({
-      content: {
-        list: [],
-        page: 1,
-        hasMore: true,
-      }
-    })
-  },
-
-  categoryID(callBack) {
-    http.categoryID(this.data.categoryID, this.data.content.page, (res) => {
-      var content = this.data.content;
-      var resList = res.data;
-      var contentList = content.list;
-      content.list = contentList.concat(resList);
-      content.page = content.page + 1;
-      if (resList.length == 10) {
-        content.hasMore = true;
-      } else {
-        content.hasMore = false;
-      }
-      this.setData({
-        content: content
-      })
-      callBack && callBack();
-    })
-  },
-
-
+  /**
+   * 上拉加载更多
+   */
   onReachBottom: function () {
-    if (this.data.content.hasMore) {
-      this.categoryID();
-    }
-  },
-
-  onPullDownRefresh: function () {
-    this.initData();
-    this.categoryID((res) => {
-      wx.stopPullDownRefresh();
-    });
-  },
-
-  goodsDetail: function (e) {
-    console.log(e);
-    wx.navigateTo({
-      url: '/pages/goodsdetail/goodsdetail?goods_id=' + e.currentTarget.dataset.goods_id,
+    console.log('上拉刷新');
+    this.setData({
+      load_more: randomStr(16)
     })
   },
-
-
-
+  /**
+   * 下拉刷新
+   */
+  onPullDownRefresh: function () { //TODO 下拉刷新去触发父类可以通过 observer 来触发
+    console.log('下拉刷新')
+    this.setData({
+      init: randomStr(16)
+    })
+  },
+  /**
+   * 商品详情页面跳转
+   */
+  onGoodsDetail: function (event) {
+    let goods_id = event.detail.goods_id;
+    wx.navigateTo({
+      url: '/pages/goodsdetail/goodsdetail?goods_id=' + goods_id,
+    })
+  },
 })

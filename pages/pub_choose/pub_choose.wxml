@@ -1,0 +1,9 @@
+<!--pages/pub_choose/pub_choose.wxml-->
+<view class='box' hidden='{{!loginStatus}}'>
+  <view class='box-v' style='padding-bottom:120rpx' bindtap='onNormal'>
+    <image src='/images/normal.png'></image>
+  </view>
+  <view class='box-v' bindtap='onCard'>
+    <image src="/images/card.png"></image>
+  </view>
+</view>

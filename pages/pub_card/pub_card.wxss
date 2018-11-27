@@ -1,0 +1,79 @@
+/* pages/pub_card/pub_card.wxss */
+.box{
+  /* padding-bottom: 100rpx; */
+}
+
+.box>view {
+  background-color: white;
+}
+
+/* 拍照识图区域 */
+.box-pic {
+  /* margin: 40rpx; */
+  padding: 40rpx;
+  box-shadow: 1px 5px 2px #dedede;
+}
+
+.box-pic-v {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px dashed #dedede;
+}
+
+.box-pic image {
+  padding: 40rpx;
+  width: 80rpx;
+  height: 80rpx;
+}
+
+.tips-t2 {
+  margin: 20rpx 0;
+  font-size: 13px;
+  color: #a9aaac
+}
+
+/*信息区域*/
+.box-info{
+  padding: 20rpx;
+}
+.box-info>view{
+  padding: 20rpx 0;
+  display: flex;
+  align-items: center;
+}
+.box-info>view input{
+  margin-left: 20rpx;
+  flex: 1;
+  border-bottom: 1px solid #dedede;
+}
+
+/*领取方式*/
+
+.box-ways {
+  margin-top: 20rpx;
+}
+
+.way-sel{
+  /* margin: 20rpx 0; */
+}
+
+.way-sel-text {
+  margin-right: 20rpx;
+  padding: 8rpx 24rpx;
+  line-height: 30px;
+  border: 1rpx solid #e8e8e8;
+}
+
+.way-selected {
+  color: #ff6263;
+  border: 1rpx solid #ff6263;
+}
+
+.input-way {
+  margin-top: 60rpx;
+  /* border-bottom: 1rpx solid #e8e8e8; */
+}
+
+

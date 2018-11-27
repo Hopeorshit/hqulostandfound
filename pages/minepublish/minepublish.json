@@ -1,5 +1,8 @@
 {
   "navigationBarTitleText": "我的发布",
   "enablePullDownRefresh": true,
-  "backgroundTextStyle": "dark"
+  "backgroundTextStyle": "dark",
+  "usingComponents":{
+    "wz-mine_publish":"/components/content/minepublish/minepublish"
+  }
 }

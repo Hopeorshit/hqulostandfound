@@ -1,0 +1,233 @@
+// pages/pub_card/pub_card.js
+import {
+  Pub_card
+} from "../../model/pub_card.js"
+import {
+  Config
+} from '../../utils/config.js'
+var http = new Pub_card();
+let app = getApp();
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    localImage: null //本地临时图片
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function(options) {
+    this._initData();
+  },
+
+  _initData() {
+    this.setData({
+      publishing: false,
+      description: null,
+      phone: null,
+      name: null,
+      student_id:null,
+      institute: null,
+      localImage: null,
+    })
+    this._initRadio();
+  },
+
+
+  /**
+   * 初始化radio
+   */
+  _initRadio: function() {
+    this.setData({
+      radio_group: [{
+          text: "领取地点",
+          way: 1,
+          checked: true
+        }, {
+          text: "qq",
+          way: 2,
+          checked: false
+        }, {
+          text: "微信",
+          way: 3,
+          checked: false
+        },
+        {
+          text: "手机号",
+          way: 4,
+          checked: false
+        }
+      ],
+      currentRadioIndex: 0
+    })
+  },
+  /**
+   * 点击radio
+   */
+  onRadio: function(e) {
+    let index = e.currentTarget.dataset.index;
+    let radio_group = this.data.radio_group;
+    radio_group.forEach(function(item, i_index) {
+      if (index == i_index) {
+        item.checked = true
+      } else {
+        item.checked = false
+      }
+    })
+    this.setData({
+      currentRadioIndex: index,
+      radio_group: radio_group
+    })
+  },
+
+  /*
+   *点击拍照
+   */
+  onPic: function() {
+    let that = this;
+    wx.chooseImage({
+      count: 1,
+      success: function(res) {
+        that.setData({
+          localImage: res.tempFilePaths[0]
+        })
+        that._upload();
+      },
+    })
+  },
+  /**
+   * 图片上传,并进行Ocr调用
+   * 采用百度Ocr,但百度存在方向问题
+   */
+  _upload: function() {
+    wx.showLoading({
+      title: '识别中,请稍候',
+    })
+    let that = this;
+    wx.uploadFile({
+      url: Config.restUrl + 'goods/ocr',
+      filePath: this.data.localImage,
+      name: 'image',
+      success: function(res) {
+        that.setData({
+          ocr: JSON.parse(res.data)
+        })
+        // wx.setStorageSync(key, that.data.ocr.words_result);
+        that._getInfo();
+      },
+      complete: function() {
+        wx.hideLoading();
+      }
+    })
+  },
+  /**
+   * 根据检测结构进行正则匹配
+   */
+  _getInfo: function() {
+    // let words = this.data.ocr.words_result; 百度API
+    let words = this.data.ocr.data.item_list
+    let that = this;
+    // let key='words';;
+    let key = 'itemstring'
+    words.forEach(function(item, index) {
+      console.log(item);
+      if (/姓名/.test(item[key])) {
+        that.setData({
+          // 'name': item[key].match(/[:：](\S*)性别/)[1] 百度API
+          'name': item[key].match(/[:：](\S*)/)[1]
+        })
+      }
+      if (/学号/.test(item[key])) {
+        that.setData({
+          'student_id': item[key].match(/\d+/g)
+        })
+      }
+      if (/学院/.test(item[key])) {
+        that.setData({
+          'institute': item[key].match(/[:：](\S*)/)[1]
+        })
+      }
+    })
+  },
+
+  /**
+   * 点击提交
+   */
+  onSubmit: function(e) {
+    console.log(e)
+    if (this._checkSubmit(e.detail.value)) {
+      this.setData({
+        publishing: true
+      })
+      var radio_group = this.data.radio_group;
+      var currentRadioIndex = this.data.currentRadioIndex;
+      var way = radio_group[currentRadioIndex].way;
+      let value=e.detail.value;
+      value.title=value.name+'的'+'学生卡'
+      value.description=value.institute;
+      http.goodsCreate(1, way,this.data.student_id,e.detail.value, (res) => {
+        this.setData({
+          goods_id: res.data.goods_id
+        })
+        this._successReturn();
+      });
+    }
+  },
+  /**
+   * 发布成功之后返回
+   */
+
+  _successReturn: function() {
+    wx.hideLoading();
+    wx.showToast({
+      title: '发布成功',
+    })
+    var that = this;
+    that._initData();
+    app.globalData.indexRefresh = true;
+    setTimeout(function() {
+      wx.redirectTo({
+        url: '/pages/goodsdetail/goodsdetail?goods_id=' + that.data.goods_id,
+      })
+    }, 1500)
+  },
+
+  /**
+   * 发布有效性检测
+   */
+  _checkSubmit: function(value) {
+    if (!value.name) {
+      wx.showToast({
+        title: '请填写对方的姓名',
+        icon: 'none'
+      })
+      return false
+    }
+    if (!value.name) {
+      wx.showToast({
+        title: '请填写学号',
+        icon: 'none'
+      })
+      return false
+    }
+    if (!value.name) {
+      wx.showToast({
+        title: '请填写学院',
+        icon: 'none'
+      })
+      return false
+    }
+    if (!value.phone) {
+      wx.showToast({
+        title: '记得填写领取方式呦',
+        icon: 'none'
+      })
+      return false
+    }
+    return true;
+  },
+
+})

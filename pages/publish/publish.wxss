@@ -1,89 +1,43 @@
-/* pages/publishershou/publishershou.wxss */
-
-page {
-  background-color: #f8f8f8;
-  font-size: 26rpx;
-  color: #434446;
-}
-
-.box {
+.box>view {
   padding: 20rpx;
   background-color: white;
 }
 
-.box1 {
+/* 名称 */
+
+.box-name {
+  margin-top: 20rpx;
   display: flex;
+  align-items: center;
 }
 
-.box1 image {
-  width: 120rpx;
-  height: 120rpx;
-}
-
-.box1-right {
+.box-name input {
+  flex: 1;
   margin-left: 20rpx;
 }
 
-.box1-right text {
-  display: block;
-}
+/*描述*/
 
-/*  */
-
-.box2 {
-  margin-top: 30rpx;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.box2-right {
-  display: flex;
-  align-items: center;
-}
-
-.select {
-  color: #a9aaac;
-}
-
-/*  */
-
-.box3 {
-  display: flex;
-  align-items: center;
-}
-
-.box3 input {
-  flex: 1;
-  text-align: right;
-  display: inline-block;
-  padding-right: 20rpx;
-}
-
-.money {
-  color: #ff6263;
-}
-
-.box-t {
-  padding: 20rpx;
-}
-
-/*  */
-
-.box4 {
+.box-des {
   margin-top: 20rpx;
-  display: flex;
 }
 
-.box4-right {
+.box-des textarea {
   flex: 1;
-  height: 170rpx;
+  height: 150rpx;
+  padding: 0;
+  margin-left: 20rpx;
 }
 
-/*  */
+.box-des-v image {
+  width: 50rpx;
+  height: 50rpx;
+}
+
+/* 图片*/
 
 .box5 {
-  margin-top: 20rpx;
+  margin-top: 0;
   box-sizing: border-box;
   display: flex;
   padding: 10rpx 20rpx;
@@ -107,17 +61,6 @@ page {
   z-index: 1;
 }
 
-.btn-bottom-fixed {
-  position: fixed;
-  bottom: 20rpx;
-  background-color: #ff6263;
-  color: white;
-  border-radius: 0;
-  left: 5%;
-  right: 5%;
-  font-size: 30rpx;
-}
-
 .camera {
   display: flex;
   flex-direction: column;
@@ -138,106 +81,44 @@ page {
   padding-top: 20rpx;
 }
 
-.box-contact {
-  flex: 1;
-}
-
-.get-phone {
-  display: inline-block;
-  height: 60rpx;
-  font-size: 20rpx;
-  text-align: center;
-  vertical-align: middle;
-  line-height: 60rpx;
-  border-radius: 0;
-  background-color: #f8f8f8;
-  color: #434446;
-}
-
-.box-free {
-  margin-top: 30rpx;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20rpx;
-}
+/*类型*/
 
 .box-type {
   margin-top: 20rpx;
-  display: flex;
-  justify-content: space-around;
+  /* display: flex; */
 }
 
-.box-type-text {
-  border: 1rpx solid #a9aaac;
-  border-radius: 30rpx;
-  padding: 10rpx 80rpx;
+.type-t2 {
+  margin-left: 40rpx;
 }
 
 .box-type-select {
-  color: white;
-  background-color: #ff6263;
-  border: none;
+  color: #ff6263;
 }
+
+/*领取方式*/
 
 .box-ways {
   margin-top: 20rpx;
-  display: flex;
-  /* align-items: center; */
 }
 
-.way-text {
-  display: flex;
-  flex-direction: column;
+.way-sel{
+  /* margin: 20rpx 0; */
+}
+
+.way-sel-text {
   margin-right: 20rpx;
+  padding: 8rpx 24rpx;
+  line-height: 30px;
+  border: 1rpx solid #e8e8e8;
 }
 
-.way-sel {
-  margin-top: 16rpx;
-  flex: 1;
+.way-selected {
+  color: #ff6263;
+  border: 1rpx solid #ff6263;
 }
 
-.radio-group {
-  display: flex;
+.input-way {
+  margin-top: 60rpx;
+  /* border-bottom: 1rpx solid #e8e8e8; */
 }
-
-.select-one {
-  color: #a9aaac;
-  font-size: 22rpx;
-}
-
-.input-way{
-  margin-top: 40rpx;
-  border-bottom: 1rpx solid #e8e8e8;
-  font-size: 28rpx;
-}
-
-radio{
-  margin-right: 30rpx;
-}
-
-/*radio样式*/
-radio .wx-radio-input {
-  border-radius: 50%; /* 圆角 */
-  width: 32rpx; /* 背景的宽 */
-  height: 32rpx; /* 背景的高 */
-}
-/* 选中后的 背景样式 （红色背景 无边框 可根据UI需求自己修改） */
-radio .wx-radio-input.wx-radio-input-checked {
-   border: none;
-   background: red;  
-}
-/* 选中后的 对勾样式 （白色对勾 可根据UI需求自己修改） */
-radio .wx-radio-input.wx-radio-input-checked::before {
-  border-radius: 50%; /* 圆角 */
-  width: 30rpx; /* 选中后对勾大小，不要超过背景的尺寸 */
-  height: 30rpx; /* 选中后对勾大小，不要超过背景的尺寸 */
-  line-height: 40rpx;
-  text-align: center;
-  font-size: 30rpx; /* 对勾大小 30rpx */
-  color: white; /* 对勾颜色 白色 */
-  background: transparent;
-  transform: translate(-50%, -50%) scale(1);
-  -webkit-transform: translate(-50%, -50%) scale(1);
-}
-

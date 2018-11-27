@@ -1,8 +1,0 @@
-{
-  "component": true,
-    "usingComponents": {
-      "wz-loading": "/components/load/loading/loading",
-      "wz-nothing": "/components/nothing/nothing",
-      "wz-star":"/components/star/star"
-    }
-}

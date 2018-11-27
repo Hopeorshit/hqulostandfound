@@ -1,14 +1,1 @@
-<!--pages/free/free.wxml-->
-<import src="/templates/product-small-other/product-small-other.wxml" />
-<import src="/templates/product-small-other/product-small-other.wxml" />
-<import src="/templates/loading/loading.wxml" />
-<view wx:if="{{!notFirstLoad}}" class='first-load'>
-  <template is="first-load"></template>
-</view>
-
-<view wx:else>
-  <view >
-    <template is="product-small-other" data="{{goodslist:content.list}}" />
-    <template is="bottom-loading" data="{{hasMore:content.hasMore}}" />
-  </view>
-</view>
+ <wz-category  categoryID="{{categoryID}}" load_more="{{load_more}}" init="{{init}}"  bind:goodsDetail="onGoodsDetail" />

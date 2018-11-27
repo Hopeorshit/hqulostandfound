@@ -1,0 +1,8 @@
+<wz-goods list="{{content.list}}"/>
+
+<view wx:if="{{content.empty}}">
+  <wz-nothing tip="暂无" />
+</view>
+<view wx:else>
+  <wz-loading wx:if="{{loading}}" more="{{content.more}}" />
+</view>

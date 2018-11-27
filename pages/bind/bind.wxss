@@ -1,0 +1,75 @@
+/* pages/bind/bind.wxss */
+
+page {
+  background-color: #fb655a;
+  color: white;
+}
+
+/*绑定*/
+
+.box-tips {
+  background-color: #ff514e;
+  color: white;
+  margin: 40rpx;
+  padding: 20rpx;
+  border-radius: 20rpx;
+}
+
+.tips1 {
+  padding: 20rpx 0;
+}
+
+.tips2 {
+  font-size: 26rpx;
+}
+
+/*绑定流程*/
+
+.box-step {
+  margin-top: 100rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.box-step text {
+  color: white;
+}
+
+.step {
+  margin-top: 40rpx;
+  display: flex;
+  justify-content: space-around;
+  padding: 0 50rpx;
+}
+
+.step image {
+  width: 230rpx;
+  height: 280rpx;
+}
+
+.box-bind {
+  margin-top: 60rpx;
+  display: flex;
+  justify-content: center;
+  padding: 0 60rpx;
+}
+
+.box-bind>view {
+  display: flex;
+  align-items: center;
+}
+
+.box-bind input {
+  border-bottom: 1rpx solid white;
+}
+
+.box-bind button {
+  color: white;
+  background-color: #ff514e;
+  border: none;
+  margin-left: 20rpx;
+  font-size: 30rpx;
+  padding: 0 40rpx;
+}

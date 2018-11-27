@@ -1,5 +1,8 @@
 {
   "navigationBarTitleText": "搜索结果",
   "enablePullDownRefresh": true,
-  "backgroundTextStyle": "dark"
+  "backgroundTextStyle": "dark",
+  "usingComponents":{
+    "wz-search":"/components/content/search/search"
+  }
 }

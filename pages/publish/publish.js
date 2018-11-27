@@ -5,7 +5,7 @@ import {
   Config
 } from '../../utils/config.js'
 var http = new Publish();
-var app = getApp();
+let app=getApp();
 Page({
   data:{
    is_found:true
@@ -18,7 +18,7 @@ Page({
     if (this.data.is_found) {
       this.setData({
         radio_group: [{
-            text: "指定地点",
+            text: "领取地点",
             way: 1,
             checked: true
           }, {
@@ -31,7 +31,7 @@ Page({
             checked: false
           },
           {
-            text: "手机",
+            text: "手机号",
             way: 4,
             checked: false
           }
@@ -69,36 +69,9 @@ Page({
       // is_found:false
     })
   },
-  onShow: function() {
-    this.setData({
-      loginStatus: app.globalData.loginStatus
-    })
-    if (!app.globalData.loginStatus) {
-      wx.showModal({
-        title: '温馨提示',
-        content: '使用这个功能，需要先登录哦',
-        confirmText: "前去登陆",
-        cancelText: "先逛逛~",
-        confirmColor: "#ff6263",
-        cancelColor: "#a9aaac",
-        success: function(res) {
-          if (res.confirm) {
-            wx.navigateTo({
-              url: '/pages/login/login',
-            })
-          } else {
-            wx.switchTab({
-              url: '/pages/index/index',
-            })
-          }
-        }
-      })
-    } else {
-     
-    }
-  },
+
   //点击选择图片
-  addPic: function() {
+  onAddPic: function() {
     var that = this;
     wx.chooseImage({
       count: 6,
@@ -138,9 +111,9 @@ Page({
     })
   },
   //点击提交
-  submit: function(e) {
+  onSubmit: function(e) {
     console.log(e)
-    if (this.checkSubmit(e.detail.value)) {
+    if (this._checkSubmit(e.detail.value)) {
       this.setData({
         publishing: true
       })
@@ -156,7 +129,7 @@ Page({
         if (localImage.length > 0) {
           this.uploadPic(res.data)
         } else {
-          this.successReturn();
+          this._successReturn();
         }
       });
     }
@@ -185,7 +158,7 @@ Page({
         if (localImage[imageIndex + 1]) {
           that.uploadPic(data);
         } else {
-          that.successReturn();
+          that._successReturn();
         }
       },
       fail: function(res) {
@@ -195,13 +168,13 @@ Page({
     })
   },
   //发布有效性检测
-  checkSubmit: function(value) {
+  _checkSubmit: function(value) {
     var localImage = this.data.localImage;
-    var description = value.description;
+    var title = value.title;
     var phone = value.phone;
-    if (!description) {
+    if (!title) {
       wx.showToast({
-        title: '请填写物品名称和特征',
+        title: '请填写物品名称',
         icon: 'none'
       })
       return false
@@ -222,7 +195,7 @@ Page({
     })
     this.initRadio()
   },
-  successReturn: function() {
+  _successReturn: function() {
     wx.hideLoading();
     wx.showToast({
       title: '发布成功',
@@ -231,14 +204,27 @@ Page({
     that.initData();
     app.globalData.indexRefresh = true;
     setTimeout(function() {
-      wx.navigateTo({
+      wx.redirectTo({
         url: '/pages/goodsdetail/goodsdetail?goods_id='+that.data.goods_id,
       })
     }, 1500)
   },
-  radioChange: function(e) {
+  /**
+   * 点击选择类型
+   */
+  onRadio: function(e) {
+    let index=e.currentTarget.dataset.index;
+    let radio_group=this.data.radio_group;
+    radio_group.forEach(function(item,i_index){
+      if(index==i_index){
+        item.checked = true
+      }else{
+        item.checked = false
+      }
+    })
     this.setData({
-      currentRadioIndex: e.detail.value
+      currentRadioIndex: index,
+      radio_group:radio_group
     })
   }
 

@@ -28,7 +28,7 @@ page{
 .loading3 {
   width: 20rpx;
   height: 20rpx;
-  background: #b2dff4;
+  background: #ff6264;
   border-radius: 50%;
   margin-left: 15rpx;
 }

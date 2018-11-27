@@ -11,9 +11,9 @@
 		"newFeature": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.3.0",
+	"libVersion": "2.4.0",
 	"appid": "wxf03f6bbcdd893206",
-	"projectname": "v1.0.0",
+	"projectname": "%E5%8D%8E%E5%9B%AD%E5%A4%B1%E7%89%A9%E6%8B%9B%E9%A2%86",
 	"isGameTourist": false,
 	"condition": {
 		"search": {
@@ -33,7 +33,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 2,
+			"current": 7,
 			"list": [
 				{
 					"id": -1,
@@ -64,6 +64,23 @@
 					"name": "我的",
 					"pathName": "pages/mine/mine",
 					"query": "goods_id=118"
+				},
+				{
+					"id": -1,
+					"name": "普通发布",
+					"pathName": "pages/publish/publish",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "拍照识别",
+					"pathName": "pages/pub_card/pub_card",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "绑定学号",
+					"pathName": "pages/bind/bind"
 				}
 			]
 		}

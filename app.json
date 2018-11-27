@@ -9,7 +9,10 @@
     "pages/search/search",
     "pages/rule/rule",
     "pages/date/date",
-    "pages/infoedit/infoedit"
+    "pages/infoedit/infoedit",
+    "pages/pub_choose/pub_choose",
+    "pages/pub_card/pub_card",
+    "pages/bind/bind"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -28,7 +31,7 @@
         "selectedIconPath": "/images/home_sel.png"
       },
       {
-        "pagePath": "pages/publish/publish",
+        "pagePath": "pages/pub_choose/pub_choose",
         "text": "发布",
         "iconPath": "/images/publish.png",
         "selectedIconPath": "/images/publish_sel.png"

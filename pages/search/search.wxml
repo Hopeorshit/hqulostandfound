@@ -1,29 +1,14 @@
-<!--pages/free/free.wxml-->
-<import src="/templates/product-small-other/product-small-other.wxml" />
-<import src="/templates/product-small-other/product-small-other.wxml" />
-<import src="/templates/loading/loading.wxml" />
-<view wx:if="{{!notFirstLoad}}" class='first-load'>
-  <template is="first-load"></template>
-</view>
-
-<view wx:else>
-  <view class="weui-search-bar" id='search'>
-    <view class="weui-search-bar__form">
-      <view class="weui-search-bar__box">
-        <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
-        <input type="text" class="weui-search-bar__input" placeholder="搜索" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="inputTyping" bindconfirm="search" />
-        <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
-          <icon type="clear" size="14"></icon>
-        </view>
+<view class="weui-search-bar" id='search'>
+  <view class="weui-search-bar__form">
+    <view class="weui-search-bar__box">
+      <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+      <input type="text" class="weui-search-bar__input" placeholder="搜索" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="inputTyping" bindconfirm="onSearch" />
+      <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
+        <icon type="clear" size="14"></icon>
       </view>
-      <!-- <label class="weui-search-bar__label" hidden="{{inputShowed}}" bindtap="showInput">
-        <icon class="weui-icon-search" type="search" size="14"></icon>
-        <view class="weui-search-bar__text">搜索</view>
-      </label> -->
     </view>
   </view>
-  <view class='template'>
-    <template is="product-small-other" data="{{goodslist:content.list}}" />
-    <template is="bottom-loading" data="{{hasMore:content.hasMore}}" />
-  </view>
+</view>
+<view style='margin-top:100rpx;'>
+  <wz-search categoryID="{{categoryID}}" load_more="{{load_more}}" init="{{init}}" text="{{inputVal}}" />
 </view>

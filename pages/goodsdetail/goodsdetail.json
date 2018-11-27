@@ -1,3 +1,6 @@
 {
-  "navigationBarTitleText": "详情"
+  "navigationBarTitleText": "详情",
+  "usingComponents":{
+    "wz-first_load":"/components/load/first_load/first_load"
+  }
 }

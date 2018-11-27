@@ -1,8 +1,8 @@
 <!--pages/goodsdetail/goodsdetail.wxml-->
-<import src="/templates/loading/loading.wxml" />
+
 <view hidden='{{!loginStatus}}'>
   <view wx:if="{{!notFirstLoad}}" class='first-load'>
-    <template is="first-load"></template>
+    <wz-first_load />
   </view>
   <view wx:else>
     <view class='box'>
@@ -14,10 +14,12 @@
         </view>
       </view>
       <view class='box3'>
-        <text>{{detail.description}}</text>
+        <view>物品名称：{{detail.title}}</view>
+        <view>{{detail.description}}</view>
       </view>
       <view class='box-way'>
         <view class="box-way-left">
+          <text>{{detail.way==1?'领取地点：':'联系方式：'}}</text>
           <image wx:if="{{detail.way==1}}" class='box-way-icon' src='/images/location.png'></image>
           <image wx:if="{{detail.way==2}}" class='box-way-icon' src='/images/qq.png'></image>
           <image wx:if="{{detail.way==3}}" class='box-way-icon' src='/images/wechat.png'></image>
@@ -39,16 +41,16 @@
         <text>扩散</text>
       </view>
     </view>
-    <view hidden='{{!showMask}}'> 
-      <view class='mask' bindtap='hideMask' ></view>
+    <view hidden='{{!showMask}}'>
+      <view class='mask' bindtap='hideMask'></view>
       <view class='box-share'>
         <view class='share-text'>分享</view>
         <view class='share-way'>
-          <button class='share-way-item' bindtap="drawCanvas" disabled='{{creating}}' >
+          <button class='share-way-item' bindtap="drawCanvas" disabled='{{creating}}'>
             <image src='/images/down.png'></image>
             <text>生成分享海报</text>
           </button>
-          <button  class='share-way-item' open-type='share'>
+          <button class='share-way-item' open-type='share'>
             <image src='/images/wechat.png'></image>
             <text>分享给好友</text>
           </button>
@@ -59,5 +61,5 @@
 </view>
 
 <view class='canvas-v'>
-   <canvas canvas-id='myCanvas' style='width:100%;height:100%' class='my_canvas'></canvas>
+  <canvas canvas-id='myCanvas' style='width:100%;height:100%' class='my_canvas'></canvas>
 </view>

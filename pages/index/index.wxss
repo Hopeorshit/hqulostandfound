@@ -1,7 +1,5 @@
 @import '/style/weui-navbar.wxss';
 @import '/style/weui-searchbar.wxss';
-@import '/templates/loading/loading.wxss';
-@import "/templates/product-small-other/product-small-other.wxss";
 
 /* 
   窗口可用高度减去搜索框的高度为内容区域的高度

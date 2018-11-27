@@ -13,9 +13,11 @@ class Publish extends Base {
       method: 'POST',
       data: {
         is_found: is_found ? 1 : 0,
+        title:value.title,
         description: value.description,
         phone: value.phone,
-        way: way
+        way: way,
+        is_card:0    
       }
     };
     this.request(params);

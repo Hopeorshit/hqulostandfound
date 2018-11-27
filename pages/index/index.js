@@ -1,16 +1,24 @@
 var app = getApp();
 import {
   Index
-} from "../../model/index.js"
+} from "../../model/index.js";
+import {
+  randomStr
+} from '../../utils/util.js';
 var index = new Index;
 Page({
   /**
    * 页面的初始数据
    */
   data: {
+    categoryID: 0, //项目目录
     banner: [{
-      url: '/images/banner2.png'
-    }],
+        url: '/images/banner1.png',
+      },
+      // {
+      //   url: '/images/banner2.png',
+      // }
+    ],
     tabs: [{
         id: 1,
         name: "今天",
@@ -35,116 +43,36 @@ Page({
    *转发再次进入会重载页面，但是app.globalData确没变
    */
   onLoad: function() {
-    this.initData();
-    this.categoryAll((res) => {
-      this.setData({
-        notFirstLoad: true
-      })
-    });
+
   },
 
   onShow: function(options) {
     console.log(app.globalData.indexRefresh);
     if (app.globalData.indexRefresh) {
-      this.initData();
-      this.categoryAll((res) => {
-        this.setData({
-          notFirstLoad: true
-        })
-      });
+      this.setData({
+        init: randomStr(16)
+      })
       app.globalData.indexRefresh = false;
     }
   },
-  /*
-   *初始化data页面数据
+
+  /**
+   * 上拉加载更多
    */
-  initData() {
-    this.setData({
-      content: {
-        list: [],
-        page: 1,
-        hasMore: true,
-      }
-    })
-  },
-
-  /*
-   *获取目录HTTP请求
-   */
-  categoryAll: function(callBack) {
-    // index.categoryAll((res) => {
-    //   
-    //   this.setData({
-    //     tabs:res.data
-    //   })
-    this.categoryID();
-    callBack && callBack();
-    // })
-  },
-
-  //请求目录下的商品，并进行数据绑定
-  categoryID(callBack) {
-    index.categoryID(0, this.data.content.page, (res) => {
-      console.log(res);
-      var content = this.data.content;
-      var resList = res.data;
-      var contentList = content.list;
-      content.list = contentList.concat(resList);
-      content.page = content.page + 1;
-      if (resList.length == 10) {
-        content.hasMore = true;
-      } else {
-        content.hasMore = false;
-      }
-      this.setData({
-        content: content
-      })
-      callBack && callBack();
-    })
-  },
-
-  /*
-   *点击goodsDetail
-   */
-  goodsDetail: function(e) {
-    console.log(e);
-    wx.navigateTo({
-      url: '/pages/goodsdetail/goodsdetail?goods_id=' + e.currentTarget.dataset.goods_id,
-    })
-  },
-  /*
-  点击tab选项卡
-  */
-  tabClick: function(e) {
-    var activeIndex = e.currentTarget.id;
-    console.log(e);
-    this.setData({
-      sliderOffset: e.currentTarget.offsetLeft,
-      activeIndex: activeIndex
-    });
-    var tabs = this.data.tabs;
-    if (!tabs[activeIndex].tap) {
-      this.categoryID();
-    }
-  },
-
-  contentScrollUp: function() {
-    this.setData({
-      canScroll: false
-    })
-  },
-
   onReachBottom: function() {
-    if (this.data.content.hasMore) {
-      this.categoryID();
-    }
+    console.log('上拉刷新');
+    this.setData({
+      load_more: randomStr(16)
+    })
   },
-
-  onPullDownRefresh: function() {
-    this.initData();
-    this.categoryID((res) => {
-      wx.stopPullDownRefresh();
-    });
+  /**
+   * 下拉刷新
+   */
+  onPullDownRefresh: function() { //TODO 下拉刷新去触发父类可以通过 observer 来触发
+    console.log('下拉刷新')
+    this.setData({
+      init: randomStr(16)
+    })
   },
 
   /*
@@ -176,27 +104,23 @@ Page({
       url: '/pages/search/search?text=' + this.data.inputVal
     })
   },
-
-  bannerTap: function(e) {
+  /**
+   * 点击banner跳转
+   * TODO
+   */
+  onBannerTap: function(e) {
     var dataSet = e.currentTarget.dataset;
     var index = dataSet.index;
     if (index == 0) {
       wx.navigateTo({
-        url: '/pages/rule/rule',
-      })
-    }
-    if (index == 1) {
-      wx.navigateTo({
-        url: '/pages/publishershou/publishershou',
-      })
-    }
-    if (index == 2) {
-      wx.navigateTo({
-        url: '/pages/publishneed/publishneed',
+        url: '/pages/bind/bind',
       })
     }
   },
 
+  /**
+   * 点击日期目录
+   */
   onDate: function(e) {
     var dataset = e.currentTarget.dataset;
     wx.navigateTo({
@@ -204,6 +128,9 @@ Page({
     })
   },
 
+  /**
+   * 分享
+   */
   onShareAppMessage: function() {
 
   },

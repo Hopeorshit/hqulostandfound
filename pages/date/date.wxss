@@ -1,4 +1,2 @@
 /* pages/search/search.wxss */
-@import "/templates/product-small-other/product-small-other.wxss";
-@import "/templates/loading/loading.wxss";
 

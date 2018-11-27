@@ -1,43 +1,34 @@
-<import src="/templates/product-small-other/product-small-other.wxml" />
-<import src="/templates/loading/loading.wxml" />
-<view wx:if="{{!notFirstLoad}}" class='first-load'>
-  <template is="first-load"></template>
-</view>
-
-<view wx:else>
-  <view class="weui-search-bar" id='search'>
-    <view class="weui-search-bar__form">
-      <view class="weui-search-bar__box">
-        <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
-        <input type="text" class="weui-search-bar__input" placeholder="搜索" placeholder-style='color:white' value="{{inputVal}}" focus="{{inputShowed}}" bindinput="inputTyping" bindconfirm="search" />
-        <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
-          <icon type="clear" size="14"></icon>
-        </view>
+<view class="weui-search-bar" id='search'>
+  <view class="weui-search-bar__form">
+    <view class="weui-search-bar__box">
+      <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+      <input type="text" class="weui-search-bar__input" placeholder="搜索" placeholder-style='color:white' value="{{inputVal}}" focus="{{inputShowed}}" bindinput="inputTyping" bindconfirm="search" />
+      <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
+        <icon type="clear" size="14"></icon>
       </view>
     </view>
   </view>
+</view>
 
-  <view class='bannerbox'>
-    <swiper class="swiper" indicator-dots="true" autoplay="true" interval="5000" duration="1000" indicator-color='#dddddd' indicator-active-color='#ff6263'>
-      <block wx:for="{{banner}}" wx:for-index="index" wx:key="key">
-        <swiper-item>
-          <image src="{{item.url}}" class="slide-image" mode="aspectFill" bindtap='bannerTap' data-index="{{index}}" />
-        </swiper-item>
-      </block>
-    </swiper>
+<view class='bannerbox'>
+  <swiper class="swiper" indicator-dots="true" autoplay="true" interval="5000" duration="1000" indicator-color='#dddddd' indicator-active-color='#ff6263'>
+    <block wx:for="{{banner}}" wx:for-index="index" wx:key="key">
+      <swiper-item>
+        <image src="{{item.url}}" class="slide-image" mode="aspectFill" bindtap='onBannerTap' data-index="{{index}}" />
+      </swiper-item>
+    </block>
+  </swiper>
+</view>
+
+<view class="content">
+  <view class='category-v'>
+    <block wx:for="{{tabs}}" wx:key="index">
+      <view class='category' bindtap='onDate' data-category_id='{{item.id}}' data-name='{{item.name}}'>
+        <image src="{{item.image}}"></image>
+        <text>{{item.name}}</text>
+      </view>
+    </block>
   </view>
 
-  <view class="content">
-    <view class='category-v'>
-      <block wx:for="{{tabs}}" wx:key="index">
-        <view class='category' bindtap='onDate' data-category_id='{{item.id}}' data-name='{{item.name}}' >
-          <image src="{{item.image}}"></image>
-          <text>{{item.name}}</text>
-        </view>
-      </block>
-    </view>
-
-  <template is="product-small-other" data="{{goodslist:content.list}}" />
-  <template is="bottom-loading" data="{{hasMore:content.hasMore}}"/>  
-  </view>
+  <wz-category categoryID="{{categoryID}}" load_more="{{load_more}}" init="{{init}}" />
 </view>

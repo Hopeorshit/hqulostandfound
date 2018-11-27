@@ -1,0 +1,29 @@
+<view class='content'>
+  <view class='products'>
+    <block wx:for="{{content.list}}" wx:key="index">
+      <view class='product-box'>
+        <view class='product-v' bindtap='onGoodsDetail' data-goods_id='{{item.id}}' data-is_found="{{item.is_found}}">
+          <view class='product-right' hidden='{{item.status==0}}'>
+            <image src='{{item.head_url}}' mode='aspectFill'></image>
+          </view>
+          <view class='product-left'>
+            <view class='product-left-v1'>
+              <text class='description'>{{item.title}}</text>
+            </view>
+          </view>
+        </view>
+        <view class='btn-v'>
+          <text class='finish' bindtap='onGoodsHandle' data-index="{{index}}" data-goods_id='{{item.id}}' data-handle_type='2'>已对接</text>
+          <text class='finish' bindtap='onGoodsHandle' data-index="{{index}}" data-goods_id='{{item.id}}' data-handle_type='3'>删除</text>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>
+
+<view wx:if="{{content.empty}}">
+  <wz-nothing tip="暂无" />
+</view>
+<view wx:else>
+  <wz-loading wx:if="{{loading}}" more="{{content.more}}" />
+</view>

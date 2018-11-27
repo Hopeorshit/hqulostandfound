@@ -1,5 +1,5 @@
 /* pages/goodsdetail/goodsdetail.wxss */
-@import "/templates/loading/loading.wxss";
+
 
 .box {
   font-size: 26rpx;
@@ -35,9 +35,10 @@
   font-size: 24rpx;
   color: #a9aaac;
 }
-
+/*
+*领取方式
+*/
 .box3 {
-  font-size: 30rpx;
   background-color: white;
   padding: 20rpx;
 }

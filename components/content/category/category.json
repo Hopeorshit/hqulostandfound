@@ -1,0 +1,8 @@
+{
+  "component": true,
+  "usingComponents": {
+    "wz-goods":"/components/goods/goods",
+    "wz-loading": "/components/load/loading/loading",
+    "wz-nothing": "/components/nothing/nothing"
+  }
+}

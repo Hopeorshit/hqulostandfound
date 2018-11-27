@@ -1,31 +1,35 @@
 /**app.wxss**/
+
 .container {
   height: 100%;
 }
 
 /* 右边小箭头 */
-.arrow{
+
+.arrow {
   width: 30rpx;
   height: 30rpx;
 }
 
-page{
-  background: #f8f8f8;
+page {
+  background-color: #f8f8f8;
+  color: #434446;
+  font-size: 16px;
+}
+
+/*小图标*/
+
+.icon {
+  width: 50rpx;
+  height: 50rpx;
+}
+
+/*最下面的按钮,bottom-fixed的时候会莫名其妙的输入框键盘弹不出来*/
+.btn-bottom{
+  background-color: #ff6263;
+  color: white;
+  border-radius: 0;
   font-size: 30rpx;
-}
-
-.color-theme{
- color: #f4ee33
-}
-
-.color-t1{
- color:#1d1d1d 
-}
-
-.color-t2{
-  color: #888888
-}
-
-.color-t3{
-  color: #cecece
+  margin: 0 20rpx;
+  margin-top: 150rpx;
 }

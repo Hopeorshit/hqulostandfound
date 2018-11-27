@@ -1,4 +1,4 @@
 <view class='box'>
-  <image src='./images/nothing.png'></image>
+  <image src='./images/nothing.png' mode='widthFix'></image>
   <text>{{tip}}</text>
 </view>

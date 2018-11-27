@@ -1,0 +1,38 @@
+<!--pages/pub_card/pub_card.wxml-->
+<form bindsubmit='onSubmit'>
+  <view class='box'>
+    <view class='box-pic'>
+      <view class='box-pic-v' bindtap='onPic'>
+        <image src=' /images/pic.png '></image>
+        <text>点击拍照识别</text>
+        <text class='tips-t2'>智能识别填入学生卡信息</text>
+      </view>
+    </view>
+    <view class='box-info'>
+      <view>
+        <text>姓名:</text>
+        <input name="name" value='{{name}}'></input>
+      </view>
+      <view>
+        <text>学号:</text>
+        <input name="student_id" value='{{student_id}}' type=''></input>
+      </view>
+      <view>
+        <text>学院:</text>
+        <input name="institute" value='{{institute}}'></input>
+      </view>
+    </view>
+
+    <view class='box-ways' style='padding:20rpx'>
+      <view class='way-sel'>
+        <block wx:for="{{radio_group}}" wx:key="{{index}}">
+          <text class="way-sel-text {{item.checked?'way-selected':''}}" data-index="{{index}}" bindtap='onRadio'>{{item.text}}</text>
+        </block>
+      </view>
+      <input placeholder='请填写{{radio_group[currentRadioIndex].text}}' name="phone" value='{{phone}}' class='input-way'> </input>
+    </view>
+    <button class='btn-bottom' disabled='{{publishing}}' form-type='submit'>
+      发布
+    </button>
+  </view>
+</form>
