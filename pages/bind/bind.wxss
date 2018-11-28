@@ -1,75 +1,46 @@
 /* pages/bind/bind.wxss */
 
-page {
-  background-color: #fb655a;
-  color: white;
-}
-
-/*绑定*/
+/*提示区*/
 
 .box-tips {
-  background-color: #ff514e;
-  color: white;
-  margin: 40rpx;
+  margin-top: 200rpx;
   padding: 20rpx;
-  border-radius: 20rpx;
+  /* color: #a99aac; */
 }
 
-.tips1 {
-  padding: 20rpx 0;
-}
+/*跳转*/
 
-.tips2 {
-  font-size: 26rpx;
-}
-
-/*绑定流程*/
-
-.box-step {
-  margin-top: 100rpx;
+.box-sm {
+  padding: 20rpx;
+  color: #a99aac;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
 }
 
-.box-step text {
-  color: white;
+.wenhao {
+  width: 40rpx;
+  height: 40rpx;
 }
 
-.step {
-  margin-top: 40rpx;
-  display: flex;
-  justify-content: space-around;
-  padding: 0 50rpx;
-}
-
-.step image {
-  width: 230rpx;
-  height: 280rpx;
-}
+/*输入和提交*/
 
 .box-bind {
   margin-top: 60rpx;
   display: flex;
   justify-content: center;
-  padding: 0 60rpx;
-}
-
-.box-bind>view {
-  display: flex;
-  align-items: center;
+  flex-direction: column;
 }
 
 .box-bind input {
-  border-bottom: 1rpx solid white;
+  border-bottom: 1px solid #cecece;
+  margin: 0 20rpx;
 }
 
 .box-bind button {
+  background-color: #ff6263;
   color: white;
-  background-color: #ff514e;
-  border: none;
-  margin-left: 20rpx;
+  border-radius: 0;
   font-size: 30rpx;
-  padding: 0 40rpx;
+  margin: 0 20rpx;
+  margin-top: 40rpx;
 }

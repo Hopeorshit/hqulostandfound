@@ -4,6 +4,6 @@
     <image src='/images/normal.png'></image>
   </view>
   <view class='box-v' bindtap='onCard'>
-    <image src="/images/card.png"></image>
+    <image src="/images/sm.png"></image>
   </view>
 </view>

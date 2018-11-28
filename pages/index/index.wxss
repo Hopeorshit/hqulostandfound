@@ -10,6 +10,7 @@ page {
 }
 
 /* banner  */
+
 .bannerbox {
   height: 376rpx;
   width: 100%;
@@ -63,7 +64,7 @@ page {
 .category-v {
   display: flex;
   justify-content: space-around;
-  background-color: white
+  background-color: white;
 }
 
 .category {
@@ -78,6 +79,28 @@ page {
   padding: 16rpx;
 }
 
-.category text{
+.category text {
   margin-bottom: 20rpx;
+}
+
+/*锦囊*/
+
+.tips {
+  position: fixed;
+  right: 0;
+  bottom: 200rpx;
+}
+
+.jinnang {
+  width: 120rpx;
+  height: 120rpx;
+  margin-right: 10rpx;
+}
+
+.hide {
+  position: absolute;
+  width: 40rpx;
+  height: 40rpx;
+  margin-left: 80rpx;
+  margin-top: -20rpx; 
 }

@@ -9,10 +9,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    // tips1:"绑定学号,并关注“微作校园”公众号",
-    // // tips1:"作为一枚精致的大学生,经常会遇到......",
-    // // tips2:"学生卡经常不翼而飞,遗失在校园的某个角落无迹可寻,补卡又费时费力。华园失物招领致力于帮您解决这个烦恼,绑定学号后,一旦平台检测到您的丢卡信息,马上会通过“微作校园”公众号给您发送通知,从此不怕丢卡"
-    // tips2: "系统将主动向您发送服务通知"
+    tips1: '若拾卡人通过"扫描发布"入口',
+    tips2: "发布您的学生卡,系统将在第一时间给您发送服务通知!"
   },
 
   /**
@@ -28,17 +26,17 @@ Page({
     if (this._checkSubmit(student_id)) {
       wx.showModal({
         title: '是否确认',
-        content: '您的填写的学号是:'+student_id,
-        confirmColor:'#ff6263',
-        success:function(res){
-          if(res.confirm){
+        content: '您的填写的学号是:' + student_id,
+        confirmColor: '#ff6263',
+        success: function(res) {
+          if (res.confirm) {
             http.userBind(form_id, student_id, (res) => {
               wx.showModal({
                 title: '提交成功',
-                content: '7天内系统检查到别人发布相关信息后,会第一时间发送给您',
-                confirmText:'我知道了',
-                confirmColor:'#ff6263',
-                showCancel:false
+                content: '监听成功！由于微信formID有效期为7天,超出时间您只需要在本页面再次监听即可。',
+                confirmText: '我知道了',
+                confirmColor: '#ff6263',
+                showCancel: false
               })
             })
           }
@@ -56,6 +54,13 @@ Page({
       return false;
     }
     return true;
+  },
+  /**
+   * 了解扫描发布页面
+   */
+  onPub_card: function () {
+    wx.navigateTo({
+      url: '/pages/pub_card/pub_card',
+    })
   }
-
 })

@@ -32,7 +32,7 @@
       </view>
     </view>
 
-    <view class='box-ways' >
+    <view class='box-ways'>
       <view class='way-sel'>
         <block wx:for="{{radio_group}}" wx:key="{{index}}">
           <text class="way-sel-text {{item.checked?'way-selected':''}}" data-index="{{index}}" bindtap='onRadio'>{{item.text}}</text>
@@ -40,9 +40,13 @@
       </view>
       <input placeholder='请填写{{radio_group[currentRadioIndex].text}}' name="phone" value='{{phone}}' class='input-way'> </input>
     </view>
+  </view>
 
-    <button class='btn-bottom' disabled='{{publishing}}' form-type='submit'>
-      发布
-    </button>
+
+  <button class='btn-bottom' disabled='{{publishing}}' form-type='submit'>
+    发布
+  </button>
+  <view class='tips' bindtap='onPub_card'>
+    <text>捡到学生卡？</text>
   </view>
 </form>

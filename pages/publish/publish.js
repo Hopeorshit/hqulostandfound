@@ -226,6 +226,15 @@ Page({
       currentRadioIndex: index,
       radio_group:radio_group
     })
+  },
+
+  /**
+    * 了解扫描发布页面
+    */
+  onPub_card: function () {
+    wx.navigateTo({
+      url: '/pages/pub_card/pub_card',
+    })
   }
 
 })

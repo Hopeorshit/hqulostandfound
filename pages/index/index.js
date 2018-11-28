@@ -37,7 +37,8 @@ Page({
         name: "更久",
         image: "/images/long.png"
       }
-    ]
+    ],
+    // hideTips: false
   },
   /*
    *转发再次进入会重载页面，但是app.globalData确没变
@@ -135,5 +136,22 @@ Page({
 
   },
 
+  /**
+   * 点击跳转tip
+   */
+  onTipTap:function(){
+    wx.navigateTo({
+      url: '/pages/bind/bind',
+    })
+  },
+
+  /**
+   * 点击跳转hidden
+   */
+  onHide:function(){
+    this.setData({
+      hideTips:true
+    })
+  }
 
 })

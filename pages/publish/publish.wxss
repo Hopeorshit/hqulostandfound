@@ -102,7 +102,7 @@
   margin-top: 20rpx;
 }
 
-.way-sel{
+.way-sel {
   /* margin: 20rpx 0; */
 }
 
@@ -121,4 +121,12 @@
 .input-way {
   margin-top: 60rpx;
   /* border-bottom: 1rpx solid #e8e8e8; */
+}
+
+.tips {
+  display: flex;
+  justify-content: center;
+  color: #a9aaac;
+  background-color: #f8f8f8;
+  margin-top: 30rpx;
 }
