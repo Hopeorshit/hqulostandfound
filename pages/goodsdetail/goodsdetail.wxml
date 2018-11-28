@@ -46,7 +46,7 @@
       <view class='box-share'>
         <view class='share-text'>分享</view>
         <view class='share-way'>
-          <button class='share-way-item' bindtap="drawCanvas" disabled='{{creating}}'>
+          <button class='share-way-item' bindtap="onDrawCanvas" disabled='{{creating}}'>
             <image src='/images/down.png'></image>
             <text>生成分享海报</text>
           </button>

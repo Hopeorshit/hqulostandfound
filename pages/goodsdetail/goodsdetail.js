@@ -12,8 +12,8 @@ Page({
     showMask: false,
     whiteBackground: "/images/white.jpg",
     code: "/images/code.jpg",
-    lostImage: "/images/lost3.png",
-    foundImage: "/images/found3.png",
+    lostImage: "/images/lost.png",
+    foundImage: "/images/found.png",
     height: 0,
     creating: false
   },
@@ -21,12 +21,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    console.log(options);
+    // console.log(options);
     this.setData({
       goods_id: options.goods_id
     })
     wx.setNavigationBarTitle({
-      title: options.is_found==1?"失物招领":"寻物启事",
+      title: options.is_found == 1 ? "失物招领" : "寻物启事",
     })
 
     var that = this;
@@ -137,18 +137,18 @@ Page({
 
   },
   /**
-   * 海报绘制
+   * 保存
    */
-  save: function() { //保存到本地
-    wx.showLoading({
-      title: '生成中',
-    })
+  _save: function() { //保存到本地
+    // wx.showLoading({
+    //   title: '生成中',
+    // })
     var that = this
     setTimeout(function() {
       wx.canvasToTempFilePath({
         canvasId: 'myCanvas',
         fileType: 'png',
-        height: that.data.height + 20,
+        height: that.data.height,
         success: function(res) {
           console.log(res.tempFilePath)
           wx.saveImageToPhotosAlbum({
@@ -169,32 +169,50 @@ Page({
     }, 3000)
   },
 
-  drawCanvas: function() {
+  /**
+   * 点击绘制
+   */
+
+  onDrawCanvas: function() {
     this.setData({ //防止连续多次按
       creating: true
     })
-    // wx.showLoading({
-    //   title: '生成中',
-    // })
-    this.downloadMainPic((res) => {
-      this.drawBackGround();
-      this.drawDeatil();
-      this.drawContact();
+    wx.showLoading({
+      title: '生成中',
+    })
+    this._downloadMainPic((res) => {
+      this._drawBackGround();
+      // this._drawDetail();
+      // this._drawContact();
       if (this.data.tempFilePath) {
-        this.drawMainPic((res) => {
-          this.drawLine();
-          this.drawCode();
-          this.save();
+        this._drawMainPic((res) => {
+          this._drawRestAndSave();
         });
       } else {
-        this.drawLine();
-        this.drawCode();
-        this.save();
+        this._drawRestAndSave();
       }
     })
   },
 
-  drawMainPic: function(callBack) {
+  /**
+   * 绘制除主图之外的其它图片
+   */
+  _drawRestAndSave() {
+    this._drawTitle();
+    this._drawDate();
+    this._drawDetail();
+    this._drawContact();
+    this._drawLine();
+    this._drawCode();
+    this._drawType();
+    this._save();
+  },
+
+  /**
+   * 绘制主要图片
+   * 根据图片的比例决定是否要旋转
+   */
+  _drawMainPic: function(callBack) {
     var that = this;
     var canvasWidth = this.data.canvasWidth;
     var tempFilePath = that.data.tempFilePath
@@ -203,33 +221,38 @@ Page({
       success: function(imageRes) {
         console.log(imageRes)
         var size = imageRes.height / imageRes.width;
-        var height = that.data.height + 30
-        var oriWidth = canvasWidth * 0.8;
-        var oriHeight = canvasWidth * size * 0.8;
+        // var height = that.data.height + 30
+        var height = that.data.height+4;
+        var oriWidth = canvasWidth * 0.98;
+        var oriHeight = oriWidth * size;
         if (size > 1) {
-          myCanvas.translate(canvasWidth * 0.1, height); //移动画布原点
+          myCanvas.translate(canvasWidth * 0.01, height); //移动画布原点
           myCanvas.rotate(-90 * Math.PI / 180); //旋转画布
-          myCanvas.translate(-oriWidth / size, 0) //再次移动画布原点      
-          myCanvas.drawImage(tempFilePath, 0, 0, oriWidth / size, oriWidth);
+          myCanvas.translate(-oriWidth / size, 0); //再次移动画布原点      
+          myCanvas.drawImage(tempFilePath, 0, 0, oriWidth / size, oriWidth); //绘制
           myCanvas.draw(true);
           // 还原画布
-          myCanvas.translate(oriWidth / size, 0)
-          myCanvas.rotate(90 * Math.PI / 180)
-          myCanvas.translate(-canvasWidth * 0.1, -height); //移动画布原点
+          myCanvas.translate(oriWidth / size, 0) //移动画布原点
+          myCanvas.rotate(90 * Math.PI / 180) //旋转还原
+          myCanvas.translate(-canvasWidth * 0.01, -height); //移动画布原点
           height = height + oriWidth / size;
-        }else{
-          myCanvas.drawImage(tempFilePath,canvasWidth * 0.1, height, oriWidth, oriHeight);
+        } else {
+          myCanvas.drawImage(tempFilePath, canvasWidth * 0.01, height, oriWidth, oriHeight);
           height = height + oriHeight;
         }
         that.setData({
           height: height
         })
+        console.log(height)
         callBack && callBack()
       }
     })
   },
 
-  downloadMainPic: function(callBack) {
+  /**
+   * 下载主要图片
+   */
+  _downloadMainPic: function(callBack) {
     var that = this;
     var goodsImages = that.data.detail.images; //2绘制图片
     if (goodsImages.length > 0) {
@@ -248,29 +271,67 @@ Page({
     }
   },
 
-  drawBackGround: function() {
+  /**
+   * 绘制背景图片
+   */
+  _drawBackGround: function() {
     var canvasWidth = this.data.canvasWidth
-    myCanvas.drawImage(this.data.whiteBackground, 0, 0, canvasWidth, 1000); //1画一个白色背景图片
+    // myCanvas.drawImage(this.data.whiteBackground, 0, 0, canvasWidth, 1000); //1画一个白色背景图片
+    myCanvas.setFillStyle('white');
+    myCanvas.fillRect(0, 0, canvasWidth, 1000);
     myCanvas.draw(true); //继续绘制
   },
 
-  drawDeatil: function() {
+  /**
+   * 绘制物品名称
+   */
+  _drawTitle: function() {
+    let fontSize = 20;
+    myCanvas.setFontSize(fontSize);
+    myCanvas.font = 'bold 20px sans-serif'
+    let height = this.data.height;
+    console.log(height)
+    myCanvas.setFillStyle('#3a3a3a')
+    myCanvas.fillText(this.data.detail.title, 20, height + 40);
+    myCanvas.draw(true);
+    this.setData({
+      height: height + 40
+    })
+  },
+  /**
+   * 绘制日期
+   */
+  _drawDate: function() {
+    var height = this.data.height;
+    var canvasWidth=this.data.canvasWidth;
+    myCanvas.setFontSize(11);
+    myCanvas.setFillStyle('#8f8e8f');
+    myCanvas.fillText(this.data.time, canvasWidth - 80, height);
+    myCanvas.draw(true);
+  },
+
+  /**
+   * 绘制详情
+   */
+  _drawDetail: function() {
     var canvasWidth = this.data.canvasWidth;
     var height = this.data.height
     console.log(height);
-    //3绘制详情字体
-    var imageType = this.data.detail.is_found == 1 ? this.data.foundImage : this.data.lostImage;
-    myCanvas.drawImage(imageType, canvasWidth / 2 - 80, height + 20, 160, 49)
     height = height + 20;
-    myCanvas.draw(true);
-    myCanvas.setFontSize(15);
-    myCanvas.setTextAlign('center');
-    myCanvas.setFillStyle('#8f8e8f');
-    myCanvas.fillText(this.data.time, canvasWidth / 2 + 90, height + 70)
-    height = height + 130
-    myCanvas.draw(true);
-    myCanvas.setFillStyle('#3a3a3a')
-    var fontSize = 50;
+    //3绘制详情字体
+    // var imageType = this.data.detail.is_found == 1 ? this.data.foundImage : this.data.lostImage;
+    // myCanvas.drawImage(imageType, canvasWidth / 2 - 80, height + 20, 160, 49)
+    // height = height + 20;
+    // myCanvas.draw(true);
+    // myCanvas.setFontSize(15);
+    // myCanvas.setTextAlign('center');
+    // myCanvas.setFillStyle('#8f8e8f');
+    // myCanvas.fillText(this.data.time, canvasWidth / 2 + 90, height + 70)
+    // height = height + 130
+    // myCanvas.draw(true);
+    myCanvas.setFillStyle('#8f8e8f')
+    myCanvas.font = 'normal 13px sans-serif'
+    var fontSize = 13;
     myCanvas.setFontSize(fontSize)
     var str = this.data.detail.description;
     var lineWidth = 0;
@@ -278,14 +339,14 @@ Page({
     height = height + 4;
     for (let i = 0; i < str.length; i++) {
       lineWidth += myCanvas.measureText(str[i]).width;
-      if (lineWidth > canvasWidth - fontSize) {
-        myCanvas.fillText(str.substring(lastSubStrIndex, i), canvasWidth / 2, height); //绘制截取部分
-        height += fontSize; //40为字体的高度
+      if (lineWidth > canvasWidth - fontSize) { //
+        myCanvas.fillText(str.substring(lastSubStrIndex, i), 20, height); //绘制截取部分
+        height += fontSize; //
         lineWidth = 0;
         lastSubStrIndex = i;
       }
       if (i == str.length - 1) { //绘制剩余部分
-        myCanvas.fillText(str.substring(lastSubStrIndex, i + 1), canvasWidth / 2, height);
+        myCanvas.fillText(str.substring(lastSubStrIndex, i + 1), 20, height);
       }
     }
     myCanvas.draw(true)
@@ -294,19 +355,28 @@ Page({
     })
   },
 
-  drawContact: function() { //绘制联系方式
+
+
+  /**
+   * 绘制联系方式
+   */
+  _drawContact: function() { //绘制联系方式
     var canvasWidth = this.data.canvasWidth;
     var height = this.data.height
-    myCanvas.setFontSize(30);
-    myCanvas.setFillStyle('#3a3a3a')
-    myCanvas.fillText(this.beforeText() + ' ' + this.data.detail.phone, canvasWidth / 2, height + 50);
+    // myCanvas.setFontSize(30);
+    // myCanvas.setFillStyle('#3a3a3a')
+    height = height + 20;
+    myCanvas.fillText(this._beforeText() + ' ' + this.data.detail.phone, 20, height);
     myCanvas.draw(true)
     this.setData({
-      height: height + 50
+      height: height
     })
   },
 
-  drawLine: function() { //绘制线条
+  /**
+   * 绘制线条
+   */
+  _drawLine: function() { //绘制线条
     var canvaWidth = this.data.canvasWidth;
     var height = this.data.height
     myCanvas.setLineWidth(1)
@@ -320,31 +390,45 @@ Page({
     })
   },
 
-  drawCode: function() {
+  /**
+   * 绘制二维码等
+   */
+  _drawCode: function() {
     var canvaWidth = this.data.canvasWidth;
     var height = this.data.height
-    height = height + 15;
-    myCanvas.drawImage(this.data.code, 40, height, 70, 70); //
+    height = height + 8;
+    var codeSize = 70;
+    myCanvas.drawImage(this.data.code, 20, height, codeSize, codeSize); //
     myCanvas.draw(true)
-    var fontSize = 14;
+    var fontSize = 12;
     myCanvas.setFontSize(fontSize);
     myCanvas.setFillStyle('#8f8e8f')
     myCanvas.setTextAlign('left');
-    height = height + 20
-    myCanvas.fillText("寻找校园合伙人：837269003@qq.com", 120, height);
-    height = height + fontSize
-    myCanvas.fillText("技术支持:微作校园开发团队", 120, height);
-    myCanvas.setFontSize(12);
-    height = height + fontSize
-    myCanvas.fillText("(长按小程序码了解更多失物招领信息)", 120, height);
+    height = height + codeSize / 2 - fontSize / 2
+    myCanvas.fillText("长按小程序码", codeSize + 20 + 8, height);
+    height = height + fontSize + 4;
+    myCanvas.fillText("了解更多失物招领信息", codeSize + 20 + 8, height);
     height = height + 12
     myCanvas.draw(true)
     this.setData({
-      height: height
+      height: height + 30
     })
   },
 
-  beforeText: function() {
+  _drawType() {
+    var height = this.data.height;
+    var canvasWidth = this.data.canvasWidth;
+    var typeHeight = 125;
+    var typeWidth = 150;
+    var imageType = this.data.detail.is_found == 1 ? this.data.foundImage : this.data.lostImage;
+    myCanvas.drawImage(imageType, canvasWidth - typeWidth, height - typeHeight, typeWidth, typeHeight);
+    myCanvas.draw(true);
+  },
+
+  /**
+   * 联系方式前面的字体
+   */
+  _beforeText: function() {
     var t = ''
     if (this.data.detail.is_found == 1) {
       t = '失主请'
