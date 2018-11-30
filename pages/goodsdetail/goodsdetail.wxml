@@ -14,7 +14,7 @@
         </view>
       </view>
       <view class='box3'>
-        <view>物品名称：{{detail.title}}</view>
+        <view>{{detail.title}}</view>
         <view>{{detail.description}}</view>
       </view>
       <view class='box-way'>
@@ -61,5 +61,5 @@
 </view>
 
 <view class='canvas-v'>
-  <canvas canvas-id='myCanvas' style='width:100%;height:100%' class='my_canvas'></canvas>
+  <canvas canvas-id='myCanvas' style='width:100%;height:100%' ></canvas>
 </view>

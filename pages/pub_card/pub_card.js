@@ -29,7 +29,7 @@ Page({
       description: null,
       phone: null,
       name: null,
-      student_id:null,
+      student_id: null,
       institute: null,
       localImage: null,
     })
@@ -117,9 +117,11 @@ Page({
         })
         // wx.setStorageSync(key, that.data.ocr.words_result);
         that._getInfo();
+        wx.hideLoading();
+        that._toastRes();
       },
       complete: function() {
-        wx.hideLoading();
+        // wx.hideLoading();
       }
     })
   },
@@ -137,17 +139,17 @@ Page({
       if (/姓名/.test(item[key])) {
         that.setData({
           // 'name': item[key].match(/[:：](\S*)性别/)[1] 百度API
-          'name': item[key].match(/[:：](\S*)/)[1]
+          name: item[key].match(/[^姓名:：][\u4e00-\u9fa5]+/g)[0]
         })
       }
       if (/学号/.test(item[key])) {
         that.setData({
-          'student_id': item[key].match(/\d+/g)
+          student_id: item[key].match(/\d+/g)[0]
         })
       }
       if (/学院/.test(item[key])) {
         that.setData({
-          'institute': item[key].match(/[:：](\S*)/)[1]
+          institute: item[key].match(/[^学院:：][\u4e00-\u9fa5]+/g)[0]
         })
       }
     })
@@ -165,10 +167,10 @@ Page({
       var radio_group = this.data.radio_group;
       var currentRadioIndex = this.data.currentRadioIndex;
       var way = radio_group[currentRadioIndex].way;
-      let value=e.detail.value;
-      value.title=value.name+'的'+'学生卡'
-      value.description=value.institute;
-      http.goodsCreate(1, way,this.data.student_id,e.detail.value, (res) => {
+      let value = e.detail.value;
+      value.title = value.name + '的' + '学生卡'
+      value.description = value.institute;
+      http.goodsCreate(1, way, this.data.student_id, e.detail.value, (res) => {
         this.setData({
           goods_id: res.data.goods_id
         })
@@ -229,5 +231,36 @@ Page({
     }
     return true;
   },
+
+  /**
+   * 检测 结果提示
+   */
+  _toastRes: function() {
+    let tip = '';
+    let tipBool = false;
+    if (!this.data.name) {
+      tip += '姓名 '
+      tipBool = true
+    }
+    if (!this.data.student_id) {
+      tip += '学号 '
+      tipBool = true
+    }
+    if (!this.data.institute) {
+      tip += '学院 '
+      tipBool = true
+    }
+    if (tip) {
+      wx.showToast({
+        title: tip + ' 检测失败,请手动输入',
+        icon:'none',
+        duration:2000
+      })
+    }else{
+      wx.showToast({
+        title: '检测完成',
+      })
+    }
+  }
 
 })

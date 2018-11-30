@@ -10,7 +10,6 @@ Page({
    */
   data: {
     showMask: false,
-    whiteBackground: "/images/white.jpg",
     code: "/images/code.jpg",
     lostImage: "/images/lost.png",
     foundImage: "/images/found.png",
@@ -136,6 +135,33 @@ Page({
   onShareAppMessage: function() {
 
   },
+
+
+  /**
+   * 点击绘制
+   */
+
+  onDrawCanvas: function() {
+    this.setData({ //防止连续多次按
+      creating: true
+    })
+    wx.showLoading({
+      title: '生成中',
+    })
+    this._downloadMainPic((res) => {
+      this._drawBackGround();
+      // this._drawDetail();
+      // this._drawContact();
+      if (this.data.tempFilePath) {
+        this._drawMainPic((res) => {
+          this._drawRestAndSave();
+        });
+      } else {
+        this._drawRestAndSave();
+      }
+    })
+  },
+
   /**
    * 保存
    */
@@ -168,32 +194,6 @@ Page({
       })
     }, 3000)
   },
-
-  /**
-   * 点击绘制
-   */
-
-  onDrawCanvas: function() {
-    this.setData({ //防止连续多次按
-      creating: true
-    })
-    wx.showLoading({
-      title: '生成中',
-    })
-    this._downloadMainPic((res) => {
-      this._drawBackGround();
-      // this._drawDetail();
-      // this._drawContact();
-      if (this.data.tempFilePath) {
-        this._drawMainPic((res) => {
-          this._drawRestAndSave();
-        });
-      } else {
-        this._drawRestAndSave();
-      }
-    })
-  },
-
   /**
    * 绘制除主图之外的其它图片
    */
@@ -222,7 +222,7 @@ Page({
         console.log(imageRes)
         var size = imageRes.height / imageRes.width;
         // var height = that.data.height + 30
-        var height = that.data.height+4;
+        var height = that.data.height + 4;
         var oriWidth = canvasWidth * 0.98;
         var oriHeight = oriWidth * size;
         if (size > 1) {
@@ -303,7 +303,7 @@ Page({
    */
   _drawDate: function() {
     var height = this.data.height;
-    var canvasWidth=this.data.canvasWidth;
+    var canvasWidth = this.data.canvasWidth;
     myCanvas.setFontSize(11);
     myCanvas.setFillStyle('#8f8e8f');
     myCanvas.fillText(this.data.time, canvasWidth - 80, height);
@@ -404,11 +404,11 @@ Page({
     myCanvas.setFontSize(fontSize);
     myCanvas.setFillStyle('#8f8e8f')
     myCanvas.setTextAlign('left');
-    height = height + codeSize / 2 - fontSize / 2
-    myCanvas.fillText("长按小程序码", codeSize + 20 + 8, height);
+    height = height + codeSize/2-fontSize/2
+    myCanvas.fillText("长按识别华侨大学专用小程序", codeSize + 20 + 8, height);
     height = height + fontSize + 4;
-    myCanvas.fillText("了解更多失物招领信息", codeSize + 20 + 8, height);
-    height = height + 12
+    myCanvas.fillText("发布或搜索更多信息", codeSize + 20 + 8, height);
+    height = height + fontSize + 4
     myCanvas.draw(true)
     this.setData({
       height: height + 30

@@ -78,6 +78,5 @@ Component({
       };
       http.request(params);
     },
-
   }
 })

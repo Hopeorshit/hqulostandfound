@@ -1,5 +1,4 @@
-
-var app=getApp();
+var app = getApp();
 import {
   Login
 } from '../../model/login.js';
@@ -22,12 +21,12 @@ Page({
   onLogin: function(e) {
     var that = this;
     that.wxGetUserInfo(e, (res) => {
-       wx.showToast({
-         title: '登陆成功',
-       })
-       setTimeout(function(){
-         wx.navigateBack();
-       },1500)
+      wx.showToast({
+        title: '登陆成功',
+      })
+      setTimeout(function() {
+        wx.navigateBack();
+      }, 1500)
     })
   },
   wxGetUserInfo: function(event, callBack) {
@@ -44,11 +43,22 @@ Page({
         }
       })
     } else {
+      wx.showLoading({
+        title: '登陆中',
+      })
       http.encrypt(event.detail.encryptedData, event.detail.iv,
         (res) => {
-          app.globalData.loginStatus = true;
-          wx.setStorageSync('userInfo', res.data);
-          callBack && callBack(res);
+          if (res.code == 201) {
+            app.globalData.loginStatus = true;
+            wx.setStorageSync('userInfo', res.data);
+            callBack && callBack(res);
+          }else{
+            wx.showToast({
+              title: '登陆失败',
+              icon:'none'
+            })
+          }
+          wx.hideLoading();
         },
       )
     }

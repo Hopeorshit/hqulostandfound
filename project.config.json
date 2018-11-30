@@ -33,7 +33,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 8,
+			"current": 10,
 			"list": [
 				{
 					"id": -1,
@@ -88,6 +88,18 @@
 					"name": "商品详情",
 					"pathName": "pages/goodsdetail/goodsdetail",
 					"query": "goods_id=209&is_found=1"
+				},
+				{
+					"id": 9,
+					"name": "昨天",
+					"pathName": "pages/date/date",
+					"query": "categoryID=2&title=\"昨天\""
+				},
+				{
+					"id": -1,
+					"name": "昨天",
+					"pathName": "pages/preview/preview",
+					"query": "categoryID=2&title=\"昨天\""
 				}
 			]
 		}

@@ -29,11 +29,10 @@
       </view>
     </block>
   </view>
-
   <wz-category categoryID="{{categoryID}}" load_more="{{load_more}}" init="{{init}}" />
 </view>
 
-  <view class='tips'  >
-    <!-- <image class='hide' src='/images/hide.png' bindtap='onHide'></image> -->
-    <image class='jinnang' src="/images/jinnang.png" bindtap='onTipTap'> </image>
-  </view>
+<view class='tips'>
+  <!--<image class='hide' src='/images/hide.png' bindtap='onHide'></image>-->
+  <image class='jinnang' src="/images/jinnang.png" bindtap='onTipTap'> </image>
+</view>

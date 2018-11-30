@@ -52,4 +52,15 @@ Page({
       url: '/pages/goodsdetail/goodsdetail?goods_id=' + goods_id,
     })
   },
+  
+  /**
+   * 点击生成长图
+   */
+  onShare:function(){
+    wx.navigateTo({
+      url: '/pages/preview/preview',
+    })
+  },
+
+
 })
