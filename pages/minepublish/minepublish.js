@@ -4,6 +4,9 @@ import {
   MinePublish
 } from "../../model/minepublish.js"
 var http = new MinePublish;
+import {
+  randomStr
+} from '../../utils/util.js';
 Page({
 
   /**
