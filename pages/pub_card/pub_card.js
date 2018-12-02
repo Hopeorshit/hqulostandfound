@@ -168,8 +168,8 @@ Page({
       var currentRadioIndex = this.data.currentRadioIndex;
       var way = radio_group[currentRadioIndex].way;
       let value = e.detail.value;
-      value.title = value.name + '的' + '学生卡'
-      value.description = value.institute;
+      value.title = value.institute+value.name + '的' + '学生卡'
+      value.description = '';
       http.goodsCreate(1, way, this.data.student_id, e.detail.value, (res) => {
         this.setData({
           goods_id: res.data.goods_id
