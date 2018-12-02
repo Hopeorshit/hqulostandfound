@@ -16,7 +16,7 @@
           <text class='time'>{{item.created}}</text>
         </view>
       </view>
-
     </view>
   </view>
 </view>
+

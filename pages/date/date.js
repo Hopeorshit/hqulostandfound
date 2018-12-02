@@ -54,13 +54,14 @@ Page({
   },
   
   /**
-   * 点击生成长图
+   * 长图预览
    */
   onShare:function(){
     wx.navigateTo({
       url: '/pages/preview/preview',
     })
   },
+  
 
 
 })

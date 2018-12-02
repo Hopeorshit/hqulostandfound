@@ -12,7 +12,8 @@
     "pages/infoedit/infoedit",
     "pages/pub_choose/pub_choose",
     "pages/pub_card/pub_card",
-    "pages/bind/bind"
+    "pages/bind/bind",
+    "pages/preview/preview"
   ],
   "window": {
     "backgroundTextStyle": "light",

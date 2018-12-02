@@ -78,5 +78,16 @@ Component({
       };
       http.request(params);
     },
+
+    /**
+     * 长图预览
+     */
+    onShare: function() {
+      wx.navigateTo({
+        url: '/pages/preview/preview',
+      })
+    },
+
+
   }
 })

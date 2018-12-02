@@ -1,2 +1,5 @@
-/* pages/search/search.wxss */
+.content{
+  margin-bottom: 100rpx;
+}
+
 

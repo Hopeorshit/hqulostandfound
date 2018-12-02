@@ -27,7 +27,6 @@ Page({
     wx.setNavigationBarTitle({
       title: options.is_found == 1 ? "失物招领" : "寻物启事",
     })
-
     var that = this;
     wx.getSystemInfo({
       success: function(res) {
@@ -123,7 +122,7 @@ Page({
     })
   },
 
-  hideMask: function() {
+  onHideMask: function() {
     this.setData({
       showMask: false
     })
@@ -170,29 +169,30 @@ Page({
     //   title: '生成中',
     // })
     var that = this
-    setTimeout(function() {
-      wx.canvasToTempFilePath({
-        canvasId: 'myCanvas',
-        fileType: 'png',
-        height: that.data.height,
-        success: function(res) {
-          console.log(res.tempFilePath)
-          wx.saveImageToPhotosAlbum({
-            filePath: res.tempFilePath,
-            complete: function() {
-              wx.hideLoading(),
-                wx.showToast({
-                  title: '已保存到相册',
-                })
-              that.setData({
-                height: 0,
-                creating: false
+    // setTimeout(function() {
+    wx.canvasToTempFilePath({
+      canvasId: 'myCanvas',
+      fileType: 'png',
+      height: that.data.height,
+      success: function(res) {
+        console.log(res.tempFilePath)
+        wx.saveImageToPhotosAlbum({
+          filePath: res.tempFilePath,
+          complete: function() {
+            wx.hideLoading(),
+              wx.showToast({
+                title: '已保存到相册',
               })
-            }
-          })
-        }
-      })
-    }, 3000)
+            that.setData({
+              height: 0,
+              creating: false
+            })
+            // that.onHideMask();
+          }
+        })
+      }
+    })
+    // }, 3000)
   },
   /**
    * 绘制除主图之外的其它图片
@@ -204,8 +204,11 @@ Page({
     this._drawContact();
     this._drawLine();
     this._drawCode();
-    this._drawType();
-    this._save();
+    this._drawType(()=>{
+      console.log('save-------------')
+      this._save();
+    });
+
   },
 
   /**
@@ -297,7 +300,7 @@ Page({
     var lastSubStrIndex = 0; //每次开始截取的字符串的索引
     for (let i = 0; i < str.length; i++) {
       lineWidth += myCanvas.measureText(str[i]).width;
-      if (lineWidth > canvasWidth - fontSize*2) { //
+      if (lineWidth > canvasWidth - fontSize * 2) { //
         myCanvas.fillText(str.substring(lastSubStrIndex, i), 20, height); //绘制截取部分
         height += fontSize; //
         lineWidth = 0;
@@ -336,17 +339,6 @@ Page({
       var height = this.data.height
       console.log(height);
       height = height + 20;
-      //3绘制详情字体
-      // var imageType = this.data.detail.is_found == 1 ? this.data.foundImage : this.data.lostImage;
-      // myCanvas.drawImage(imageType, canvasWidth / 2 - 80, height + 20, 160, 49)
-      // height = height + 20;
-      // myCanvas.draw(true);
-      // myCanvas.setFontSize(15);
-      // myCanvas.setTextAlign('center');
-      // myCanvas.setFillStyle('#8f8e8f');
-      // myCanvas.fillText(this.data.time, canvasWidth / 2 + 90, height + 70)
-      // height = height + 130
-      // myCanvas.draw(true);
       myCanvas.setFillStyle('#8f8e8f')
       myCanvas.font = 'normal 13px sans-serif'
       var fontSize = 13;
@@ -357,7 +349,7 @@ Page({
       height = height + 4;
       for (let i = 0; i < str.length; i++) {
         lineWidth += myCanvas.measureText(str[i]).width;
-        if (lineWidth > canvasWidth - fontSize*3) { //
+        if (lineWidth > canvasWidth - fontSize * 3) { //
           myCanvas.fillText(str.substring(lastSubStrIndex, i), 20, height); //绘制截取部分
           height += fontSize; //
           lineWidth = 0;
@@ -381,8 +373,6 @@ Page({
   _drawContact: function() { //绘制联系方式
     var canvasWidth = this.data.canvasWidth;
     var height = this.data.height
-    // myCanvas.setFontSize(30);
-    // myCanvas.setFillStyle('#3a3a3a')
     height = height + 20;
     myCanvas.fillText(this._beforeText() + ' ' + this.data.detail.phone, 20, height);
     myCanvas.draw(true)
@@ -433,14 +423,17 @@ Page({
     })
   },
 
-  _drawType() {
+  _drawType(callBack) {
     var height = this.data.height;
     var canvasWidth = this.data.canvasWidth;
     var typeHeight = 125;
     var typeWidth = 150;
     var imageType = this.data.detail.is_found == 1 ? this.data.foundImage : this.data.lostImage;
     myCanvas.drawImage(imageType, canvasWidth - typeWidth, height - typeHeight, typeWidth, typeHeight);
-    myCanvas.draw(true);
+    myCanvas.draw(true,function(e){
+      console.log('-----------------')
+      callBack && callBack()
+    });
   },
 
   /**

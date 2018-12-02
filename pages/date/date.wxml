@@ -1,1 +1,4 @@
- <wz-category  categoryID="{{categoryID}}" load_more="{{load_more}}" init="{{init}}"  bind:goodsDetail="onGoodsDetail" />
+<view class='content'>
+  <wz-category categoryID="{{categoryID}}" load_more="{{load_more}}" init="{{init}}" bind:goodsDetail="onGoodsDetail" />
+</view>
+

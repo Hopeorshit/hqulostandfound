@@ -28,5 +28,7 @@ Component({
         url: '/pages/goodsdetail/goodsdetail?goods_id=' + goods_id + '&is_found=' + is_found,
       })
     },
+
+    
   }
 })

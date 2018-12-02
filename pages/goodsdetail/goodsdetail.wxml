@@ -42,7 +42,7 @@
       </view>
     </view>
     <view hidden='{{!showMask}}'>
-      <view class='mask' bindtap='hideMask'></view>
+      <view class='mask' bindtap='onHideMask'></view>
       <view class='box-share'>
         <view class='share-text'>分享</view>
         <view class='share-way'>

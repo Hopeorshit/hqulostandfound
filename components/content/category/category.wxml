@@ -6,3 +6,5 @@
 <view wx:else>
   <wz-loading wx:if="{{loading}}" more="{{content.more}}" />
 </view>
+
+<button class='share' wx:if="{{content.list.length>0 && categoryID==2}}" bindtap='onShare'>生成分享长图</button>

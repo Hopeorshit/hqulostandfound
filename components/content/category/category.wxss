@@ -1,0 +1,10 @@
+.share{
+  background-color: #ff6263;
+  color: white;
+  border-radius: 0;
+  font-size: 30rpx;
+  position: fixed;
+  left: 20rpx;
+  right: 20rpx;
+  bottom: 30rpx;
+}

@@ -58,7 +58,6 @@ Page({
               icon:'none'
             })
           }
-          wx.hideLoading();
         },
       )
     }
