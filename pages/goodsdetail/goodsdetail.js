@@ -289,57 +289,15 @@ Page({
     let fontSize = 20;
     myCanvas.setFontSize(fontSize);
     myCanvas.font = 'bold 20px sans-serif'
-    let height = this.data.height;
-    console.log(height)
+    let height = this.data.height + 40;
     myCanvas.setFillStyle('#3a3a3a')
-    myCanvas.fillText(this.data.detail.title, 20, height + 40);
-    myCanvas.draw(true);
-    this.setData({
-      height: height + 40
-    })
-  },
-  /**
-   * 绘制日期
-   */
-  _drawDate: function() {
-    var height = this.data.height;
-    var canvasWidth = this.data.canvasWidth;
-    myCanvas.setFontSize(11);
-    myCanvas.setFillStyle('#8f8e8f');
-    myCanvas.fillText(this.data.time, canvasWidth - 80, height);
-    myCanvas.draw(true);
-  },
-
-  /**
-   * 绘制详情
-   */
-  _drawDetail: function() {
-    var canvasWidth = this.data.canvasWidth;
-    var height = this.data.height
-    console.log(height);
-    height = height + 20;
-    //3绘制详情字体
-    // var imageType = this.data.detail.is_found == 1 ? this.data.foundImage : this.data.lostImage;
-    // myCanvas.drawImage(imageType, canvasWidth / 2 - 80, height + 20, 160, 49)
-    // height = height + 20;
-    // myCanvas.draw(true);
-    // myCanvas.setFontSize(15);
-    // myCanvas.setTextAlign('center');
-    // myCanvas.setFillStyle('#8f8e8f');
-    // myCanvas.fillText(this.data.time, canvasWidth / 2 + 90, height + 70)
-    // height = height + 130
-    // myCanvas.draw(true);
-    myCanvas.setFillStyle('#8f8e8f')
-    myCanvas.font = 'normal 13px sans-serif'
-    var fontSize = 13;
-    myCanvas.setFontSize(fontSize)
-    var str = this.data.detail.description;
+    let str = this.data.detail.title;
+    let canvasWidth = this.data.canvasWidth;
     var lineWidth = 0;
     var lastSubStrIndex = 0; //每次开始截取的字符串的索引
-    height = height + 4;
     for (let i = 0; i < str.length; i++) {
       lineWidth += myCanvas.measureText(str[i]).width;
-      if (lineWidth > canvasWidth - fontSize) { //
+      if (lineWidth > canvasWidth - fontSize*2) { //
         myCanvas.fillText(str.substring(lastSubStrIndex, i), 20, height); //绘制截取部分
         height += fontSize; //
         lineWidth = 0;
@@ -349,12 +307,72 @@ Page({
         myCanvas.fillText(str.substring(lastSubStrIndex, i + 1), 20, height);
       }
     }
-    myCanvas.draw(true)
+    myCanvas.draw(true);
+    this.setData({
+      height: height
+    })
+  },
+  /**
+   * 绘制日期
+   */
+  _drawDate: function() {
+    var height = this.data.height + 20;
+    var canvasWidth = this.data.canvasWidth;
+    myCanvas.setFontSize(11);
+    myCanvas.setFillStyle('#8f8e8f');
+    myCanvas.fillText(this.data.time, canvasWidth - 80, height);
+    myCanvas.draw(true);
     this.setData({
       height: height
     })
   },
 
+  /**
+   * 绘制详情
+   */
+  _drawDetail: function() {
+    if (this.data.detail.description) {
+      var canvasWidth = this.data.canvasWidth;
+      var height = this.data.height
+      console.log(height);
+      height = height + 20;
+      //3绘制详情字体
+      // var imageType = this.data.detail.is_found == 1 ? this.data.foundImage : this.data.lostImage;
+      // myCanvas.drawImage(imageType, canvasWidth / 2 - 80, height + 20, 160, 49)
+      // height = height + 20;
+      // myCanvas.draw(true);
+      // myCanvas.setFontSize(15);
+      // myCanvas.setTextAlign('center');
+      // myCanvas.setFillStyle('#8f8e8f');
+      // myCanvas.fillText(this.data.time, canvasWidth / 2 + 90, height + 70)
+      // height = height + 130
+      // myCanvas.draw(true);
+      myCanvas.setFillStyle('#8f8e8f')
+      myCanvas.font = 'normal 13px sans-serif'
+      var fontSize = 13;
+      myCanvas.setFontSize(fontSize)
+      var str = this.data.detail.description;
+      var lineWidth = 0;
+      var lastSubStrIndex = 0; //每次开始截取的字符串的索引
+      height = height + 4;
+      for (let i = 0; i < str.length; i++) {
+        lineWidth += myCanvas.measureText(str[i]).width;
+        if (lineWidth > canvasWidth - fontSize*3) { //
+          myCanvas.fillText(str.substring(lastSubStrIndex, i), 20, height); //绘制截取部分
+          height += fontSize; //
+          lineWidth = 0;
+          lastSubStrIndex = i;
+        }
+        if (i == str.length - 1) { //绘制剩余部分
+          myCanvas.fillText(str.substring(lastSubStrIndex, i + 1), 20, height);
+        }
+      }
+      myCanvas.draw(true)
+      this.setData({
+        height: height
+      })
+    }
+  },
 
 
   /**
@@ -404,8 +422,8 @@ Page({
     myCanvas.setFontSize(fontSize);
     myCanvas.setFillStyle('#8f8e8f')
     myCanvas.setTextAlign('left');
-    height = height + codeSize/2-fontSize/2
-    myCanvas.fillText("长按识别华侨大学专用小程序", codeSize + 20 + 8, height);
+    height = height + codeSize / 2 - fontSize / 2
+    myCanvas.fillText("长按识别华侨大学专属小程序", codeSize + 20 + 8, height);
     height = height + fontSize + 4;
     myCanvas.fillText("发布或搜索更多信息", codeSize + 20 + 8, height);
     height = height + fontSize + 4

@@ -65,7 +65,8 @@ Page({
       description: null,
       phone: null,
       localImage: [],
-      imageIndex: 0,
+      is_found: true,
+      title:null
       // is_found:false
     })
   },

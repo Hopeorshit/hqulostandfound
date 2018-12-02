@@ -40,7 +40,7 @@
 }
 
 .type-looking {
-  background-color: orange;
+  background-color: #ffc125;
 }
 
 .product-user {
@@ -71,5 +71,22 @@
 }
 
 .product-des {
+  position: relative;
   font-size: 30rpx;
+  margin-top: -90rpx;
+  height: 80rpx;
+  color: white;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.bg_found {
+  background-color: rgba(255, 98, 99, 0.6);
+}
+
+.bg_lost {
+  background-color: rgba(255, 193, 37, 0.6);
 }

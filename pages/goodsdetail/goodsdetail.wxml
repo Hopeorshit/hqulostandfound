@@ -14,8 +14,8 @@
         </view>
       </view>
       <view class='box3'>
-        <view>{{detail.title}}</view>
-        <view>{{detail.description}}</view>
+        <view class='title'>{{detail.title}}</view>
+        <view class='des'>{{detail.description}}</view>
       </view>
       <view class='box-way'>
         <view class="box-way-left">

@@ -1,17 +1,17 @@
 /* pages/goodsdetail/goodsdetail.wxss */
 
-
 .box {
   font-size: 26rpx;
   color: #434446;
   padding-bottom: 120rpx;
 }
 
+/*用户信息*/
 .box1 {
-  padding-top: 30rpx;
   display: flex;
   background-color: white;
   padding: 20rpx;
+  padding-top: 40rpx;
 }
 
 .avatar {
@@ -35,13 +35,26 @@
   font-size: 24rpx;
   color: #a9aaac;
 }
-/*
-*领取方式
-*/
+
+/*物品信息*/
 .box3 {
   background-color: white;
   padding: 20rpx;
 }
+
+.title{
+  font-size: 16px;
+}
+
+.des{
+  margin-top: 20rpx;
+  color: #a9aaac;
+}
+
+
+/*
+*领取方式
+*/
 
 .box4 {
   margin-top: 20rpx;
@@ -73,7 +86,7 @@
   line-height: 24px;
   padding: 0 40rpx;
   border-radius: 30rpx;
-  border: 2rpx solid #ff6263
+  border: 2rpx solid #ff6263;
 }
 
 .box-bottom {
@@ -102,17 +115,17 @@
   padding-right: 6rpx;
 }
 
-.mask{
+.mask {
   position: fixed;
   z-index: 2;
   right: 0;
   left: 0;
   top: 0;
   bottom: 0;
-  background-color: rgba(0, 0,0, 0.3)
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
-.box-share{
+.box-share {
   position: fixed;
   z-index: 3;
   background-color: white;
@@ -125,40 +138,44 @@
   /* justify-content: center; */
 }
 
-.share-way{
+.share-way {
   display: flex;
   justify-content: space-around;
 }
-.share-way-item{
+
+.share-way-item {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 50rpx;
-  margin:0 40rpx;
+  margin: 0 40rpx;
   background-color: white;
   font-size: 26rpx;
 }
-button::after{
+
+button::after {
   border: none;
 }
 
-.share-way-item image{
+.share-way-item image {
   width: 54rpx;
   height: 54rpx;
 }
-.share-text{
+
+.share-text {
   margin-top: 20rpx;
 }
-.share-way-item text{
-  margin-top:20rpx; 
+
+.share-way-item text {
+  margin-top: 20rpx;
 }
 
-.canvas-v{
+.canvas-v {
   position: absolute;
-  z-index:1000;
+  z-index: 1000;
   top: -10000px;
   /* top: 0; */
   width: 100%;
   height: 1000px;
-  background-color: white 
+  background-color: white;
 }

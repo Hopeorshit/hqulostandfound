@@ -1,10 +1,13 @@
 <view class='product'>
   <view class='product-box' wx:for="{{list}}" wx:key="key">
-    <view class='product-container' bindtap='onGoodsDetail' data-goods_id='{{item.id}}' data-is_found="{{item.is_found}}" >
+    <view class='product-container' bindtap='onGoodsDetail' data-goods_id='{{item.id}}' data-is_found="{{item.is_found}}">
       <view class='product-image'>
         <text class='type-text' wx:if="{{item.is_found==1}}">失物招领</text>
         <text class='type-text type-looking' wx:else>寻物启事</text>
         <image mode='aspectFill' src='{{item.head_url}}'></image>
+        <view class="product-des {{item.is_found==1?'bg_found':'bg_lost'}}">
+          <text>{{item.title}}</text>
+        </view>
       </view>
       <view class='product-user'>
         <image src='{{item.user.avatarUrl}}'></image>
@@ -13,9 +16,7 @@
           <text class='time'>{{item.created}}</text>
         </view>
       </view>
-      <view class='product-des'>
-        <text >{{item.title}}</text>
-      </view>
+
     </view>
   </view>
 </view>
