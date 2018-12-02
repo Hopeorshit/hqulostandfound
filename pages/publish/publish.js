@@ -64,7 +64,8 @@ Page({
       publishing: false,
       description: null,
       phone: null,
-      localImage: [],
+      localImage: [],//本地图片
+      imageIndex: 0,//本地图片数组
       is_found: true,
       title:null
       // is_found:false
