@@ -41,7 +41,7 @@ Page({
       })
       this._setCanvasWidth(() => {
         this._drawBackGround();
-        this._drawDate();
+        // this._drawDate();
         this._drawData();
         this._drawLine();
         this._drawCode(() => {
@@ -86,18 +86,42 @@ Page({
       height: height
     })
   },
+  /**drewType */
+  _drawTypeStr: function (str) {
+    let height = this.data.height + 40;
+    let canvasWidth = this.data.canvasWidth;
+    let fontSize = 24;
+    myCanvas.setFontSize(fontSize);
+    myCanvas.setFillStyle('#ff6263');
+    let str1=this.data.time+str+":";
+    myCanvas.fillText(str1, 20, height);
+    myCanvas.draw(true);
+    this.setData({
+      height: height
+    })
+  },
+
   /**
    * 绘制整个数据
    */
   _drawData: function() {
     let list = this.data.list;
+    let str_lost = '';
+    let str_found = '';
     for (let i = 0; i < list.length; i++) {
-      let typeStr = list[i].is_found == 1 ? "失物招领：" : "寻物启事：";
-      let str = typeStr + list[i].title;
-      this._drawStr(str);
-      this._drawDetail(list[i].description);
-      this._drawContact(list[i])
+      if (list[i].is_found == 1) {
+        str_found += list[i].title+"；";
+      } else {
+        str_lost += list[i].title+"；";
+      }
+      // this._drawDetail(list[i].description);
+      // this._drawContact(list[i])
     }
+    this._drawTypeStr("失物招领");
+    this._drawStr(str_found);
+    this._drawTypeStr("寻物启事");
+    this._drawStr(str_lost);
+
   },
   /**
    * 绘制单条数据
@@ -107,14 +131,14 @@ Page({
     myCanvas.setFillStyle('#3a3a3a');
     myCanvas.setFontSize(fontSize);
     let canvasWidth = this.data.canvasWidth;
-    let height = this.data.height + 40;
+    let height = this.data.height + 30;
     var lineWidth = 0;
     var lastSubStrIndex = 0; //每次开始截取的字符串的索引
     for (let i = 0; i < str.length; i++) {
       lineWidth += myCanvas.measureText(str[i]).width;
       if (lineWidth > canvasWidth - fontSize * 2) { //
         myCanvas.fillText(str.substring(lastSubStrIndex, i), 20, height); //绘制截取部分
-        height += fontSize; //
+        height += fontSize+2; //
         lineWidth = 0;
         lastSubStrIndex = i;
       }

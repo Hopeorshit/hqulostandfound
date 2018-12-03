@@ -11,7 +11,7 @@
   display: -webkit-flex;
   display: flex;
   box-sizing: border-box;
-  /* background:rgba(0, 0, 0, 0.3); */
+  background-color: rgba(255, 255, 255, 0);
   border: none;
 }
 
@@ -21,8 +21,8 @@
   -webkit-box-flex: 1;
   -webkit-flex: auto;
   flex: auto;
-  background:rgba(0, 0, 0, 0.3);
-  /* border: 1rpx solid #e6e6ea; */
+  background: #fff;
+  border: 1rpx solid #e6e6ea;
 }
 
 .weui-search-bar__box {
@@ -32,7 +32,6 @@
   width: 100%;
   box-sizing: border-box;
   z-index: 1;
-  /* background-color: white */
 }
 
 .weui-icon-search_in-box {
@@ -56,7 +55,6 @@ icon {
   height: 28px;
   line-height: 56rpx;
   font-size: 14px;
-  color: white
 }
 
 .weui-search-bar__text {
@@ -75,6 +73,6 @@ icon {
   z-index: 2;
   text-align: center;
   color: #9b9b9b;
-  background:rgba(0, 0, 0, 0.3);
+  background: #fff;
   line-height: 28px;
 }

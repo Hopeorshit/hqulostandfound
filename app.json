@@ -17,9 +17,9 @@
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#ff6263",
+    "navigationBarBackgroundColor": "#ffffff",
     "navigationBarTitleText": "华园失物招领",
-    "navigationBarTextStyle": "white"
+    "navigationBarTextStyle": "black"
   },
   "tabBar": {
     "color": "#888888",

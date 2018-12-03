@@ -12,7 +12,8 @@ page {
 /* banner  */
 
 .bannerbox {
-  height: 376rpx;
+  margin-top: 100rpx;
+  height: 300rpx;
   width: 100%;
 }
 
@@ -28,8 +29,6 @@ page {
 
 /* 搜索框*/
 
-.search-bar-box {
-}
 
 .weui-search-bar {
   position: fixed;
@@ -38,7 +37,7 @@ page {
   z-index: 1000;
   top: 0rpx;
   height: 92rpx;
-  background-color: rgba(#fff, #fff, #fff, 0);
+  background-color:white
 }
 
 .weui-search-bar__form {
@@ -88,7 +87,7 @@ page {
 .tips {
   position: fixed;
   right: 0;
-  bottom: 200rpx;
+  bottom: 150rpx;
 }
 
 .jinnang {

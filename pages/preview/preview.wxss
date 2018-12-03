@@ -5,6 +5,10 @@ page {
   height: 100%;
 }
 
+.scroll{
+  margin-top: 60rpx;
+}
+
 .preview {
   display: flex;
   padding: 20rpx;

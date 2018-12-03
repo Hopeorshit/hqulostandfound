@@ -5,9 +5,9 @@
         <text class='type-text' wx:if="{{item.is_found==1}}">失物招领</text>
         <text class='type-text type-looking' wx:else>寻物启事</text>
         <image mode='aspectFill' src='{{item.head_url}}'></image>
-        <view class="product-des {{item.is_found==1?'bg_found':'bg_lost'}}">
-          <text>{{item.title}}</text>
-        </view>
+      </view>
+      <view class="product-des">
+        <text>{{item.title}}</text>
       </view>
       <view class='product-user'>
         <image src='{{item.user.avatarUrl}}'></image>
@@ -19,4 +19,3 @@
     </view>
   </view>
 </view>
-
