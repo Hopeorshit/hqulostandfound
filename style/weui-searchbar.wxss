@@ -22,7 +22,7 @@
   -webkit-flex: auto;
   flex: auto;
   background: #fff;
-  border: 1rpx solid #e6e6ea;
+  border: 1px solid #e6e6ea;
 }
 
 .weui-search-bar__box {

@@ -63,12 +63,12 @@
   margin-right: 20rpx;
   padding: 8rpx 24rpx;
   line-height: 30px;
-  border: 1rpx solid #e8e8e8;
+  border: 1px solid #e8e8e8;
 }
 
 .way-selected {
   color: #ff6263;
-  border: 1rpx solid #ff6263;
+  border: 1px solid #ff6263;
 }
 
 .input-way {

@@ -43,20 +43,16 @@ Page({
   _initRadio: function() {
     this.setData({
       radio_group: [{
-          text: "领取地点",
+          text: "指定领取地点",
           way: 1,
           checked: true
         }, {
-          text: "qq",
+          text: "联系qq",
           way: 2,
-          checked: false
-        }, {
-          text: "微信",
-          way: 3,
           checked: false
         },
         {
-          text: "手机号",
+          text: "联系手机",
           way: 4,
           checked: false
         }

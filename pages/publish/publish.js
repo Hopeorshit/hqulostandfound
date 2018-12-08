@@ -18,20 +18,16 @@ Page({
     if (this.data.is_found) {
       this.setData({
         radio_group: [{
-            text: "领取地点",
+            text: "指定领取地点",
             way: 1,
             checked: true
           }, {
-            text: "qq",
+            text: "联系qq",
             way: 2,
             checked: false
-          }, {
-            text: "微信",
-            way: 3,
-            checked: false
-          },
+          },   
           {
-            text: "手机号",
+            text: "联系手机",
             way: 4,
             checked: false
           }
@@ -41,16 +37,12 @@ Page({
     } else {
       this.setData({
         radio_group: [{
-            text: "qq",
+            text: "联系qq",
             way: 2,
             checked: true
-          }, {
-            text: "微信",
-            way: 3,
-            checked: false
           },
           {
-            text: "手机",
+            text: "联系手机",
             way: 4,
             checked: false
           }
@@ -234,7 +226,7 @@ Page({
     * 了解扫描发布页面
     */
   onPub_card: function () {
-    wx.navigateTo({
+    wx.redirectTo({
       url: '/pages/pub_card/pub_card',
     })
   }

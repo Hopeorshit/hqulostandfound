@@ -110,9 +110,9 @@ Page({
     let str_found = '';
     for (let i = 0; i < list.length; i++) {
       if (list[i].is_found == 1) {
-        str_found += list[i].title+"；";
+        str_found += list[i].title+"/  ";
       } else {
-        str_lost += list[i].title+"；";
+        str_lost += list[i].title+"/  ";
       }
       // this._drawDetail(list[i].description);
       // this._drawContact(list[i])
@@ -127,7 +127,7 @@ Page({
    * 绘制单条数据
    */
   _drawStr: function(str) {
-    let fontSize = 20;
+    let fontSize = 22;
     myCanvas.setFillStyle('#3a3a3a');
     myCanvas.setFontSize(fontSize);
     let canvasWidth = this.data.canvasWidth;

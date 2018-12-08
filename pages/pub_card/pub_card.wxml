@@ -1,4 +1,5 @@
 <!--pages/pub_card/pub_card.wxml-->
+
 <form bindsubmit='onSubmit'>
   <view class='box'>
     <view class='box-pic'>
@@ -15,7 +16,7 @@
       </view>
       <view>
         <text>学号:</text>
-        <input name="student_id" value='{{student_id}}' type=''></input>
+        <input name="student_id" value='{{student_id}}' placeholder='仅用于向失主发送服务通知' type='number' ></input>
       </view>
       <view>
         <text>学院:</text>

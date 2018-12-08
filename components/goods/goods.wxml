@@ -6,14 +6,16 @@
         <text class='type-text type-looking' wx:else>寻物启事</text>
         <image mode='aspectFill' src='{{item.head_url}}'></image>
       </view>
-      <view class="product-des">
-        <text>{{item.title}}</text>
-      </view>
-      <view class='product-user'>
-        <image src='{{item.user.avatarUrl}}'></image>
-        <text>{{item.user.nickName}}</text>
-        <view class='time'>
-          <text class='time'>{{item.created}}</text>
+      <view class='product-v'>
+        <view class="product-des">
+          <text>{{item.title}}</text>
+        </view>
+        <view class='product-user'>
+          <image src='{{item.user.avatarUrl}}'></image>
+          <text>{{item.user.nickName}}</text>
+          <view class='time'>
+            <text class='time'>{{item.created}}</text>
+          </view>
         </view>
       </view>
     </view>

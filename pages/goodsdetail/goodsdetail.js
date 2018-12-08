@@ -13,6 +13,8 @@ Page({
     code: "/images/code.jpg",
     lostImage: "/images/lost.png",
     foundImage: "/images/found.png",
+    userImage: null, //用户头像
+    headBG: "/images/head-bg.png",
     height: 0,
     creating: false
   },
@@ -147,18 +149,39 @@ Page({
     wx.showLoading({
       title: '生成中',
     })
-    this._downloadMainPic((res) => {
-      this._drawBackGround();
-      // this._drawDetail();
-      // this._drawContact();
-      if (this.data.tempFilePath) {
-        this._drawMainPic((res) => {
+    this._downloadUserPic(() => {
+      console.log('用户头像下载完成')
+      this._downloadMainPic((res) => {
+        console.log("主图下载完成")
+        this._drawBackGround();
+        this._drawHeadBG();
+        this._drawHead();
+        this._drawDate();
+        if (this.data.tempFilePath) {
+          this._drawMainPic((res) => {
+            this._drawRestAndSave();
+          });
+        } else {
           this._drawRestAndSave();
-        });
-      } else {
-        this._drawRestAndSave();
-      }
+        }
+      })
     })
+  },
+
+  /**
+   * 绘制除主图之外的其它图片
+   */
+  _drawRestAndSave() {
+    this._drawTitle();
+    this._drawDetail();
+    this._drawContact();
+    this._drawLine();
+    this._drawCode();
+    this._drawType(() => {
+      console.log('save-------------')
+      this._save();
+    });
+
   },
 
   /**
@@ -173,9 +196,11 @@ Page({
     wx.canvasToTempFilePath({
       canvasId: 'myCanvas',
       fileType: 'png',
+      width:that.data.canvasWidth,
       height: that.data.height,
       success: function(res) {
         console.log(res.tempFilePath)
+        console.log(that.data.canvasWidth);
         wx.saveImageToPhotosAlbum({
           filePath: res.tempFilePath,
           complete: function() {
@@ -194,21 +219,40 @@ Page({
     })
     // }, 3000)
   },
-  /**
-   * 绘制除主图之外的其它图片
-   */
-  _drawRestAndSave() {
-    this._drawTitle();
-    this._drawDate();
-    this._drawDetail();
-    this._drawContact();
-    this._drawLine();
-    this._drawCode();
-    this._drawType(()=>{
-      console.log('save-------------')
-      this._save();
-    });
 
+  /**
+   * 绘制背景图
+   */
+  _drawHeadBG: function() {
+    let headBG = this.data.headBG;
+    let height = this.data.height;
+    let canvasWidth = this.data.canvasWidth;
+    myCanvas.drawImage(headBG, 0, 0, canvasWidth, 80);
+    myCanvas.draw(true);
+    this.setData({
+      height:height+80
+    })
+  },
+  
+  /**
+   * 绘制头像
+   */
+  _drawHead: function () {
+    let head = this.data.userImage;
+    let canvasWidth = this.data.canvasWidth;
+    let height=this.data.height;
+    let headRadius = 30; //先剪裁然后再绘制
+    myCanvas.save();
+    myCanvas.beginPath(); //开始绘
+    myCanvas.arc(canvasWidth/2,height,headRadius,0,Math.PI*2);
+    myCanvas.clip();
+    myCanvas.drawImage(head, canvasWidth/2-headRadius,height-headRadius, headRadius*2, headRadius*2);
+    myCanvas.draw(true);
+    myCanvas.restore();//save 和restore 配合着用
+    myCanvas.draw(true);
+    this.setData({
+      height: height + headRadius
+    })
   },
 
   /**
@@ -225,7 +269,7 @@ Page({
         console.log(imageRes)
         var size = imageRes.height / imageRes.width;
         // var height = that.data.height + 30
-        var height = that.data.height + 4;
+        var height = that.data.height + 15;
         var oriWidth = canvasWidth * 0.98;
         var oriHeight = oriWidth * size;
         if (size > 1) {
@@ -275,6 +319,28 @@ Page({
   },
 
   /**
+   * 下载发布人的头像
+   */
+  _downloadUserPic: function(callBack) {
+    var that = this;
+    var userImage = that.data.detail.user.avatarUrl; //2绘制图片
+    if (userImage) {
+      wx.downloadFile({
+        url: userImage,
+        success: function(res) {
+          that.setData({
+            userImage: res.tempFilePath
+          })
+          callBack && callBack()
+        }
+      })
+    } else {
+      callBack && callBack()
+    }
+  },
+
+
+  /**
    * 绘制背景图片
    */
   _drawBackGround: function() {
@@ -319,15 +385,18 @@ Page({
    * 绘制日期
    */
   _drawDate: function() {
-    var height = this.data.height + 20;
-    var canvasWidth = this.data.canvasWidth;
+    let height = this.data.height+20 ;
+    let canvasWidth = this.data.canvasWidth;
     myCanvas.setFontSize(11);
     myCanvas.setFillStyle('#8f8e8f');
-    myCanvas.fillText(this.data.time, canvasWidth - 80, height);
+    myCanvas.setTextAlign('center');
+    let str = this.data.detail.user.nickName+this.data.time+'发布'
+    myCanvas.fillText(str, canvasWidth/2, height);
     myCanvas.draw(true);
     this.setData({
       height: height
     })
+    myCanvas.setTextAlign('left')
   },
 
   /**
@@ -385,12 +454,12 @@ Page({
    * 绘制线条
    */
   _drawLine: function() { //绘制线条
-    var canvaWidth = this.data.canvasWidth;
+    var canvasWidth = this.data.canvasWidth;
     var height = this.data.height
     myCanvas.setLineWidth(1)
     myCanvas.setStrokeStyle('#838383')
     myCanvas.moveTo(20, height + 20)
-    myCanvas.lineTo(canvaWidth - 20, height + 20)
+    myCanvas.lineTo(canvasWidth - 20, height + 20)
     myCanvas.stroke()
     myCanvas.draw(true)
     this.setData({
@@ -402,7 +471,7 @@ Page({
    * 绘制二维码等
    */
   _drawCode: function() {
-    var canvaWidth = this.data.canvasWidth;
+    var canvasWidth = this.data.canvasWidth;
     var height = this.data.height
     height = height + 8;
     var codeSize = 70;
@@ -430,7 +499,7 @@ Page({
     var typeWidth = 150;
     var imageType = this.data.detail.is_found == 1 ? this.data.foundImage : this.data.lostImage;
     myCanvas.drawImage(imageType, canvasWidth - typeWidth, height - typeHeight, typeWidth, typeHeight);
-    myCanvas.draw(true,function(e){
+    myCanvas.draw(true, function(e) {
       console.log('-----------------')
       callBack && callBack()
     });
