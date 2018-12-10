@@ -1,39 +1,59 @@
 <!--pages/pub_card/pub_card.wxml-->
 
-<form bindsubmit='onSubmit'>
-  <view class='box'>
-    <view class='box-pic'>
-      <view class='box-pic-v' bindtap='onPic'>
-        <image src=' /images/pic.png '></image>
-        <text>点击拍照识别</text>
-        <text class='tips-t2'>智能填入学生卡信息</text>
-      </view>
-    </view>
-    <view class='box-info'>
-      <view>
-        <text>姓名:</text>
-        <input name="name" value='{{name}}'></input>
-      </view>
-      <view>
-        <text>学号:</text>
-        <input name="student_id" value='{{student_id}}' placeholder='仅用于向失主发送服务通知' type='number' ></input>
-      </view>
-      <view>
-        <text>学院:</text>
-        <input name="institute" value='{{institute}}'></input>
-      </view>
-    </view>
+<view class='box box-type'>
+  <text class="box-type-text {{is_found?'box-type-select':''}}" bindtap='typeSelect'>捡到学生卡</text>
+  <text class="box-type-text {{!is_found?'box-type-select':''}}" bindtap='typeSelect'>丢失学生卡</text>
+</view>
 
-    <view class='box-ways' style='padding:20rpx'>
-      <view class='way-sel'>
-        <block wx:for="{{radio_group}}" wx:key="{{index}}">
-          <text class="way-sel-text {{item.checked?'way-selected':''}}" data-index="{{index}}" bindtap='onRadio'>{{item.text}}</text>
-        </block>
+<view wx:if="{{is_found}}">
+  <form bindsubmit='onSubmit'>
+    <view class='box'>
+      <view class='box-pic'>
+        <view class='box-pic-v' bindtap='onPic'>
+          <image src=' /images/pic.png '></image>
+          <text>点击拍照识别</text>
+          <text class='tips-t2'>智能填入学生卡信息</text>
+        </view>
       </view>
-      <input placeholder='请填写{{radio_group[currentRadioIndex].text}}' name="phone" value='{{phone}}' class='input-way'> </input>
+      <view class='box-info'>
+        <view>
+          <text>姓名:</text>
+          <input name="name" value='{{name}}'></input>
+        </view>
+        <view>
+          <text>学号:</text>
+          <input name="student_id" value='{{student_id}}' placeholder='仅用于向失主发送服务通知' type='number'></input>
+        </view>
+        <view>
+          <text>学院:</text>
+          <input name="institute" value='{{institute}}'></input>
+        </view>
+      </view>
+
+      <view class='box-ways' style='padding:20rpx'>
+        <view class='way-sel'>
+          <block wx:for="{{radio_group}}" wx:key="{{index}}">
+            <text class="way-sel-text {{item.checked?'way-selected':''}}" data-index="{{index}}" bindtap='onRadio'>{{item.text}}</text>
+          </block>
+        </view>
+        <input placeholder='请填写{{radio_group[currentRadioIndex].text}}' name="phone" value='{{phone}}' class='input-way'> </input>
+      </view>
+      <button class='btn-bottom' disabled='{{publishing}}' form-type='submit'>
+        发布
+      </button>
     </view>
-    <button class='btn-bottom' disabled='{{publishing}}' form-type='submit'>
-      发布
-    </button>
-  </view>
-</form>
+  </form>
+</view>
+
+<view wx:else>
+  <form report-submit='true' bindsubmit='onListenSubmit'>
+    <view class='box-tips'>
+      <text>{{tips1}}</text>
+      <text>{{tips2}}</text>
+    </view>
+    <view class='box-bind'>
+      <input name='student_id' placeholder='请输入学号'></input>
+      <button class='btn-bottom' form-type='submit'>监听</button>
+    </view>
+  </form>
+</view>

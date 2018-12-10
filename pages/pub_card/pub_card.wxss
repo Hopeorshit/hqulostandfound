@@ -1,4 +1,29 @@
 /* pages/pub_card/pub_card.wxss */
+/*
+ *选择发布类型
+ */
+.box-type {
+  padding: 20rpx 0;
+  display: flex;
+  justify-content: space-around;
+  background-color: white;
+}
+
+.box-type-text {
+  border: 1px solid #a9aaac;
+  border-radius: 30rpx;
+  padding: 10rpx 80rpx;
+}
+
+.box-type-select {
+  color: white;
+  background-color: #ff6263;
+  border: none;
+}
+
+/**
+ *失物招领发布学生卡
+ */
 .box{
   /* padding-bottom: 100rpx; */
 }
@@ -77,3 +102,60 @@
 }
 
 
+.btn-bottom{
+  background-color: #ff6263;
+  color: white;
+  border-radius: 0;
+  font-size: 30rpx;
+  margin: 0 20rpx;
+  margin-top: 50rpx;
+}
+
+
+
+/* pages/bind/bind.wxss */
+
+/*提示区*/
+
+.box-tips {
+  margin-top: 200rpx;
+  padding: 20rpx;
+  /* color: #a99aac; */
+}
+
+/*跳转*/
+
+.box-sm {
+  padding: 20rpx;
+  color: #a99aac;
+  display: flex;
+  align-items: center;
+}
+
+.wenhao {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+/*输入和提交*/
+
+.box-bind {
+  margin-top: 60rpx;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.box-bind input {
+  border-bottom: 1px solid #cecece;
+  margin: 0 20rpx;
+}
+
+.box-bind button {
+  background-color: #ff6263;
+  color: white;
+  border-radius: 0;
+  font-size: 30rpx;
+  margin: 0 20rpx;
+  margin-top: 40rpx;
+}
