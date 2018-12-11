@@ -52,7 +52,7 @@ Page({
    */
   onCard:function(){
     wx.navigateTo({
-      url: '/pages/pub_card/pub_card',
+      url: '/pages/pub_card/pub_card?is_found=1',
     })
   }
 

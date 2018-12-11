@@ -114,7 +114,7 @@ Page({
     var index = dataSet.index;
     if (index == 0) {
       wx.navigateTo({
-        url: '/pages/bind/bind',
+        url: '/pages/pub_card/pub_card?is_found=0',
       })
     }
   },
@@ -141,7 +141,7 @@ Page({
    */
   onTipTap:function(){
     wx.navigateTo({
-      url: '/pages/bind/bind',
+      url: '/pages/pub_card/pub_card?is_found=0',
     })
   },
 

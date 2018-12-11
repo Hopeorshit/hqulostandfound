@@ -112,35 +112,35 @@
 }
 
 
-
-/* pages/bind/bind.wxss */
+.lost{
+  background-color: white;
+}
 
 /*提示区*/
 
 .box-tips {
-  margin-top: 200rpx;
   padding: 20rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   /* color: #a99aac; */
 }
 
-/*跳转*/
+/*提示图片*/
 
-.box-sm {
-  padding: 20rpx;
-  color: #a99aac;
-  display: flex;
-  align-items: center;
+.box-msgtip{
+
 }
 
-.wenhao {
-  width: 40rpx;
-  height: 40rpx;
+.box-msgtip image{
+  width: 90%;
 }
+
 
 /*输入和提交*/
 
 .box-bind {
-  margin-top: 60rpx;
   display: flex;
   justify-content: center;
   flex-direction: column;

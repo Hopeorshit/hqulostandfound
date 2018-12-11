@@ -20,6 +20,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    let is_found=options.is_found==1?true:false;
+    this.setData({
+      is_found:is_found
+    })
     this._initData();
   },
 
@@ -32,8 +36,8 @@ Page({
       student_id: null,
       institute: null,
       localImage: null,
-      is_found:true,
-      tips1:"发布您的学生卡,系统将在第一时间给您发送服务通知!"
+      tips1:"检测到有人发布您学生卡的失物招领信息",
+      tips2: '系统将根据"学号"通过微信给您发送服务通知'
     })
     this._initRadio();
   },
@@ -168,7 +172,7 @@ Page({
       let value = e.detail.value;
       value.title = value.institute+value.name + '的' + '学生卡'
       value.description = '';
-      http.goodsCreate(1, way, this.data.student_id, e.detail.value, (res) => {
+      http.goodsCreate(1, way, e.detail.value.student_id, e.detail.value, (res) => {
         this.setData({
           goods_id: res.data.goods_id
         })
@@ -284,6 +288,7 @@ Page({
         success: function (res) {
           if (res.confirm) {
             http.userBind(form_id, student_id, (res) => {
+              console.log(res);
               wx.showModal({
                 title: '提交成功',
                 content: '监听成功！由于微信formID有效期为7天,超出时间您只需要在本页面再次监听即可。',

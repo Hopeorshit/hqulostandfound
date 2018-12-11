@@ -45,11 +45,14 @@
   </form>
 </view>
 
-<view wx:else>
+<view  class='lost' wx:else>
   <form report-submit='true' bindsubmit='onListenSubmit'>
     <view class='box-tips'>
-      <text>{{tips1}}</text>
-      <text>{{tips2}}</text>
+      <view>{{tips1}}</view>
+      <view>{{tips2}}</view>
+    </view>
+    <view class='box-msgtip'>
+      <image  src='/images/msgtip.jpg' mode='widthFix'></image>
     </view>
     <view class='box-bind'>
       <input name='student_id' placeholder='请输入学号'></input>
