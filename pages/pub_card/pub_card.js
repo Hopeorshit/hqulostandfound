@@ -192,9 +192,9 @@ Page({
     var that = this;
     that._initData();
     app.globalData.indexRefresh = true;
-    setTimeout(function() {
+    setTimeout(function () {
       wx.redirectTo({
-        url: '/pages/goodsdetail/goodsdetail?goods_id=' + that.data.goods_id,
+        url: '/pages/goodsdetail/goodsdetail?goods_id=' + that.data.goods_id + '&is_found=' + that.data.is_found,
       })
     }, 1500)
   },
@@ -230,6 +230,26 @@ Page({
         icon: 'none'
       })
       return false
+    }
+    let currentRadioIndex = this.data.currentRadioIndex;
+    let way = this.data.radio_group[currentRadioIndex].way;
+    if (way == 2) {
+      if (!/^[1-9][0-9]{4,}$/.test(phone)) {
+        wx.showToast({
+          title: '请填入正确的qq号',
+          icon: 'none'
+        })
+        return false
+      }
+    }
+    if (way == 4) {
+      if (!/^1[34578]\d{9}$/.test(phone)) {
+        wx.showToast({
+          title: '请填入正确的手机号',
+          icon: 'none'
+        })
+        return false
+      }
     }
     return true;
   },

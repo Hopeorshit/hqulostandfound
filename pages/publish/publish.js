@@ -5,14 +5,14 @@ import {
   Config
 } from '../../utils/config.js'
 var http = new Publish();
-let app=getApp();
+let app = getApp();
 Page({
-  data:{
-   is_found:true
+  data: {
+    is_found: true
   },
   onLoad: function() {
     this.initRadio(),
-    this.initData()
+      this.initData()
   },
   initRadio: function() {
     if (this.data.is_found) {
@@ -25,7 +25,7 @@ Page({
             text: "联系qq",
             way: 2,
             checked: false
-          },   
+          },
           {
             text: "联系手机",
             way: 4,
@@ -51,19 +51,18 @@ Page({
       })
     }
   },
-  initData(){
+  initData() {
     this.setData({
       publishing: false,
       description: null,
       phone: null,
-      localImage: [],//本地图片
-      imageIndex: 0,//本地图片数组
+      localImage: [], //本地图片
+      imageIndex: 0, //本地图片数组
       is_found: true,
-      title:null
+      title: null
       // is_found:false
     })
   },
-
   //点击选择图片
   onAddPic: function() {
     var that = this;
@@ -117,7 +116,7 @@ Page({
       console.log(way);
       http.goodsCreate(this.data.is_found, way, e.detail.value, (res) => {
         this.setData({
-          goods_id:res.data.goods_id
+          goods_id: res.data.goods_id
         })
         var localImage = this.data.localImage
         if (localImage.length > 0) {
@@ -163,9 +162,9 @@ Page({
   },
   //发布有效性检测
   _checkSubmit: function(value) {
-    var localImage = this.data.localImage;
-    var title = value.title;
-    var phone = value.phone;
+
+    let title = value.title;
+    let phone = value.phone;
     if (!title) {
       wx.showToast({
         title: '请填写物品名称',
@@ -180,8 +179,33 @@ Page({
       })
       return false
     }
+    let currentRadioIndex = this.data.currentRadioIndex;
+    let way = this.data.radio_group[currentRadioIndex].way;
+    if (way == 2) {
+      if (!/^[1-9][0-9]{4,}$/.test(phone)) {
+        wx.showToast({
+          title: '请填入正确的qq号',
+          icon: 'none'
+        })
+        return false
+      }
+    }
+    if (way == 4) {
+      if (!/^1[34578]\d{9}$/.test(phone)) {
+        wx.showToast({
+          title: '请填入正确的手机号',
+          icon: 'none'
+        })
+        return false
+      }
+    }
     return true;
   },
+
+  /**
+   * 正则匹配
+   */
+
   // 选择发布信息的类型
   typeSelect: function() {
     this.setData({
@@ -199,7 +223,7 @@ Page({
     app.globalData.indexRefresh = true;
     setTimeout(function() {
       wx.redirectTo({
-        url: '/pages/goodsdetail/goodsdetail?goods_id='+that.data.goods_id,
+        url: '/pages/goodsdetail/goodsdetail?goods_id=' + that.data.goods_id + '&is_found=' + that.data.is_found,
       })
     }, 1500)
   },
@@ -207,27 +231,26 @@ Page({
    * 点击选择类型
    */
   onRadio: function(e) {
-    let index=e.currentTarget.dataset.index;
-    let radio_group=this.data.radio_group;
-    radio_group.forEach(function(item,i_index){
-      if(index==i_index){
+    let index = e.currentTarget.dataset.index;
+    let radio_group = this.data.radio_group;
+    radio_group.forEach(function(item, i_index) {
+      if (index == i_index) {
         item.checked = true
-      }else{
+      } else {
         item.checked = false
       }
     })
     this.setData({
       currentRadioIndex: index,
-      radio_group:radio_group
+      radio_group: radio_group
     })
   },
-
   /**
-    * 了解扫描发布页面
-    */
-  onPub_card: function () {
+   * 了解扫描发布页面
+   */
+  onPub_card: function() {
     wx.redirectTo({
-      url: '/pages/pub_card/pub_card',
+      url: '/pages/pub_card/pub_card?is_found=1',
     })
   }
 

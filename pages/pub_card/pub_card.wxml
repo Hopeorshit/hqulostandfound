@@ -36,7 +36,7 @@
             <text class="way-sel-text {{item.checked?'way-selected':''}}" data-index="{{index}}" bindtap='onRadio'>{{item.text}}</text>
           </block>
         </view>
-        <input placeholder='请填写{{radio_group[currentRadioIndex].text}}' name="phone" value='{{phone}}' class='input-way'> </input>
+        <input placeholder='请填写{{radio_group[currentRadioIndex].text}}' name="phone" value='{{phone}}' class='input-way' type="{{radio_group[currentRadioIndex].way==1?'text':'number'}}"> </input>
       </view>
       <button class='btn-bottom' disabled='{{publishing}}' form-type='submit'>
         发布
@@ -55,7 +55,7 @@
       <image  src='/images/msgtip.jpg' mode='widthFix'></image>
     </view>
     <view class='box-bind'>
-      <input name='student_id' placeholder='请输入学号'></input>
+      <input name='student_id' placeholder='请输入学号' type='number' ></input>
       <button class='btn-bottom' form-type='submit'>监听</button>
     </view>
   </form>
