@@ -31,7 +31,7 @@
         "selectedIconPath": "/images/home_sel.png"
       },
       {
-        "pagePath": "pages/pub_choose/pub_choose",
+        "pagePath": "pages/publish/publish",
         "text": "发布",
         "iconPath": "/images/publish.png",
         "selectedIconPath": "/images/publish_sel.png"

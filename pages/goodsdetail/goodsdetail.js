@@ -139,9 +139,9 @@ Page({
       this._downloadMainPic((res) => {
         console.log("主图下载完成")
         this._drawBackGround();
-        this._drawHeadBG();
-        this._drawHead();
-        this._drawDate();
+        // this._drawHeadBG();
+        // this._drawHead();
+        // this._drawDate();
         if (this.data.tempFilePath) {
           this._drawMainPic((res) => {
             this._drawRestAndSave();
@@ -160,6 +160,7 @@ Page({
     this._drawTitle();
     this._drawDetail();
     this._drawContact();
+    this._drawDate();
     this._drawLine();
     this._drawCode();
     this._drawType(() => {
@@ -255,10 +256,11 @@ Page({
         let size = imageRes.height / imageRes.width;
         // let height = that.data.height + 30
         let height = that.data.height + 15;
-        let oriWidth = canvasWidth *0.7;
+        let toLeft=20;
+        let oriWidth = canvasWidth - toLeft*2;
         let oriHeight = oriWidth * size;
         if (size > 1) {
-          myCanvas.translate(canvasWidth*0.15, height); //移动画布原点
+          myCanvas.translate(toLeft, height); //移动画布原点
           myCanvas.rotate(-90 * Math.PI / 180); //旋转画布
           myCanvas.translate(-oriWidth / size, 0); //再次移动画布原点      
           myCanvas.drawImage(tempFilePath, 0, 0, oriWidth / size, oriWidth); //绘制
@@ -266,10 +268,10 @@ Page({
           // 还原画布
           myCanvas.translate(oriWidth / size, 0) //移动画布原点
           myCanvas.rotate(90 * Math.PI / 180) //旋转还原
-          myCanvas.translate(-canvasWidth * 0.15, -height); //移动画布原点
+          myCanvas.translate(-toLeft, -height); //移动画布原点
           height = height + oriWidth / size;
         } else {
-          myCanvas.drawImage(tempFilePath, canvasWidth * 0.15, height, oriWidth, oriHeight);
+          myCanvas.drawImage(tempFilePath, toLeft, height, oriWidth, oriHeight);
           height = height + oriHeight;
         }
         that.setData({
@@ -341,6 +343,7 @@ Page({
    */
   _drawTitle: function() {
     let fontSize = 28;
+    myCanvas.font = 'normal bold 28px sans-serif'
     myCanvas.setFontSize(fontSize);
     let height = this.data.height + 40;
     myCanvas.setFillStyle('#3a3a3a')
@@ -407,9 +410,9 @@ Page({
     let canvasWidth = this.data.canvasWidth;
     myCanvas.setFontSize(11);
     myCanvas.setFillStyle('#8f8e8f');
-    myCanvas.setTextAlign('center');
+    // myCanvas.setTextAlign('center');
     let str = this.data.detail.user.nickName + this.data.time + '发布'
-    myCanvas.fillText(str, canvasWidth / 2, height);
+    myCanvas.fillText(str, 20 , height);
     myCanvas.draw(true);
     this.setData({
       height: height
@@ -425,10 +428,10 @@ Page({
       let canvasWidth = this.data.canvasWidth;
       let height = this.data.height
       console.log(height);
-      height = height + 20;
-      myCanvas.setFillStyle('#8f8e8f')
-      myCanvas.font = 'normal 13px sans-serif'
-      let fontSize = 13;
+      height = height + 30;
+      myCanvas.setFillStyle('#3a3a3a')
+      myCanvas.font = 'normal bold 20px sans-serif'
+      let fontSize = 20;
       myCanvas.setFontSize(fontSize)
       let str = this.data.detail.description;
       let lineWidth = 0;
@@ -452,8 +455,6 @@ Page({
       })
     }
   },
-
-
 
   /**
    * 绘制线条
@@ -524,16 +525,16 @@ Page({
       t = '失主请'
     }
     if (this.data.detail.way == 1) {
-      return '领取地点:'
+      return '领取地点：'
     }
     if (this.data.detail.way == 2) {
-      return t + "联系QQ:"
+      return t + "联系QQ："
     }
     if (this.data.detail.way == 3) {
-      return t + '联系微信:'
+      return t + '联系微信：'
     }
     if (this.data.detail.way == 4) {
-      return t + '联系手机:'
+      return t + '联系手机：'
     }
   }
 })

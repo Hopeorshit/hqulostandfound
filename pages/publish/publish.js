@@ -222,7 +222,7 @@ Page({
     that.initData();
     app.globalData.indexRefresh = true;
     setTimeout(function() {
-      wx.redirectTo({
+      wx.navigateTo({
         url: '/pages/goodsdetail/goodsdetail?goods_id=' + that.data.goods_id + '&is_found=' + that.data.is_found,
       })
     }, 1500)
@@ -248,10 +248,10 @@ Page({
   /**
    * 了解扫描发布页面
    */
-  onPub_card: function() {
-    wx.redirectTo({
-      url: '/pages/pub_card/pub_card?is_found=1',
-    })
-  }
+  // onPub_card: function() {
+  //   wx.redirectTo({
+  //     url: '/pages/pub_card/pub_card?is_found=1',
+  //   })
+  // }
 
 })

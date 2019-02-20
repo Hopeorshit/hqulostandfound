@@ -13,7 +13,7 @@ Page({
   data: {
     categoryID: 0, //项目目录
     banner: [{
-        url: '/images/banner1.png',
+        url: '/images/banner2.png',
       },
       // {
       //   url: '/images/banner2.png',
@@ -114,7 +114,7 @@ Page({
     var index = dataSet.index;
     if (index == 0) {
       wx.navigateTo({
-        url: '/pages/pub_card/pub_card?is_found=0',
+        url: '/pages/rule/rule',
       })
     }
   },

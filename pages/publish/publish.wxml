@@ -2,14 +2,32 @@
 
 <form bindsubmit='onSubmit'>
   <view class='box'>
-    <view class='box-name'>
-      <!-- <image class='icon' src='/images/things.png'></image> -->
-      <input name="title" placeholder='物品名称（20个字以内）' maxlength='20' value='{{title}}' ></input>
+    <!-- <view class='box-type'>
+      <view class='type'>
+        <text class="{{is_found?'box-type-select':''}}" bindtap='typeSelect'>#失物招领#</text>
+        <text class="type-t2 {{!is_found?'box-type-select':''}}" bindtap='typeSelect'>#寻物启事#</text>
+      </view>
+    </view> -->
+
+    <view class='box-type'>
+      <text class="box-type-text {{is_found?'box-type-select':''}}" bindtap='typeSelect'>失物招领</text>
+      <text class="box-type-text {{!is_found?'box-type-select':''}}" bindtap='typeSelect'>寻物启事</text>
     </view>
 
-    <view class='box-des'>
-      <textarea placeholder='详情(可选)' value='{{description}}' name='description' maxlength='100'></textarea>
+    <view class='box-name'>
+      <!-- <image class='icon' src='/images/things.png'></image> -->
+      <input name="title" placeholder='物品名称' maxlength='20' value='{{title}}'></input>
+    </view>
 
+
+    <view class='box-name'>
+      <!-- <image class='icon' src='/images/things.png'></image> -->
+      <input placeholder="详情" value='{{description}}' name='description' maxlength='20'></input>
+    </view>
+
+    <!-- <textarea placeholder='详情(可选)' value='{{description}}' name='description' maxlength='100'></textarea> -->
+
+    <view class='box-des'>
       <scroll-view scroll-x>
         <view class='box5'>
           <view class='box5-v' bindtap='onAddPic'>
@@ -25,12 +43,7 @@
       </scroll-view>
     </view>
 
-    <view class='box-type'>
-      <view class='type'>
-        <text class="{{is_found?'box-type-select':''}}" bindtap='typeSelect'>#失物招领#</text>
-        <text class="type-t2 {{!is_found?'box-type-select':''}}" bindtap='typeSelect'>#寻物启事#</text>
-      </view>
-    </view>
+
 
     <view class='box-ways'>
       <view class='way-sel'>
@@ -46,7 +59,7 @@
   <button class='btn-bottom' disabled='{{publishing}}' form-type='submit'>
     发布
   </button>
-  <view class='tips' bindtap='onPub_card'>
+  <!-- <view class='tips' bindtap='onPub_card'>
     <text>捡到学生卡？</text>
-  </view>
+  </view> -->
 </form>

@@ -13,7 +13,6 @@
 
 .box-name input {
   flex: 1;
-  margin-left: 20rpx;
 }
 
 /*描述*/
@@ -40,12 +39,12 @@
   margin-top: 0;
   box-sizing: border-box;
   display: flex;
-  padding: 10rpx 20rpx;
+  /* padding: 10rpx 20rpx; */
 }
 
 .box5-v {
   padding: 8rpx;
-  height: 190rpx;
+  /* height: 190rpx; */
 }
 
 .box5-image {
@@ -84,16 +83,22 @@
 /*类型*/
 
 .box-type {
-  margin-top: 20rpx;
-  /* display: flex; */
+  padding: 20rpx 0;
+  display: flex;
+  justify-content: space-around;
+  background-color: white;
 }
 
-.type-t2 {
-  margin-left: 40rpx;
+.box-type-text {
+  border: 1px solid #a9aaac;
+  border-radius: 30rpx;
+  padding: 10rpx 80rpx;
 }
 
 .box-type-select {
-  color: #ff6263;
+  color: white;
+  background-color: #ff6263;
+  border: none;
 }
 
 /*领取方式*/
@@ -130,3 +135,4 @@
   background-color: #f8f8f8;
   margin-top: 30rpx;
 }
+
