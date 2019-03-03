@@ -28,7 +28,7 @@ Component({
   behaviors: [contentBeh],
   data: {
     loading: false,
-    selected: false,
+    initSel: false,
   },
 
   /**
@@ -46,11 +46,19 @@ Component({
    */
   methods: {
     init() {
+      // console.log("组件列表初始化")
+      // this.setData({
+      //   initSel:!this.data.initSel
+      // })
       this.initContent(); //初始化content
       this._loadMore(); //加载更多数据
     },
 
     _loadMore() { //获取更多订单
+      console.log("组件列表初始化")
+      this.setData({
+        initSel:!this.data.initSel
+      })
       if (!this.more()) {
         return false;
       }

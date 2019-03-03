@@ -5,7 +5,11 @@ Component({
    */
   properties: {
     list: Object,
-    categoryID: Number
+    categoryID: Number,
+    initSel:{
+      type: Boolean,
+      observer: "_initObj"
+    }
   },
 
   /**
@@ -95,7 +99,6 @@ Component({
       let sel_obj = this.data.sel_obj;
       sel_obj.selecting = !sel_obj.selecting;
       let list = this.data.list;
-
       this.setData({
         sel_obj: sel_obj
       })
@@ -112,6 +115,7 @@ Component({
     },
 
     _initObj: function() {
+      console.log("触发_initObj")
       this.setData({
         sel_obj: {
           selected: false,
