@@ -28,6 +28,7 @@ Component({
   behaviors: [contentBeh],
   data: {
     loading: false,
+    selected: false,
   },
 
   /**
@@ -63,6 +64,7 @@ Component({
           this.setData({
             loading: false
           })
+          console.log(this.data.content)
         })
       }
     },
@@ -79,15 +81,7 @@ Component({
       http.request(params);
     },
 
-    /**
-     * 长图预览
-     */
-    onShare: function() {
-      wx.navigateTo({
-        url: '/pages/preview/preview',
-      })
-    },
-
+ 
 
   }
 })

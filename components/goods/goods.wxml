@@ -1,23 +1,40 @@
-<view class='product'>
-  <view class='product-box' wx:for="{{list}}" wx:key="key">
-    <view class='product-container' bindtap='onGoodsDetail' data-goods_id='{{item.id}}' data-is_found="{{item.is_found}}">
-      <view class='product-image'>
-        <text class='type-text' wx:if="{{item.is_found==1}}">失物招领</text>
-        <text class='type-text type-looking' wx:else>寻物启事</text>
-        <image mode='aspectFill' src='{{item.head_url}}'></image>
-      </view>
-      <view class='product-v'>
-        <view class="product-des">
-          <text>{{item.title}}</text>
+<view wx:if="{{list.length>0 && categoryID!=0}}">
+  <view class='select-top'>
+    <text bindtap='onSelectTop'>{{sel_obj.selecting?'取消':'选择'}}</text>
+  </view>
+  <button disabled='{{!sel_obj.selected}}' class='share' bindtap='onShare' wx:if="{{sel_obj.selecting}}">
+    分享({{sel_obj.number}}/6)
+  </button>
+</view>
+
+<view class='product' style="{{categoryID!=0?'margin-top:80rpx':''}}">
+  <block wx:for="{{list}}" wx:key="key">
+    <view class='product-box'>
+      <view class='product-container' bindtap='onGoodsDetail' data-index='{{index}}' 
+      data-goods_id='{{item.id}}' data-is_found="{{item.is_found}}">
+        <view class='product-image'>
+          <image wx:if="{{item.selected}}" class='select' src='./images/select.png'></image>
+          <text class='type-text' wx:if="{{item.is_found==1}}">失物招领</text>
+          <text class='type-text type-looking' wx:else>寻物启事</text>
+          <image class='main-pic' mode='aspectFill' src='{{item.head_url}}'></image>
         </view>
-        <view class='product-user'>
-          <image src='{{item.user.avatarUrl}}'></image>
-          <text>{{item.user.nickName}}</text>
-          <view class='time'>
-            <text class='time'>{{item.created}}</text>
+        <view class='product-v'>
+          <view class="product-des">
+            <text>{{item.title}}</text>
+          </view>
+          <view class='product-user'>
+            <image src='{{item.user.avatarUrl}}'></image>
+            <text>{{item.user.nickName}}</text>
+            <view class='time'>
+              <text class='time'>{{item.created}}</text>
+            </view>
           </view>
         </view>
       </view>
+      <!-- <view class='product-box shadow-v'>
+        <view class='shadow'>
+        </view>
+      </view> -->
     </view>
-  </view>
+  </block>
 </view>

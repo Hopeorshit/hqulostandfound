@@ -17,7 +17,12 @@ let contentBeh = Behavior({
       let content = this.data.content;
       let contentList = content.list;
       let data = resContent;
-      content.list = contentList.concat(data.list);
+      let dataList=data.list;
+      dataList.forEach(v=>{
+        v['selected']=false;
+      })
+      console.log(dataList);
+      content.list = contentList.concat(dataList);
       content.more = data.list.length == content.page_size ? true : false;
       content.page = content.page + 1;
       content.empty = content.list.length > 0 ? false : true,
