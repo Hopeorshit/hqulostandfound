@@ -20,14 +20,15 @@
     </view>
 
 
-    <view class='box-name'>
+    <!-- <view class='box-name'> -->
       <!-- <image class='icon' src='/images/things.png'></image> -->
-      <input placeholder="详情" value='{{description}}' name='description' maxlength='20'></input>
-    </view>
+      <!-- <input placeholder="详情" value='{{description}}' name='description' maxlength='20'></input> -->
+    <!-- </view> -->
 
-    <!-- <textarea placeholder='详情(可选)' value='{{description}}' name='description' maxlength='100'></textarea> -->
+
 
     <view class='box-des'>
+        <textarea placeholder='详情(可选)' value='{{description}}' name='description' maxlength='100'></textarea>
       <scroll-view scroll-x>
         <view class='box5'>
           <view class='box5-v' bindtap='onAddPic'>

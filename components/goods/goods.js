@@ -6,10 +6,10 @@ Component({
   properties: {
     list: Object,
     categoryID: Number,
-    initSel:{
-      type: Boolean,
-      observer: "_initObj"
-    }
+    // initSel: {
+    //   type: Boolean,
+    //   observer: "_initObj"
+    // },
   },
 
   /**
@@ -80,9 +80,9 @@ Component({
      */
     onShare: function() {
       let list = this.data.list;
-      let share_list=new Array();
-      list.forEach((v)=>{
-        if(v['selected']){
+      let share_list = new Array();
+      list.forEach((v) => {
+        if (v['selected']) {
           share_list.push(v)
         }
       })
@@ -93,7 +93,7 @@ Component({
     },
 
     /**
-     * 长图预览
+     * 长图预览,
      */
     onSelectTop: function() {
       let sel_obj = this.data.sel_obj;
@@ -112,6 +112,12 @@ Component({
         this._initObj();
         console.log(this.data.sel_obj);
       }
+      //触发禁止和允许滑动事件
+      let eventDatail = {
+        selecting: sel_obj.selecting,
+      }
+      console.log("准备触发caScroll")
+      this.triggerEvent('canScroll', eventDatail)
     },
 
     _initObj: function() {

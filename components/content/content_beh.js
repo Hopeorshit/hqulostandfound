@@ -21,6 +21,7 @@ let contentBeh = Behavior({
       dataList.forEach(v=>{
         v['selected']=false;
       })
+      console.log("setMoreData");
       console.log(dataList);
       content.list = contentList.concat(dataList);
       content.more = data.list.length == content.page_size ? true : false;
@@ -29,6 +30,7 @@ let contentBeh = Behavior({
         this.setData({
           content: content,
         })
+      console.log(this.data.content);
     },
     more: function() { //返回是否还有更多
       return this.data.content.more

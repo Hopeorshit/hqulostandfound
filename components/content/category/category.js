@@ -28,7 +28,7 @@ Component({
   behaviors: [contentBeh],
   data: {
     loading: false,
-    initSel: false,
+    selecting: false,
   },
 
   /**
@@ -50,30 +50,30 @@ Component({
       // this.setData({
       //   initSel:!this.data.initSel
       // })
-      this.initContent(); //初始化content
-      this._loadMore(); //加载更多数据
+      if (!this.data.selecting) {
+        this.initContent(); //初始化content
+        this._loadMore(); //加载更多数据
+      }
     },
 
     _loadMore() { //获取更多订单
-      console.log("组件列表初始化")
-      this.setData({
-        initSel:!this.data.initSel
-      })
-      if (!this.more()) {
-        return false;
-      }
-      if (!this.data.loading) {
-        this.setData({
-          loading: true,
-        })
-        let content = this.data.content;
-        this._list(content.page, content.page_size, (res) => {
-          this.setMoreData(res.data)
+      if (!this.data.selecting) {
+        if (!this.more()) {
+          return false;
+        }
+        if (!this.data.loading) {
           this.setData({
-            loading: false
+            loading: true,
           })
-          console.log(this.data.content)
-        })
+          let content = this.data.content;
+          this._list(content.page, content.page_size, (res) => {
+            this.setMoreData(res.data)
+            this.setData({
+              loading: false
+            })
+            console.log(this.data.content)
+          })
+        }
       }
     },
 
@@ -89,7 +89,12 @@ Component({
       http.request(params);
     },
 
- 
+    canScroll: function(event) {
+      console.log(event);
+      this.setData({
+        selecting: event.detail.selecting
+      })
+    }
 
   }
 })
