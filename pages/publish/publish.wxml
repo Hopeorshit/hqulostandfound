@@ -16,7 +16,7 @@
 
     <view class='box-name'>
       <!-- <image class='icon' src='/images/things.png'></image> -->
-      <input name="title" placeholder='物品名称' maxlength='20' value='{{title}}'></input>
+      <input name="title" placeholder='标题(如:18计算机张三的学生卡)' maxlength='20' value='{{title}}'></input>
     </view>
 
 
