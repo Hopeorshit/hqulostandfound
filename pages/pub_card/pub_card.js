@@ -20,9 +20,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    let is_found=options.is_found==1?true:false;
+    // let is_found=options.is_found==1?true:false;
     this.setData({
-      is_found:is_found
+      is_found:1
     })
     this._initData();
   },
@@ -193,7 +193,7 @@ Page({
     that._initData();
     app.globalData.indexRefresh = true;
     setTimeout(function () {
-      wx.redirectTo({
+      wx.navigateTo({
         url: '/pages/goodsdetail/goodsdetail?goods_id=' + that.data.goods_id + '&is_found=' + that.data.is_found,
       })
     }, 1500)
@@ -234,7 +234,7 @@ Page({
     let currentRadioIndex = this.data.currentRadioIndex;
     let way = this.data.radio_group[currentRadioIndex].way;
     if (way == 2) {
-      if (!/^[1-9][0-9]{4,}$/.test(phone)) {
+      if (!/^[1-9][0-9]{4,}$/.test(value.phone)) {
         wx.showToast({
           title: '请填入正确的qq号',
           icon: 'none'
@@ -243,7 +243,7 @@ Page({
       }
     }
     if (way == 4) {
-      if (!/^1[34578]\d{9}$/.test(phone)) {
+      if (!/^1[34578]\d{9}$/.test(value.phone)) {
         wx.showToast({
           title: '请填入正确的手机号',
           icon: 'none'

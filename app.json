@@ -37,11 +37,18 @@
         "selectedIconPath": "/images/publish_sel.png"
       },
       {
+        "pagePath": "pages/pub_card/pub_card",
+        "text": "学生卡",
+        "iconPath":"/images/card_tab.png",
+        "selectedIconPath": "/images/card_tab_sel.png"
+      },
+      {
         "pagePath": "pages/mine/mine",
         "text": "我的",
         "iconPath": "/images/mine.png",
         "selectedIconPath": "/images/mine_sel.png"
       }
     ]
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }

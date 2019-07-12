@@ -8,11 +8,11 @@ var http = new Publish();
 let app = getApp();
 Page({
   data: {
-    is_found: true
+
   },
   onLoad: function() {
-    this.initRadio(),
-      this.initData()
+    this.initData(),
+      this.initRadio()
   },
   initRadio: function() {
     if (this.data.is_found) {
@@ -58,7 +58,7 @@ Page({
       phone: null,
       localImage: [], //本地图片
       imageIndex: 0, //本地图片数组
-      is_found: true,
+      is_found: 1,
       title: null
       // is_found:false
     })
@@ -209,7 +209,7 @@ Page({
   // 选择发布信息的类型
   typeSelect: function() {
     this.setData({
-      is_found: !this.data.is_found,
+      is_found: this.data.is_found == 1 ? 0 : 1,
     })
     this.initRadio()
   },
@@ -219,12 +219,13 @@ Page({
       title: '发布成功',
     })
     var that = this;
-    that.initData();
+    let is_found = this.data.is_found;
     app.globalData.indexRefresh = true;
     setTimeout(function() {
       wx.navigateTo({
-        url: '/pages/goodsdetail/goodsdetail?goods_id=' + that.data.goods_id + '&is_found=' + that.data.is_found,
+        url: '/pages/goodsdetail/goodsdetail?goods_id=' + that.data.goods_id + '&is_found=' + is_found,
       })
+      that.initData();
     }, 1500)
   },
   /**
