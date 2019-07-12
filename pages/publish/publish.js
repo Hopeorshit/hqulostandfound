@@ -11,8 +11,7 @@ Page({
 
   },
   onLoad: function() {
-    this.initData(),
-      this.initRadio()
+    this.initData()
   },
   initRadio: function() {
     if (this.data.is_found) {
@@ -62,6 +61,7 @@ Page({
       title: null
       // is_found:false
     })
+    this.initRadio();
   },
   //点击选择图片
   onAddPic: function() {
