@@ -48,19 +48,19 @@ Component({
 
         //选择数量不可超过6个
         if (!list[index]['selected']) {
-          if (0 <= number && number < 6) {
-            if (!list[index]['selected']) {
-              number++;
-            }
-            list[index]['selected'] = !list[index]['selected'];
+          // if (0 <= number && number < 6) { //管理员体验版
+          if (!list[index]['selected']) {
+            number++;
           }
+          list[index]['selected'] = !list[index]['selected'];
+          // }
         } else {
-          if (0 < number && number <= 6) {
-            if (list[index]['selected']) {
-              number--;
-            }
-            list[index]['selected'] = !list[index]['selected'];
+          // if (0 < number && number <= 6) { //管理员体验版
+          if (list[index]['selected']) {
+            number--;
           }
+          list[index]['selected'] = !list[index]['selected'];
+          // }
         }
         console.log(number);
 

@@ -27,7 +27,7 @@
 </view>
 
 <view class='bannerbox'>
-  <swiper class="swiper" indicator-dots="true" autoplay="true" interval="5000" duration="1000" indicator-color='#dddddd' indicator-active-color='#ff6263'>
+  <swiper class="swiper" indicator-dots="true" autoplay="true" interval="3000" duration="1000" indicator-color='#dddddd' indicator-active-color='#ff6263'>
     <block wx:for="{{banner}}" wx:for-index="index" wx:key="key">
       <swiper-item>
         <image src="{{item.url}}" class="slide-image" mode="aspectFill" bindtap='onBannerTap' data-index="{{index}}" />

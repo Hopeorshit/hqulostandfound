@@ -368,7 +368,8 @@ Page({
     let canvasWidth = this.data.canvasWidth
     // myCanvas.drawImage(this.data.whiteBackground, 0, 0, canvasWidth, 1000); //1画一个白色背景图片
     myCanvas.setFillStyle('white');
-    myCanvas.fillRect(0, 0, canvasWidth, 3000);
+    // myCanvas.fillRect(0, 0, canvasWidth, 3000); TODO 体验版15000
+    myCanvas.fillRect(0, 0, canvasWidth, 15000)
     myCanvas.draw(true); //继续绘制
   },
 
