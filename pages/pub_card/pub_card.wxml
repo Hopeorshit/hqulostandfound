@@ -10,7 +10,7 @@
     <view class='box'>
       <view class='box-pic'>
         <view class='box-pic-v' bindtap='onPic'>
-          <image src='/images/pic.png '></image>
+          <image src=' /images/pic.png '></image>
           <text>点击拍照识别</text>
           <text class='tips-t2'>智能填入学生卡信息</text>
         </view>

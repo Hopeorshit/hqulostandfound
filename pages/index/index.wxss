@@ -13,7 +13,7 @@ page {
 
 .bannerbox {
   margin-top: 100rpx;
-  height: 280rpx;
+  height: 300rpx;
   width: 100%;
 }
 

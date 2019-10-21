@@ -5,7 +5,7 @@ page {
   height: 100%;
 }
 
-.scroll {
+.scroll{
   margin-top: 60rpx;
 }
 
@@ -21,15 +21,14 @@ page {
 .canvas-v {
   position: absolute;
   z-index: 1000;
-  top: -15000px;
+  top: -10000px;
   /* top: 0; */
   width: 100%;
-  /* 体验版本高度，正式版本不行 */
-  height: 15000px;
+  height: 3000px;
   background-color: white;
 }
 
-.save {
+.save{
   background-color: #ff5454;
   color: white;
   border-radius: 0;

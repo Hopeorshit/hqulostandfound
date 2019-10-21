@@ -15,9 +15,9 @@ Page({
     banner: [{
         url: '/images/banner2.png',
       },
-      {
-        url: '/images/banner3.png',
-      }
+      // {
+      //   url: '/images/banner2.png',
+      // }
     ],
     tabs: [{
         id: 1,
@@ -117,11 +117,6 @@ Page({
         url: '/pages/rule/rule',
       })
     }
-    if (index == 1) {
-      wx.navigateToMiniProgram({
-        appId: 'wxa5c0b930fc354e8a',
-      })
-    }
   },
 
   /**
@@ -144,7 +139,7 @@ Page({
   /**
    * 点击跳转tip
    */
-  onTipTap: function() {
+  onTipTap:function(){
     wx.navigateTo({
       url: '/pages/pub_card/pub_card?is_found=0',
     })
@@ -153,9 +148,9 @@ Page({
   /**
    * 点击跳转hidden
    */
-  onHide: function() {
+  onHide:function(){
     this.setData({
-      hideTips: true
+      hideTips:true
     })
   }
 
