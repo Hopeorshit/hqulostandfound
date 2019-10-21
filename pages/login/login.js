@@ -2,10 +2,6 @@ var app = getApp();
 import {
   Login
 } from '../../model/login.js';
-import {
-  Token
-} from '../../utils/token.js'
-var token = new Token();
 var http = new Login();
 Page({
 
@@ -19,22 +15,9 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
+  onLoad: function(options) {
 
-  onShow: function(options) {
-    wx.checkSession({
-      success: function(res) {
-        //未过期
-        console.log("session_key 未过期")
-      },
-      fail: function(res) {
-        //若过期就重新写入
-        console.log("session_key 过期")
-        token.getTokenFromServer();
-      }
-    })
   },
-
-
   onLogin: function(e) {
     var that = this;
     that.wxGetUserInfo(e, (res) => {
@@ -69,17 +52,14 @@ Page({
             app.globalData.loginStatus = true;
             wx.setStorageSync('userInfo', res.data);
             callBack && callBack(res);
-          } else {
+          }else{
             wx.showToast({
               title: '登陆失败',
-              icon: 'none'
+              icon:'none'
             })
           }
         },
       )
-      setTimeout(function() {
-        wx.hideLoading()
-      }, 3000)
     }
   }
 })
