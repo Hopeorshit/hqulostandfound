@@ -161,8 +161,9 @@ Page({
     this._drawDetail();
     this._drawContact();
     this._drawDate();
-    this._drawLine();
+    // this._drawLine();
     this._drawCode();
+    this._drawDashLine();
     this._drawType(() => {
       console.log('save-------------')
       this._save();
@@ -256,8 +257,8 @@ Page({
         let size = imageRes.height / imageRes.width;
         // let height = that.data.height + 30
         let height = that.data.height + 15;
-        let toLeft=20;
-        let oriWidth = canvasWidth - toLeft*2;
+        let toLeft = 20;
+        let oriWidth = canvasWidth - toLeft * 2;
         let oriHeight = oriWidth * size;
         if (size > 1) {
           myCanvas.translate(toLeft, height); //移动画布原点
@@ -373,7 +374,7 @@ Page({
   /**
    * 绘制联系方式
    */
-  _drawContact: function () { //绘制联系方式
+  _drawContact: function() { //绘制联系方式
     let fontSize = 20;
     myCanvas.setFontSize(fontSize);
     myCanvas.setFillStyle('#3a3a3a');
@@ -386,7 +387,7 @@ Page({
     let lastSubStrIndex = 0; //每次开始截取的字符串的索引
     for (let i = 0; i < str.length; i++) {
       lineWidth += myCanvas.measureText(str[i]).width;
-      if (lineWidth > canvasWidth - fontSize ) { //
+      if (lineWidth > canvasWidth - fontSize) { //
         myCanvas.fillText(str.substring(lastSubStrIndex, i), 20, height); //绘制截取部分
         height += fontSize + 4; //
         lineWidth = 0;
@@ -412,7 +413,7 @@ Page({
     myCanvas.setFillStyle('#8f8e8f');
     // myCanvas.setTextAlign('center');
     let str = this.data.detail.user.nickName + this.data.time + '发布'
-    myCanvas.fillText(str, 20 , height);
+    myCanvas.fillText(str, 20, height);
     myCanvas.draw(true);
     this.setData({
       height: height
@@ -441,7 +442,7 @@ Page({
         lineWidth += myCanvas.measureText(str[i]).width;
         if (lineWidth > canvasWidth - fontSize * 3) { //
           myCanvas.fillText(str.substring(lastSubStrIndex, i), 20, height); //绘制截取部分
-          height += fontSize+4; //
+          height += fontSize + 4; //
           lineWidth = 0;
           lastSubStrIndex = i;
         }
@@ -479,7 +480,7 @@ Page({
   _drawCode: function() {
     let canvasWidth = this.data.canvasWidth;
     let height = this.data.height
-    height = height + 8;
+    height = height + 26;
     let codeSize = 70;
     myCanvas.drawImage(this.data.code, 20, height, codeSize, codeSize); //
     myCanvas.draw(true)
@@ -502,6 +503,30 @@ Page({
       height: height + 30
     })
   },
+
+  _drawDashLine() {
+    console.log("绘制dashLine----------------------")
+    let height = this.data.height-30
+    myCanvas.setLineWidth(1)
+    myCanvas.setLineDash([5, 2])
+    myCanvas.moveTo(20, height)
+    myCanvas.lineTo(this.data.canvasWidth - 20, height)
+    myCanvas.strokeStyle = "#cbcbcb";
+    myCanvas.stroke()
+    myCanvas.draw(true)
+
+    myCanvas.setTextAlign('center')
+    myCanvas.setFontSize(11)
+    myCanvas.fillText('本图片由“华园失物招领”微信小程序生成', this.data.canvasWidth / 2, height + 20)
+    myCanvas.draw(true)
+
+    console.log(height)
+    this.setData({
+      height: height + 30
+    })
+
+  },
+
 
   _drawType(callBack) {
     let height = this.data.height;

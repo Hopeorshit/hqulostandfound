@@ -13,10 +13,10 @@ Page({
   data: {
     categoryID: 0, //项目目录
     banner: [{
-        url: '/images/banner2.png',
+        url: '/images/banner3.png',
       },
       {
-        url: '/images/banner3.png',
+        url: '/images/banner2.png',
       }
     ],
     tabs: [{
@@ -74,6 +74,9 @@ Page({
     this.setData({
       init: randomStr(16)
     })
+    setTimeout(function() {
+      wx.stopPullDownRefresh()
+    }, 1000)
   },
 
   /*
@@ -112,12 +115,12 @@ Page({
   onBannerTap: function(e) {
     var dataSet = e.currentTarget.dataset;
     var index = dataSet.index;
-    if (index == 0) {
+    if (index == 1) {
       wx.navigateTo({
         url: '/pages/rule/rule',
       })
     }
-    if (index == 1) {
+    if (index == 0) {
       wx.navigateToMiniProgram({
         appId: 'wxa5c0b930fc354e8a',
       })

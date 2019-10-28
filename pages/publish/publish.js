@@ -191,7 +191,7 @@ Page({
       }
     }
     if (way == 4) {
-      if (!/^1[34578]\d{9}$/.test(phone)) {
+      if (!/^1[123456789]\d{9}$/.test(value.phone)) {
         wx.showToast({
           title: '请填入正确的手机号',
           icon: 'none'

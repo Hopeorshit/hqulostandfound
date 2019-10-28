@@ -49,6 +49,7 @@ Page({
         this._drawList(() => {
           console.log("绘制Code")
           this._drawCode(() => {
+            this._drawDashLine()
             console.log("Code绘制结束")
             this._setTemp();
           });
@@ -171,6 +172,30 @@ Page({
       }, this)
     }, 1000)
   },
+
+  _drawDashLine() {
+    console.log("绘制dashLine----------------------")
+    let height = this.data.height - 30
+    myCanvas.setLineWidth(1)
+    myCanvas.setLineDash([5, 2])
+    myCanvas.moveTo(20, height)
+    myCanvas.lineTo(this.data.canvasWidth - 20, height)
+    myCanvas.strokeStyle = "#cbcbcb";
+    myCanvas.stroke()
+    myCanvas.draw(true)
+
+    myCanvas.setTextAlign('center')
+    myCanvas.setFontSize(11)
+    myCanvas.fillText('本图片由“华园失物招领”微信小程序生成', this.data.canvasWidth / 2, height + 20)
+    myCanvas.draw(true)
+
+    console.log(height)
+    this.setData({
+      height: height + 30
+    })
+
+  },
+
   /**
    * 
    */
