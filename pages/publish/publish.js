@@ -115,15 +115,24 @@ Page({
       var way = radio_group[currentRadioIndex].way;
       console.log(way);
       http.goodsCreate(this.data.is_found, way, e.detail.value, (res) => {
-        this.setData({
-          goods_id: res.data.goods_id
-        })
-        var localImage = this.data.localImage
-        if (localImage.length > 0) {
-          this.uploadPic(res.data)
+        console.log(res)
+        if (res.code == 201) {
+          this.setData({
+            goods_id: res.data.goods_id
+          })
+          var localImage = this.data.localImage
+          if (localImage.length > 0) {
+            this.uploadPic(res.data)
+          } else {
+            this._successReturn()
+          }
         } else {
-          this._successReturn();
+          wx.showToast({
+            title: '内容违规',
+            icon: 'none'
+          })
         }
+        this.initData();
       });
     }
   },
