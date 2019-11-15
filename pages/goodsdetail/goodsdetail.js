@@ -161,9 +161,9 @@ Page({
     this._drawDetail();
     this._drawContact();
     this._drawDate();
-    // this._drawLine();
+    this._drawLine();
     this._drawCode();
-    this._drawDashLine();
+    // this._drawDashLine();
     this._drawType(() => {
       console.log('save-------------')
       this._save();
@@ -470,7 +470,7 @@ Page({
     myCanvas.stroke()
     myCanvas.draw(true)
     this.setData({
-      height: height + 20
+      height: height 
     })
   },
 
@@ -490,7 +490,7 @@ Page({
     myCanvas.setTextAlign('left');
     // height = height + codeSize / 2 - fontSize / 2
     height = height + 18;
-    myCanvas.fillText("长按识别华大专属小程序发布或搜索失物信息", codeSize + 20 + 8, height);
+    myCanvas.fillText("本图片由“华园失物招领”微信小程序生成", codeSize + 20 + 8, height);
     height = height + fontSize + 4;
     myCanvas.fillText("华大厦门失物招领台：638406214", codeSize + 20 + 8, height);
     height = height + fontSize + 4
@@ -500,7 +500,7 @@ Page({
     height = height + fontSize + 4
     myCanvas.draw(true)
     this.setData({
-      height: height + 30
+      height: height 
     })
   },
 
