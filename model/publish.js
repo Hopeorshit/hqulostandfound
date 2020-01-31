@@ -3,7 +3,6 @@ class Publish extends Base {
   constructor() {
     super();
   }
-
   goodsCreate(is_found, way, value, callBack) {
     var params = {
       url: 'goods/new',

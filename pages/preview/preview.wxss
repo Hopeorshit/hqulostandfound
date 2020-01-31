@@ -6,7 +6,7 @@ page {
 }
 
 .scroll {
-  margin-top: 60rpx;
+  /* margin-top: 60rpx; */
 }
 
 .preview {
@@ -32,8 +32,16 @@ page {
 .save {
   background-color: #ff5454;
   color: white;
-  border-radius: 0;
+  border-radius: 10rpx;
   font-size: 30rpx;
-  margin: 0 20rpx;
-  margin-top: 40rpx;
+  margin: 0 80rpx;
+}
+
+.copy {
+  background-color: #eee;
+  color: #333;
+  border-radius: 10rpx;
+  font-size: 30rpx;
+  margin: 0 80rpx;
+  margin-top: 20rpx;
 }

@@ -14,3 +14,7 @@
 <button class='save' bindtap='onSave'>
   保存到相册
 </button>
+
+<button class="copy" bindtap="onCopy">
+   复制标题
+</button>

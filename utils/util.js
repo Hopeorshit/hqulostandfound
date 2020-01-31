@@ -31,7 +31,16 @@ const loginTip = function loginTip() {
   })
 }
 
+const nowDate = function nowDate() {
+  var date = new Date();
+  var strDate = date.getFullYear() + "-";
+  strDate += date.getMonth() + 1 + "-";
+  strDate += date.getDate() + " ";
+  return strDate;
+}
+
 module.exports = {
   randomStr: randomStr,
-  loginTip:loginTip
+  loginTip: loginTip,
+  nowDate: nowDate
 }

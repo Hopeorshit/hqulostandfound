@@ -2,6 +2,9 @@
 import {
   Preview
 } from "../../model/preview.js"
+import {
+  nowDate
+} from '../../utils/util.js';
 let http = new Preview();
 const myCanvas = wx.createCanvasContext('myCanvas', this);
 myCanvas.font = 'normal bold 28px sans-serif'
@@ -219,6 +222,23 @@ Page({
       }
     })
   },
+
+  onCopy(){
+    let list=this.data.list;
+    let str = nowDate() + '日失物招领&寻物启事汇总\n';
+    list.forEach(function(item,index){
+      str+=(index+1)+'、'+item.title+'\n'
+    })
+     wx.setClipboardData({
+       data: str,
+       success:function(res){
+         wx.showToast({
+           title: '复制成功',
+         })
+       }
+     })
+  },
+
 
   // onDrawCanvas: function() {
   //   this.setData({ //防止连续多次按

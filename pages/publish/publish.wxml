@@ -15,15 +15,11 @@
     </view>
 
     <view class='box-name'>
-      <!-- <image class='icon' src='/images/things.png'></image> -->
       <input name="title" placeholder='标题(如:18计算机张三的学生卡)' maxlength='20' value='{{title}}'></input>
     </view>
 
 
-    <!-- <view class='box-name'> -->
-      <!-- <image class='icon' src='/images/things.png'></image> -->
-      <!-- <input placeholder="详情" value='{{description}}' name='description' maxlength='20'></input> -->
-    <!-- </view> -->
+
 
 
 
@@ -44,8 +40,6 @@
       </scroll-view>
     </view>
 
-
-
     <view class='box-ways'>
       <view class='way-sel'>
         <block wx:for="{{radio_group}}" wx:key="{{index}}">
@@ -56,11 +50,7 @@
     </view>
   </view>
 
-
   <button class='btn-bottom' disabled='{{publishing}}' form-type='submit'>
     发布
   </button>
-  <!-- <view class='tips' bindtap='onPub_card'>
-    <text>捡到学生卡？</text>
-  </view> -->
 </form>

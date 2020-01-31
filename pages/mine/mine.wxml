@@ -21,7 +21,7 @@
       <span>关于</span>
     </view>
 
-    <button class="contact-button mine-list-item" open-type='contact'>
+    <button class="contact-button mine-list-item" bindtap="onContact">
       <image src="/images/mine-kefu.png" />
       <span>联系客服</span>
     </button>

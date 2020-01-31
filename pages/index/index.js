@@ -141,7 +141,10 @@ Page({
    * 分享
    */
   onShareAppMessage: function() {
-
+    return {
+      title:"华大专属失物招领小程序",
+      imageUrl:"/images/banner2.png"
+    }
   },
 
   /**

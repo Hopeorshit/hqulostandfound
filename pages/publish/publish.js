@@ -11,7 +11,8 @@ Page({
 
   },
   onLoad: function() {
-    this.initData()
+    this.initData(),
+      this.initWxData();
   },
   initRadio: function() {
     if (this.data.is_found) {
@@ -63,6 +64,16 @@ Page({
     })
     this.initRadio();
   },
+  /**
+   * 用于
+   */
+  initWxData() {
+    this.setData({
+      wxLocalImage: [], //本地图片
+      wxImageIndex: 0, //本地图片数组
+    })
+  },
+
   //点击选择图片
   onAddPic: function() {
     var that = this;
@@ -71,22 +82,28 @@ Page({
       success: function(res) {
         var tempFilePaths = res.tempFilePaths;
         var localImage = that.data.localImage;
+        var wxLocalImage = that.data.wxLocalImage;
         tempFilePaths.forEach(function(item) {
           localImage.push(item);
+          wxLocalImage.push(item);
         })
         that.setData({
           localImage: localImage,
+          wxLocalImage: wxLocalImage
         })
       },
     })
   },
   // 点击删除图片
   deletePic: function(e) {
-    var localImage = this.data.localImage;
     var index = e.currentTarget.dataset.index;
+    var localImage = this.data.localImage;
     localImage.splice(index, 1);
+    var wxLocalImage = this.data.wxLocalImage;
+    wxLocalImage.splice(index, 1);
     this.setData({
       localImage: localImage,
+      wxLocalImage: wxLocalImage
     })
   },
   //点击查看大图
@@ -115,6 +132,7 @@ Page({
       var way = radio_group[currentRadioIndex].way;
       console.log(way);
       http.goodsCreate(this.data.is_found, way, e.detail.value, (res) => {
+        this._wxLost(this.data.is_found, way, e.detail.value)
         console.log(res)
         if (res.code == 201) {
           this.setData({
@@ -135,6 +153,7 @@ Page({
         this.initData();
       });
     }
+
   },
   // 图片上传函数
   uploadPic: function(data) {
@@ -211,10 +230,6 @@ Page({
     return true;
   },
 
-  /**
-   * 正则匹配
-   */
-
   // 选择发布信息的类型
   typeSelect: function() {
     this.setData({
@@ -255,13 +270,62 @@ Page({
       radio_group: radio_group
     })
   },
+
   /**
-   * 了解扫描发布页面
+   *
    */
-  // onPub_card: function() {
-  //   wx.redirectTo({
-  //     url: '/pages/pub_card/pub_card?is_found=1',
-  //   })
-  // }
+  _wxLost(is_found, way, value) {
+    let that = this;
+    wx.request({
+      url: 'https://hqupool.wechatzp.com/v3/lost/wx_new',
+      method: 'POST',
+      data: {
+        is_found: is_found ? 1 : 0,
+        title: value.title,
+        description: value.description,
+        phone: value.phone,
+        way: way,
+        is_card: 0
+      },
+      header: {
+        'content-type': 'application/json',
+      },
+      success(res) {
+        console.log(res);
+        var wxLocalImage = that.data.wxLocalImage;
+        if (wxLocalImage.length > 0) {
+          that._wxUpPic(res.data.data)
+        }
+      }
+    })
+  },
+  /**
+   * 
+   */
+  _wxUpPic(data) {
+    var that = this;
+    var wxLocalImage = that.data.wxLocalImage;
+    var wxImageIndex = that.data.wxImageIndex;
+    wx.uploadFile({
+      url: 'https://hqupool.wechatzp.com/v3/lost/image_upload',
+      filePath: wxLocalImage[wxImageIndex],
+      name: 'image',
+      formData: {
+        goods_id: data.goods_id,
+        uid: data.uid,
+        ishead: wxImageIndex == 0 ? true : false
+      },
+      success: function(res) {
+        that.setData({
+          wxImageIndex: wxImageIndex + 1,
+        })
+        if (wxLocalImage[wxImageIndex + 1]) {
+          that._wxUpPic(data);
+        } else {
+          that.initWxData()
+        }
+      }
+    })
+  }
 
 })

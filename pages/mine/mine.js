@@ -60,6 +60,27 @@ Page({
     wx.navigateTo({
       url: '/pages/infoedit/infoedit',
     })
+  },
+  
+  onContact:function(){
+    wx.showModal({
+      title: '添加qq号',
+      content: '添加华大失物招领墙qq:837269003',
+      confirmText:"复制qq",
+      cancelText:'取消',
+      success(res){
+        if(res.confirm){
+          wx.setClipboardData({
+            data: "837269003",
+            success: function (res) {
+              wx.showToast({
+                title: '已复制',
+                icon: 'none'
+              })
+            }
+          })
+        }
+      }
+    })
   }
-
 })

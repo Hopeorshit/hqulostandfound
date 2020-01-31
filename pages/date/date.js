@@ -3,7 +3,8 @@ import {
   Date
 } from "../../model/date.js"
 import {
-  randomStr
+  randomStr,
+  nowDate
 } from '../../utils/util.js';
 var http = new Date();
 Page({
@@ -17,7 +18,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     this.setData({
       categoryID: options.categoryID
     })
@@ -28,7 +29,7 @@ Page({
   /**
    * 上拉加载更多
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
     console.log('上拉刷新');
     this.setData({
       load_more: randomStr(16)
@@ -37,7 +38,7 @@ Page({
   /**
    * 下拉刷新
    */
-  onPullDownRefresh: function () { //TODO 下拉刷新去触发父类可以通过 observer 来触发
+  onPullDownRefresh: function() { //TODO 下拉刷新去触发父类可以通过 observer 来触发
     console.log('下拉刷新')
     this.setData({
       init: randomStr(16)
@@ -46,22 +47,28 @@ Page({
   /**
    * 商品详情页面跳转
    */
-  onGoodsDetail: function (event) {
+  onGoodsDetail: function(event) {
     let goods_id = event.detail.goods_id;
     wx.navigateTo({
       url: '/pages/goodsdetail/goodsdetail?goods_id=' + goods_id,
     })
   },
-  
+
   /**
    * 长图预览
    */
-  onShare:function(){
+  onShare: function() {
     wx.navigateTo({
       url: '/pages/preview/preview',
     })
   },
-  
 
+  onShareAppMessage: function() {
+    if (this.data.categoryID == 1) {
+      return {
+        title: nowDate() + '日失物招领&寻物启事汇总'
+      }
+    }
+  }
 
 })
